@@ -2,9 +2,28 @@ using UnityEngine;
 
 using Sirenix.OdinInspector;
 
+using Rewired;
+
 public class PhotoCamera : MonoBehaviour
 {
 	#region Variables
+	[Header("Input Settings")]
+
+	[MinValue(0)]
+	[SerializeField, Tooltip("The Rewired Player ID to use for getting input")]
+	int playerId = 0;
+
+	Player player;
+
+	[ValidateInput("StringNotEmpty", "You must provide a non-empty string here")]
+	[SerializeField, Tooltip("The Rewired action name for taking pictures")]
+	string photoActionName = "Take Photo";
+
+	[Header("Camera Settings")]
+	
+	[SerializeField, Tooltip("Whether the player can take pictures")]
+	bool canTakePhotos = true;
+
 	[Required]
 	[SerializeField, Tooltip("The Unity Camera used for taking pictures")]
 	Camera camera;
@@ -18,6 +37,23 @@ public class PhotoCamera : MonoBehaviour
 	int photoHeight = 720;
 	#endregion Variables
 
+	#region Properties
+	/// <summary>
+	/// Whether the player can take pictures
+	/// </summary>
+	public bool CanTakePhotos
+	{
+		get { return canTakePhotos; }
+		set
+		{
+			if (canTakePhotos != value)
+			{
+				canTakePhotos = value;
+			}
+		}
+	}
+	#endregion Properties
+
 	#region Events
 	/// <summary>
 	/// Handler for event called when a photo is taken
@@ -30,6 +66,23 @@ public class PhotoCamera : MonoBehaviour
 	public event TakePhotoEventHandler OnTakePhoto;
 	#endregion Events
 
+	#region MonoBehaviour
+	private void Awake()
+	{
+		player = ReInput.players.GetPlayer(playerId);
+	}
+
+	private void OnEnable()
+	{
+		player.AddInputEventDelegate(TryTakePhoto, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, photoActionName);
+	}
+
+	private void OnDisable()
+	{
+
+	}
+	#endregion MonoBehaviour
+
 	#region Public Methods
 	/// <summary>
 	/// Take a photo with the camera
@@ -38,7 +91,7 @@ public class PhotoCamera : MonoBehaviour
 	[Button("Take Photo", ButtonSizes.Medium)]
 	public Photo TakePhoto()
 	{
-		if(camera == null)
+		if (camera == null || !canTakePhotos)
 		{
 			return null;
 		}
@@ -68,4 +121,27 @@ public class PhotoCamera : MonoBehaviour
 		return photo;
 	}
 	#endregion Public Methods
+
+	#region Private Methods
+	/// <summary>
+	/// Try to take a photo when Rewired input registers that the player is pressing a button to take a picture
+	/// </summary>
+	/// <param name="_eventData">The Rewired action event data</param>
+	private void TryTakePhoto(InputActionEventData _eventData)
+	{
+		TakePhoto();
+	}
+	#endregion Private Methods
+
+	#region Odin Validation
+	/// <summary>
+	/// Check that a given string is not null or empty (used with Odin to ensure Rewired input action names are not blank)
+	/// </summary>
+	/// <param name="_text">The string to check</param>
+	/// <returns></returns>
+	private bool StringNotEmpty(string _text)
+	{
+		return !string.IsNullOrEmpty(_text);
+	}
+	#endregion Odin Validation
 }
