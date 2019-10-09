@@ -485,6 +485,7 @@ GameObject:
   - component: {fileID: 741180787}
   - component: {fileID: 741180786}
   - component: {fileID: 741180788}
+  - component: {fileID: 741180789}
   m_Layer: 0
   m_Name: Squirrel2
   m_TagString: Untagged
@@ -561,11 +562,24 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 741180785}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55a178a9d7a055845832dd475175beea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &741180789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741180785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14ace03ce7cf18c4990010a4b45665eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upwardAxis: 1
 --- !u!1 &816437550
 GameObject:
   m_ObjectHideFlags: 0
@@ -807,6 +821,7 @@ GameObject:
   - component: {fileID: 1599232239}
   - component: {fileID: 1599232238}
   - component: {fileID: 1599232240}
+  - component: {fileID: 1599232241}
   m_Layer: 0
   m_Name: Squirrel3
   m_TagString: Untagged
@@ -883,11 +898,24 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1599232237}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55a178a9d7a055845832dd475175beea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1599232241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599232237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14ace03ce7cf18c4990010a4b45665eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upwardAxis: 1
 --- !u!1 &1817789270
 GameObject:
   m_ObjectHideFlags: 0
@@ -899,6 +927,7 @@ GameObject:
   - component: {fileID: 1817789272}
   - component: {fileID: 1817789271}
   - component: {fileID: 1817789273}
+  - component: {fileID: 1817789274}
   m_Layer: 0
   m_Name: Squirrel1
   m_TagString: Untagged
@@ -975,11 +1004,24 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1817789270}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55a178a9d7a055845832dd475175beea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1817789274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817789270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14ace03ce7cf18c4990010a4b45665eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upwardAxis: 1
 --- !u!1 &1890718558
 GameObject:
   m_ObjectHideFlags: 0
@@ -1071,75 +1113,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1001 &4375930809351384406
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4375930808798869850, guid: 29cebba090f3eaf409356a63231aafb2,
-        type: 3}
-      propertyPath: m_Name
-      value: Rewired Input Manager
-      objectReference: {fileID: 0}
-    - target: {fileID: 4375930808798869848, guid: 29cebba090f3eaf409356a63231aafb2,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4375930808798869848, guid: 29cebba090f3eaf409356a63231aafb2,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4375930808798869848, guid: 29cebba090f3eaf409356a63231aafb2,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4375930808798869848, guid: 29cebba090f3eaf409356a63231aafb2,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4375930808798869848, guid: 29cebba090f3eaf409356a63231aafb2,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4375930808798869848, guid: 29cebba090f3eaf409356a63231aafb2,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4375930808798869848, guid: 29cebba090f3eaf409356a63231aafb2,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4375930808798869848, guid: 29cebba090f3eaf409356a63231aafb2,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4375930808798869848, guid: 29cebba090f3eaf409356a63231aafb2,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4375930808798869848, guid: 29cebba090f3eaf409356a63231aafb2,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4375930808798869848, guid: 29cebba090f3eaf409356a63231aafb2,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 29cebba090f3eaf409356a63231aafb2, type: 3}
 --- !u!1001 &7107192115362908180
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1190,7 +1163,7 @@ PrefabInstance:
     - target: {fileID: 7107192115459729059, guid: 829f582c7480a3b488005ef7e8b63b8a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7107192115459729059, guid: 829f582c7480a3b488005ef7e8b63b8a,
         type: 3}
