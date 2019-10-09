@@ -9,12 +9,6 @@ public class PhotoCamera : MonoBehaviour
 	#region Variables
 	[Header("Input Settings")]
 
-	[MinValue(0)]
-	[SerializeField, Tooltip("The Rewired Player ID to use for getting input")]
-	int playerId = 0;
-
-	Player player;
-
 	[ValidateInput("StringNotEmpty", "You must provide a non-empty string here")]
 	[SerializeField, Tooltip("The Rewired action name for taking pictures")]
 	string photoActionName = "Take Photo";
@@ -69,15 +63,19 @@ public class PhotoCamera : MonoBehaviour
 	#region MonoBehaviour
 	private void Awake()
 	{
-		player = ReInput.players.GetPlayer(playerId);
+		
 	}
 
 	private void OnEnable()
 	{
-		player.AddInputEventDelegate(TryTakePhoto, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, photoActionName);
 	}
 
-	private void OnDisable()
+    private void Start()
+    {
+        GameManager.Instance.rewiredPlayer.AddInputEventDelegate(TryTakePhoto, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, photoActionName);
+    }
+
+    private void OnDisable()
 	{
 
 	}

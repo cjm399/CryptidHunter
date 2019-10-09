@@ -167,7 +167,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isMainScene: 1
-  _sceneSetup: []
+  _sceneSetup:
+  - scene:
+      editorAssetGUID: 003cea3a55c49ce4980135f4f105c69e
+      name: init
+      _path: Assets/_CRYPTID_HUNTER/_SCENES/init.unity
+    loadInEditor: 1
+    loadMethod: 3
   _thisScenePath: Assets/_CRYPTID_HUNTER/_SCENES/Test_CameraPhotos.unity
 --- !u!4 &316813740
 Transform:
@@ -274,7 +280,7 @@ Transform:
   m_Children:
   - {fileID: 1803921157}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &484050336
 GameObject:
@@ -554,7 +560,7 @@ RectTransform:
   m_Children:
   - {fileID: 583200485}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -571,6 +577,7 @@ GameObject:
   m_Component:
   - component: {fileID: 741180787}
   - component: {fileID: 741180786}
+  - component: {fileID: 741180788}
   m_Layer: 0
   m_Name: Squirrel2
   m_TagString: Untagged
@@ -640,6 +647,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &741180788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741180785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14ace03ce7cf18c4990010a4b45665eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upwardAxis: 1
 --- !u!1 &816437550
 GameObject:
   m_ObjectHideFlags: 0
@@ -1047,7 +1067,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f3672bb8c20ce54982f6eb2089cfe08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerId: 0
   photoActionName: Take Photo
   canTakePhotos: 1
   camera: {fileID: 1803921156}
@@ -1253,72 +1272,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1001 &4375930809351384406
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4375930808798869850, guid: 29cebba090f3eaf409356a63231aafb2,
-        type: 3}
-      propertyPath: m_Name
-      value: Rewired Input Manager
-      objectReference: {fileID: 0}
-    - target: {fileID: 4375930808798869848, guid: 29cebba090f3eaf409356a63231aafb2,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4375930808798869848, guid: 29cebba090f3eaf409356a63231aafb2,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4375930808798869848, guid: 29cebba090f3eaf409356a63231aafb2,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4375930808798869848, guid: 29cebba090f3eaf409356a63231aafb2,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4375930808798869848, guid: 29cebba090f3eaf409356a63231aafb2,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4375930808798869848, guid: 29cebba090f3eaf409356a63231aafb2,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4375930808798869848, guid: 29cebba090f3eaf409356a63231aafb2,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4375930808798869848, guid: 29cebba090f3eaf409356a63231aafb2,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4375930808798869848, guid: 29cebba090f3eaf409356a63231aafb2,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4375930808798869848, guid: 29cebba090f3eaf409356a63231aafb2,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4375930808798869848, guid: 29cebba090f3eaf409356a63231aafb2,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 29cebba090f3eaf409356a63231aafb2, type: 3}
