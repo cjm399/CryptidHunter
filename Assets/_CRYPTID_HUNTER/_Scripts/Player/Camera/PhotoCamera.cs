@@ -1,3 +1,5 @@
+using System.Collections;
+
 using UnityEngine;
 
 using Sirenix.OdinInspector;
@@ -43,6 +45,8 @@ public class PhotoCamera : MonoBehaviour
 			if (canTakePhotos != value)
 			{
 				canTakePhotos = value;
+
+				camera.enabled = canTakePhotos;
 			}
 		}
 	}
@@ -61,23 +65,14 @@ public class PhotoCamera : MonoBehaviour
 	#endregion Events
 
 	#region MonoBehaviour
-	private void Awake()
-	{
-		
-	}
-
 	private void OnEnable()
 	{
+		StartCoroutine(InputSubscribe());
 	}
-
-    private void Start()
-    {
-        GameManager.Instance.rewiredPlayer.AddInputEventDelegate(TryTakePhoto, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, photoActionName);
-    }
 
     private void OnDisable()
 	{
-
+		GameManager.Instance?.RewiredPlayer?.RemoveInputEventDelegate(TryTakePhoto, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, photoActionName);
 	}
 	#endregion MonoBehaviour
 
@@ -121,6 +116,19 @@ public class PhotoCamera : MonoBehaviour
 	#endregion Public Methods
 
 	#region Private Methods
+	/// <summary>
+	/// Wait until after GameManager is fully instantiated before doing anything with it
+	/// </summary>
+	private IEnumerator InputSubscribe()
+	{
+		while(GameManager.Instance?.RewiredPlayer == null)
+		{
+			yield return null;
+		}
+
+		GameManager.Instance.RewiredPlayer.AddInputEventDelegate(TryTakePhoto, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, photoActionName);
+	}
+
 	/// <summary>
 	/// Try to take a photo when Rewired input registers that the player is pressing a button to take a picture
 	/// </summary>
