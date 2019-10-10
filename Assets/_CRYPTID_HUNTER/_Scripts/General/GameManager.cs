@@ -4,6 +4,12 @@ using UnityEngine;
 
 using Sirenix.OdinInspector;
 
+public enum Level
+{
+    Init = 0,
+    TestScene = 1
+}
+
 public class GameManager : Singleton<GameManager>
 {
 	#region Variables
