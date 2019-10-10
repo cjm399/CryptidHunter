@@ -25,8 +25,7 @@ public class FaceCamera : MonoBehaviour
 
     private void FixedUpdate()
     {
-        cachedTransform.LookAt(PlayerCharacter.Instance.transform, SetAxis(upwardAxis));//Vector3.up);
-        //cachedTransform.LookAt(cameraTransform, SetAxis(upwardAxis));
+        cachedTransform.LookAt(PlayerCharacter.Instance.transform, SetAxis(upwardAxis));
     }
 
     private Vector3 SetAxis(Axis _a)
