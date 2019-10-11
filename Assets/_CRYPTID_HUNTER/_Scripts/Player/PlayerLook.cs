@@ -114,6 +114,11 @@ public class PlayerLook : MonoBehaviour
 	/// <param name="_eventData">The Rewired input event data</param>
 	private void TryLook(InputActionEventData _eventData)
 	{
+		if(PauseManager.Instance.Paused)
+		{
+			return;
+		}
+
 		float vertAxis = GameManager.Instance.RewiredPlayer.GetAxis(lookVertActionName);
 		float horzAxis = GameManager.Instance.RewiredPlayer.GetAxis(lookHorzActionName);
 

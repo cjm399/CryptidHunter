@@ -79,32 +79,27 @@ public class PlayerWalk : MonoBehaviour
 
 	#region Getters & Setters
 	/// <summary>
-	/// Wkhether the player is walking
+	/// Whether the player is walking
 	/// </summary>
-	public bool GetIsWalking()
+	public bool IsWalking
 	{
-		return isWalking;
-	}
-
-	/// <summary>
-	/// Set whether the player is walking
-	/// </summary>
-	/// <param name="_isWalking">Whether the player is walking</param>
-	private void SetIsWalking(bool _isWalking)
-	{
-		if (isWalking != _isWalking)
+		get { return isWalking; }
+		set
 		{
-			isWalking = _isWalking;
-
-			if (isWalking)
+			if (isWalking != value)
 			{
-				OnStartMoving?.Invoke();
-			}
-			else
-			{
-				SetIsSprinting(false);
+				isWalking = value;
 
-				OnStopMoving?.Invoke();
+				if (isWalking)
+				{
+					OnStartMoving?.Invoke();
+				}
+				else
+				{
+					IsSprinting = false;
+
+					OnStopMoving?.Invoke();
+				}
 			}
 		}
 	}
@@ -112,30 +107,25 @@ public class PlayerWalk : MonoBehaviour
 	/// <summary>
 	/// Whether the player is sprinting
 	/// </summary>
-	public bool GetIsSprinting()
+	public bool IsSprinting
 	{
-		return isSprinting;
-	}
-
-	/// <summary>
-	/// Set whether the player is sprinting
-	/// </summary>
-	/// <param name="_isSprinting">Whether the player is sprinting</param>
-	private void SetIsSprinting(bool _isSprinting)
-	{
-		if (isSprinting != _isSprinting)
+		get { return isSprinting; }
+		set
 		{
-			isSprinting = _isSprinting;
+			if (isSprinting != value)
+			{
+				isSprinting = value;
 
-			if (isSprinting)
-			{
-				StartCoroutine("Sprint");
-				OnStartSprinting?.Invoke();
-			}
-			else
-			{
-				StartCoroutine("SprintRecharge");
-				OnStopSprinting?.Invoke();
+				if (isSprinting)
+				{
+					StartCoroutine("Sprint");
+					OnStartSprinting?.Invoke();
+				}
+				else
+				{
+					StartCoroutine("SprintRecharge");
+					OnStopSprinting?.Invoke();
+				}
 			}
 		}
 	}
@@ -224,12 +214,18 @@ public class PlayerWalk : MonoBehaviour
 		float walkAxis = GameManager.Instance.RewiredPlayer.GetAxis(walkActionName);
 		float strafeAxis = GameManager.Instance.RewiredPlayer.GetAxis(strafeActionName);
 
+		if(PauseManager.Instance.Paused)
+		{
+			walkAxis = 0;
+			strafeAxis = 0;
+		}
+
 		// Player is not moving
 		if (walkAxis == 0 && strafeAxis == 0)
 		{
 			currentSpeed = startWalkSpeed;
-			SetIsWalking(false);
-			SetIsSprinting(false);
+			IsWalking = false;
+			IsSprinting = false;
 
 			// Restore sprint completely if the player stops moving
 			currentEnergy = maxSprintEnergy;
@@ -271,7 +267,7 @@ public class PlayerWalk : MonoBehaviour
 				}
 			}
 
-			SetIsWalking(true);
+			IsWalking = true;
 		}
 	}
 
@@ -281,7 +277,7 @@ public class PlayerWalk : MonoBehaviour
 	/// <param name="_eventData">The Rewired input event data</param>
 	private void TrySprint(InputActionEventData _eventData)
 	{
-		SetIsSprinting(isWalking && _eventData.GetButton());
+		IsSprinting = isWalking && _eventData.GetButton();
 	}
 
 	/// <summary>
@@ -297,7 +293,7 @@ public class PlayerWalk : MonoBehaviour
 
 			if (currentEnergy == 0)
 			{
-				SetIsSprinting(false);
+				IsSprinting = false;
 			}
 		}
 	}

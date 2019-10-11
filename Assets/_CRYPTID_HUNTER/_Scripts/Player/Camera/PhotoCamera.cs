@@ -84,7 +84,7 @@ public class PhotoCamera : MonoBehaviour
 	[Button("Take Photo", ButtonSizes.Medium)]
 	public Photo TakePhoto()
 	{
-		if (camera == null || !canTakePhotos)
+		if (camera == null || !canTakePhotos || PauseManager.Instance.Paused)
 		{
 			return null;
 		}
