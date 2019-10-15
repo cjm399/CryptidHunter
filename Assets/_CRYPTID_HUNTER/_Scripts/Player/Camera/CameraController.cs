@@ -27,7 +27,7 @@ public class CameraController : MonoBehaviour
 	#endregion Variables
 
 	#region MonoBehavior
-	private void OnEnable()
+	private void Start()
 	{
 		cameraOverlay.enabled = photoCamera.CanTakePhotos;
 
