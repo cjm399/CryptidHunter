@@ -24,6 +24,7 @@ public class TimeManager : Singleton<TimeManager>
 
     #endregion
 
+    #region PROPERTIES
     public float TimePerMinute
     {
         get
@@ -31,6 +32,8 @@ public class TimeManager : Singleton<TimeManager>
             return timePerMinute;
         }
     }
+
+    #endregion
 
     #region EVENTS
 
@@ -57,7 +60,7 @@ public class TimeManager : Singleton<TimeManager>
 
     #endregion
 
-    #region Monobehaviour
+    #region MONOBEHAVIOUR
 
     protected override void CustomAwake()
     {
@@ -75,6 +78,8 @@ public class TimeManager : Singleton<TimeManager>
     }
 
     #endregion
+
+    #region EVENTHANDLERS
 
     private void OneMinutePassed()
     {
@@ -98,6 +103,8 @@ public class TimeManager : Singleton<TimeManager>
         OnMinutePassed(currHours, currMinutes);
     }
 
+    #endregion
+   
     #region Odin Validation
 
     /// <summary>
