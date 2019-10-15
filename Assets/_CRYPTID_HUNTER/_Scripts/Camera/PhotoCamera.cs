@@ -50,6 +50,14 @@ public class PhotoCamera : MonoBehaviour
 			}
 		}
 	}
+
+	/// <summary>
+	/// The Unity Camera used for taking pictures
+	/// </summary>
+	public Camera Camera
+	{
+		get { return camera; }
+	}
 	#endregion Properties
 
 	#region Events

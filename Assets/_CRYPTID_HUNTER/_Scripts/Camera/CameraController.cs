@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+
+using UnityEngine;
 using UnityEngine.UI;
 
 using Sirenix.OdinInspector;
@@ -33,16 +35,29 @@ public class CameraController : MonoBehaviour
 	{
 		cameraOverlay.enabled = photoCamera.CanTakePhotos;
 
-		GameManager.Instance.RewiredPlayer.AddInputEventDelegate(TryToggleCamera, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, cameraActionName);
+		StartCoroutine(InputSubscribe());
 	}
 
 	private void OnDisable()
 	{
-		GameManager.Instance.RewiredPlayer.RemoveInputEventDelegate(TryToggleCamera, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, cameraActionName);
+		GameManager.Instance?.RewiredPlayer?.RemoveInputEventDelegate(TryToggleCamera, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, cameraActionName);
 	}
 	#endregion MonoBehavior
 
 	#region Private Methods
+	/// <summary>
+	/// Wait until the GameManager is instantiated before subscribing to input events
+	/// </summary>
+	private IEnumerator InputSubscribe()
+	{
+		while(GameManager.Instance?.RewiredPlayer == null)
+		{
+			yield return null;
+		}
+
+		GameManager.Instance.RewiredPlayer.AddInputEventDelegate(TryToggleCamera, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, cameraActionName);
+	}
+
 	/// <summary>
 	/// Try toggling whether the camera is out based on Rewired input
 	/// </summary>
