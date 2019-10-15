@@ -24,6 +24,14 @@ public class TimeManager : Singleton<TimeManager>
 
     #endregion
 
+    public float TimePerMinute
+    {
+        get
+        {
+            return timePerMinute;
+        }
+    }
+
     #region EVENTS
 
     /// <summary>
