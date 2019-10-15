@@ -97,7 +97,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2376331795724123084}
   - component: {fileID: 9219981886029642323}
-  - component: {fileID: 8337759887193324944}
   - component: {fileID: 5099791548226260583}
   - component: {fileID: 771028311199553181}
   m_Layer: 8
@@ -106,7 +105,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2376331795724123084
 Transform:
   m_ObjectHideFlags: 0
@@ -164,14 +163,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &8337759887193324944
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3286309078818474120}
-  m_Enabled: 1
 --- !u!114 &5099791548226260583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -531,7 +522,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a3efeddb35dd3442a74f73813a4682c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraActionName: Toggle Camera
   cameraOverlay: {fileID: 430135509682885656}
+  cameraTime: {fileID: 0}
   photoCamera: {fileID: 5099791548226260583}
 --- !u!1 &7107192115459729062
 GameObject:

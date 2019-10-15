@@ -786,6 +786,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upwardAxis: 1
+--- !u!1 &1049352588 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4737938176147396325, guid: 829f582c7480a3b488005ef7e8b63b8a,
+    type: 3}
+  m_PrefabInstance: {fileID: 7107192115362908180}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1087573046
 GameObject:
   m_ObjectHideFlags: 0
@@ -2054,5 +2060,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7107192114666827548, guid: 829f582c7480a3b488005ef7e8b63b8a,
+        type: 3}
+      propertyPath: cameraText
+      value: 
+      objectReference: {fileID: 1049352588}
+    - target: {fileID: 7107192114666827548, guid: 829f582c7480a3b488005ef7e8b63b8a,
+        type: 3}
+      propertyPath: cameraTime
+      value: 
+      objectReference: {fileID: 1049352588}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 829f582c7480a3b488005ef7e8b63b8a, type: 3}
