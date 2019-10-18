@@ -26,6 +26,10 @@ public class PauseManager : Singleton<PauseManager>
 
 	// Whether pause was toggled this frame
 	bool toggledPauseThisFrame;
+
+    [SerializeField, Tooltip("Pause Manu UI Game Object")]
+    GameObject pauseMenu;
+
 	#endregion Variables
 
 	#region Properties
@@ -121,9 +125,9 @@ public class PauseManager : Singleton<PauseManager>
 	/// Broadcasts that the game has been resumed
 	/// </summary>
 	public event ResumeEventHandler OnResume;
-	#endregion Events
+    #endregion Events
 
-	#region MonoBehaviour
+    #region MonoBehaviour
 	private void OnEnable()
 	{
 		GameManager.Instance.RewiredPlayer.AddInputEventDelegate(TryPause, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, pauseActionName);
@@ -142,7 +146,19 @@ public class PauseManager : Singleton<PauseManager>
 	public void TogglePause()
 	{
 		Paused = !paused;
-	}
+
+        if (paused)
+        {
+            pauseMenu.SetActive(true);
+        }
+        else
+        {
+            pauseMenu.SetActive(false);
+        }
+
+
+    }
+
 	#endregion Public Methods
 
 	#region Private Methods
