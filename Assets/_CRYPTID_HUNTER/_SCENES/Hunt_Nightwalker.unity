@@ -371,13 +371,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3d7b0434bbe7ad498fffb1188298cc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetCryptid: {fileID: 1599444505}
+  targetCryptids:
+  - {fileID: 1599444505}
   rangePenalty: 0.5
   centeredPenalty: 0.5
   minPercent: 0.75
   obstacleLayers:
     serializedVersion: 2
-    m_Bits: 567
+    m_Bits: 823
   photos: []
   debugScoreDisplay: {fileID: 1900807550}
 --- !u!114 &583200486 stripped

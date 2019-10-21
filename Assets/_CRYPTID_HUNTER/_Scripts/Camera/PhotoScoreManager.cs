@@ -10,8 +10,8 @@ public class PhotoScoreManager : Singleton<PhotoScoreManager>
 {
 	#region Variables
 	[Required, SceneObjectsOnly]
-	[SerializeField, Tooltip("The cryptid target of this level")]
-	PhotoTarget targetCryptid;
+	[SerializeField, Tooltip("The cryptid targets of this level")]
+	List<PhotoTarget> targetCryptids;
 
 	[Header("Scoring")]
 
@@ -66,46 +66,66 @@ public class PhotoScoreManager : Singleton<PhotoScoreManager>
 	private void ScorePhoto(Photo _photo)
 	{
 		PhotoScore photoScore = new PhotoScore(_photo);
+		photoScore.MaxScore = 0;
 
-		photoScore.MaxScore = targetCryptid.MaxScore;
+		foreach (PhotoTarget targetCryptid in targetCryptids)
+		{
+			photoScore.MaxScore += targetCryptid.MaxScore;
+		}
 
 		// Calculate the total score achieved by the player
 		int score = 0;
 
 		Camera cam = PlayerCharacter.Instance.PhotoCamera.Camera;
 
-		foreach(TargetPoint targetPoint in targetCryptid.TargetPoints)
+		foreach (PhotoTarget targetCryptid in targetCryptids)
 		{
-			float distance = Vector3.Distance(targetPoint.transform.position, cam.ScreenToWorldPoint(new Vector3(cam.pixelWidth / 2, cam.pixelHeight / 2, cam.nearClipPlane)));
-
-			Vector3 screenPoint = cam.WorldToScreenPoint(targetPoint.transform.position);
-
-			Ray ray = cam.ScreenPointToRay(screenPoint);
-			RaycastHit result;
-			Physics.Raycast(ray, out result, distance, obstacleLayers, QueryTriggerInteraction.Ignore);
-
-			// If there is a clear line of sight between the target point and the camera, then give the player points for it
-			if(result.collider == null)
+			foreach (TargetPoint targetPoint in targetCryptid.TargetPoints)
 			{
-				score += targetPoint.Score;
+				// First check if on-screen
+				Vector3 viewPoint = cam.WorldToViewportPoint(targetPoint.transform.position);
+
+				if(viewPoint.x < 0 || viewPoint.x > 1 || viewPoint.y < 0 || viewPoint.y > 1 || viewPoint.z < 0)
+				{
+					continue;
+				}
+
+				Vector3 screenPoint = cam.WorldToScreenPoint(targetPoint.transform.position);
+				screenPoint.z = cam.nearClipPlane;
+				Vector3 screenPointInWorld = cam.ScreenToWorldPoint(screenPoint);
+
+				float distance = Vector3.Distance(targetPoint.transform.position, screenPointInWorld);
+
+				Ray ray = cam.ScreenPointToRay(screenPoint);
+				Debug.DrawRay(ray.origin, ray.direction * distance, Color.cyan, 15);
+				RaycastHit result;
+				//Physics.Raycast(ray, out result, distance, ~0, QueryTriggerInteraction.Ignore);
+				Physics.Raycast(ray, out result, distance, obstacleLayers, QueryTriggerInteraction.Ignore);
+
+				// If there is a clear line of sight between the target point and the camera, then give the player points for it
+				if(result.collider == null)
+				//if (result.collider?.GetComponent<TargetPoint>() != null)
+				{
+					score += targetPoint.Score;
+				}
 			}
-		}
 
-		// The player is not aiming directly at the cryptid while in range of it
-		if(!PlayerCharacter.Instance.CamRange.InRange)
-		{
-			bool centered = PlayerCharacter.Instance.CamRange.Centered;
-
-			bool inRange = Vector3.Distance(PlayerCharacter.Instance.PhotoCamera.transform.position, targetCryptid.transform.position) <= PlayerCharacter.Instance.CamRange.MaxRange;
-
-			if(!centered)
+			// The player is not aiming directly at the cryptid while in range of it
+			if (!PlayerCharacter.Instance.CamRange.InRange)
 			{
-				score = Mathf.FloorToInt(score * centeredPenalty);
-			}
+				bool centered = PlayerCharacter.Instance.CamRange.Centered;
 
-			if(!inRange)
-			{
-				score = Mathf.FloorToInt(score * rangePenalty);
+				bool inRange = Vector3.Distance(PlayerCharacter.Instance.PhotoCamera.transform.position, targetCryptid.transform.position) <= PlayerCharacter.Instance.CamRange.MaxRange;
+
+				if (!centered)
+				{
+					score = Mathf.FloorToInt(score * centeredPenalty);
+				}
+
+				if (!inRange)
+				{
+					score = Mathf.FloorToInt(score * rangePenalty);
+				}
 			}
 		}
 
