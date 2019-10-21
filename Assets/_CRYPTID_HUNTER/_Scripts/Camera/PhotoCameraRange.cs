@@ -26,6 +26,10 @@ public class PhotoCameraRange : MonoBehaviour
 	[SerializeField, Tooltip("Whether the player is aiming directly at their target")]
 	bool centered = false;
 
+	[ReadOnly]
+	[SerializeField, Tooltip("Whether the target is obstructed")]
+	bool obstructed = false;
+
 	[SerializeField, Tooltip("The Layers to check for a collision with a target")]
 	LayerMask targetLayers = LayerMask.GetMask();
 
@@ -84,6 +88,21 @@ public class PhotoCameraRange : MonoBehaviour
 			}
 		}
 	}
+
+	/// <summary>
+	/// Whether the target is obstructed
+	/// </summary>
+	public bool Obstructed
+	{
+		get { return obstructed; }
+		set
+		{
+			if(obstructed != value)
+			{
+				obstructed = value;
+			}
+		}
+	}
 	#endregion Properties
 
 	#region Events
@@ -118,21 +137,15 @@ public class PhotoCameraRange : MonoBehaviour
 			float distance = Vector3.Distance(photoCam.transform.position, result.collider.gameObject.transform.position);
 			InRange = distance <= maxRange;
 
-			// Now check if there is an obstacle
-			if(Physics.Raycast(ray, out obstacleCheck, distance, ~0, QueryTriggerInteraction.Ignore))
-			{
-				if(!obstacleCheck.collider?.GetComponent<PhotoTarget>())
-				{
-					Centered = false;
-				}
-			}
+			// Now check if there is an obstacle blocking the view
+			obstructed = Physics.Raycast(ray, out obstacleCheck, distance, ~0 - targetLayers, QueryTriggerInteraction.Ignore);
 		}
 		else
 		{
 			InRange = false;
 		}
 
-		if (centered && inRange)
+		if (centered && inRange && !obstructed)
 		{
 			reticleDisplay.texture = inRangeReticle;
 		}
