@@ -28,7 +28,7 @@ public class PhotoScoreManager : Singleton<PhotoScoreManager>
 	float minPercent = .75f;
 
 	[SerializeField, Tooltip("The layers to check for an obstruction")]
-	LayerMask obstacleLayers = LayerMask.GetMask();
+	LayerMask obstacleLayers;
 
 	[SerializeField, Tooltip("A list of all photos taken by the player in this session")]
 	List<PhotoScore> photos;
@@ -76,7 +76,7 @@ public class PhotoScoreManager : Singleton<PhotoScoreManager>
 
 		foreach(TargetPoint targetPoint in targetCryptid.TargetPoints)
 		{
-			float distance = Vector3.Distance(targetPoint.transform.position, cam.transform.position);
+			float distance = Vector3.Distance(targetPoint.transform.position, cam.ScreenToWorldPoint(new Vector3(cam.pixelWidth / 2, cam.pixelHeight / 2, cam.nearClipPlane)));
 
 			Vector3 screenPoint = cam.WorldToScreenPoint(targetPoint.transform.position);
 

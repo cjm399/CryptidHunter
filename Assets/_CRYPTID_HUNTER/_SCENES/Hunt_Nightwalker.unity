@@ -377,7 +377,7 @@ MonoBehaviour:
   minPercent: 0.75
   obstacleLayers:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 567
   photos: []
   debugScoreDisplay: {fileID: 1900807550}
 --- !u!114 &583200486 stripped
