@@ -65,15 +65,6 @@ public class PhotoCameraRange : MonoBehaviour
 			{
 				inRange = value;
 
-				if(inRange)
-				{
-					reticleDisplay.texture = inRangeReticle;
-				}
-				else
-				{
-					reticleDisplay.texture = outRangeReticle;
-				}
-
 				OnInRangeChange?.Invoke(inRange);
 			}
 		}
@@ -90,11 +81,6 @@ public class PhotoCameraRange : MonoBehaviour
 			if (centered != value)
 			{
 				centered = value;
-
-				if(!centered)
-				{
-					InRange = false;
-				}
 			}
 		}
 	}
@@ -127,7 +113,32 @@ public class PhotoCameraRange : MonoBehaviour
 
 		if(centered)
 		{
-			InRange = Vector3.Distance(photoCam.transform.position, result.collider.gameObject.transform.position) <= maxRange;
+			RaycastHit obstacleCheck;
+
+			float distance = Vector3.Distance(photoCam.transform.position, result.collider.gameObject.transform.position);
+			InRange = distance <= maxRange;
+
+			// Now check if there is an obstacle
+			if(Physics.Raycast(ray, out obstacleCheck, distance, ~0, QueryTriggerInteraction.Ignore))
+			{
+				if(!obstacleCheck.collider?.GetComponent<PhotoTarget>())
+				{
+					Centered = false;
+				}
+			}
+		}
+		else
+		{
+			InRange = false;
+		}
+
+		if (centered && inRange)
+		{
+			reticleDisplay.texture = inRangeReticle;
+		}
+		else
+		{
+			reticleDisplay.texture = outRangeReticle;
 		}
 	}
 	#endregion MonoBehaviour

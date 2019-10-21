@@ -236,8 +236,6 @@ public class PlayerWalk : MonoBehaviour
 			Vector2 inputAxes = new Vector2(strafeAxis, walkAxis);
 			inputAxes.Normalize();
 
-			Debug.Log($"[PlayerWalk3D] Input axes are {inputAxes}");
-
 			moveVector += transform.TransformDirection(Vector3.forward) * inputAxes.y;
 			moveVector += transform.TransformDirection(Vector3.right) * inputAxes.x;
 
