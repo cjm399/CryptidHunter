@@ -25,7 +25,7 @@ public class GrassGenerator : MonoBehaviour
     void Start()
     {
         cachedTransform = transform;
-        GenerateGrass();
+        //GenerateGrass();
     }
 
     [Button("GenerateGrass")]
