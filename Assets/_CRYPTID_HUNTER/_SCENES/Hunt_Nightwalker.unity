@@ -120,6 +120,20 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &7977886 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7107192115459729062, guid: 829f582c7480a3b488005ef7e8b63b8a,
+    type: 3}
+  m_PrefabInstance: {fileID: 7107192115362908180}
+  m_PrefabAsset: {fileID: 0}
+--- !u!81 &7977895
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7977886}
+  m_Enabled: 1
 --- !u!1 &316813737
 GameObject:
   m_ObjectHideFlags: 0
@@ -870,6 +884,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3806140463339374037, guid: 829f582c7480a3b488005ef7e8b63b8a,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 7107192115362908181}
     - target: {fileID: 5226160273400506737, guid: 829f582c7480a3b488005ef7e8b63b8a,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -945,42 +964,27 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2055879474019432121, guid: 829f582c7480a3b488005ef7e8b63b8a,
+    - target: {fileID: 7107192114666827539, guid: 829f582c7480a3b488005ef7e8b63b8a,
         type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
+      propertyPath: photoDisplay
+      value: 
+      objectReference: {fileID: 816437552}
+    - target: {fileID: 7107192114666827548, guid: 829f582c7480a3b488005ef7e8b63b8a,
+        type: 3}
+      propertyPath: cameraOverlay
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3286309078818474120, guid: 829f582c7480a3b488005ef7e8b63b8a,
         type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7107192114666827548, guid: 829f582c7480a3b488005ef7e8b63b8a,
+    - target: {fileID: 7107192114666827543, guid: 829f582c7480a3b488005ef7e8b63b8a,
         type: 3}
-      propertyPath: cameraOverlay
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3806140463339374037, guid: 829f582c7480a3b488005ef7e8b63b8a,
-        type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 7107192115362908181}
-    - target: {fileID: 7107192114666827539, guid: 829f582c7480a3b488005ef7e8b63b8a,
-        type: 3}
-      propertyPath: photoDisplay
-      value: 
-      objectReference: {fileID: 816437552}
-    - target: {fileID: 1348601589270147706, guid: 829f582c7480a3b488005ef7e8b63b8a,
-        type: 3}
-      propertyPath: m_AnchorMax.x
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1348601589270147706, guid: 829f582c7480a3b488005ef7e8b63b8a,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1348601589270147706, guid: 829f582c7480a3b488005ef7e8b63b8a,
+    - target: {fileID: 2055879474019432121, guid: 829f582c7480a3b488005ef7e8b63b8a,
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -1008,6 +1012,21 @@ PrefabInstance:
     - target: {fileID: 7632838022540254264, guid: 829f582c7480a3b488005ef7e8b63b8a,
         type: 3}
       propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1348601589270147706, guid: 829f582c7480a3b488005ef7e8b63b8a,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1348601589270147706, guid: 829f582c7480a3b488005ef7e8b63b8a,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1348601589270147706, guid: 829f582c7480a3b488005ef7e8b63b8a,
+        type: 3}
+      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
