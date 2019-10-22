@@ -15,6 +15,10 @@ public class PlayerCharacter : Singleton<PlayerCharacter>
 	[Required]
 	[SerializeField, Tooltip("The script limiting the player's range")]
 	PhotoCameraRange camRange;
+
+	[Required]
+	[SerializeField, Tooltip("The script handling player movement")]
+	PlayerWalk playerWalk;
 	#endregion Variables
 
 	#region Properties
@@ -32,6 +36,14 @@ public class PlayerCharacter : Singleton<PlayerCharacter>
 	public PhotoCameraRange CamRange
 	{
 		get { return camRange; }
+	}
+
+	/// <summary>
+	/// The script handling player movement
+	/// </summary>
+	public PlayerWalk PlayerWalk
+	{
+		get { return playerWalk; }
 	}
 	#endregion Properties
 }

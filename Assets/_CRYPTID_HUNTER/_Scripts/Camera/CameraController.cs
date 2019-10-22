@@ -19,10 +19,9 @@ public class CameraController : MonoBehaviour
 
 	[Header("Camera Settings")]
 
+	[Required]
 	[SerializeField, Tooltip("Image for the overlay of the camera")]
-	RawImage cameraOverlay;
-
-    [SerializeField] private GameObject cameraTime;
+	Canvas cameraOverlay;
 
 	[Required]
 	[SerializeField, Tooltip("The camera script for taking photos")]
@@ -72,14 +71,12 @@ public class CameraController : MonoBehaviour
 		if (photoCamera.CanTakePhotos == true)
 		{
 			cameraOverlay.enabled = false;
-            cameraTime.SetActive(false);
 
             photoCamera.CanTakePhotos = false;
 		}
 		else
 		{
 			cameraOverlay.enabled = true;
-            cameraTime.SetActive(true);
             photoCamera.CanTakePhotos = true;
 		}
 	}

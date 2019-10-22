@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 
 using UnityEngine;
 
@@ -8,6 +9,33 @@ using Rewired;
 
 public class PlayerWalk : MonoBehaviour
 {
+	#region Structs
+	[System.Serializable]
+	public struct SpeedModifier
+	{
+		/// <summary>
+		/// The MonoBehaviour responsible for this modifier
+		/// </summary>
+		public MonoBehaviour handler;
+
+		/// <summary>
+		/// The change applied to the player's speed
+		/// </summary>
+		public float multiplier;
+
+		/// <summary>
+		/// Constructor for SpeedModifier
+		/// </summary>
+		/// <param name="_handler">The MonoBehaviour responsible for this modifier</param>
+		/// <param name="_multiplier">The multiplier to apply to speed</param>
+		public SpeedModifier(MonoBehaviour _handler, float _multiplier = 1)
+		{
+			handler = _handler;
+			multiplier = _multiplier;
+		}
+	}
+	#endregion Structs
+
 	#region Variables
 	[Header("Input Settings")]
 
@@ -75,6 +103,10 @@ public class PlayerWalk : MonoBehaviour
 	[ReadOnly]
 	[SerializeField, Tooltip("Whether the player is sprinting")]
 	bool isSprinting = false;
+
+	[ReadOnly]
+	[SerializeField, Tooltip("A list of all scripts applying modifiers to the player's speed")]
+	List<SpeedModifier> speedModifiers = new List<SpeedModifier>();
 	#endregion Variables
 
 	#region Getters & Setters
@@ -188,6 +220,49 @@ public class PlayerWalk : MonoBehaviour
 	}
 	#endregion MonoBehaviour
 
+	#region Public Methods
+	/// <summary>
+	/// Add a new speed modifier to the player, changing how fast they move
+	/// </summary>
+	/// <param name="_handler">The MonoBehaviour that is adding this modifier</param>
+	/// <param name="_multiplier">The multiplier to apply to speed</param>
+	public void AddSpeedModifer(MonoBehaviour _handler, float _multiplier)
+	{
+		foreach(SpeedModifier modifier in speedModifiers)
+		{
+			if(modifier.handler == _handler)
+			{
+				return;
+			}
+		}
+
+		speedModifiers.Add(new SpeedModifier(_handler, _multiplier));
+	}
+
+	/// <summary>
+	/// Remove a speed modifier from the player
+	/// </summary>
+	/// <param name="_handler">The MonoBehaviour that added the modifier before</param>
+	public void RemoveSpeedModifier(MonoBehaviour _handler)
+	{
+		// Create a default with null handler to check later
+		SpeedModifier targetModifier = new SpeedModifier(null, 1);
+
+		foreach(SpeedModifier modifier in speedModifiers)
+		{
+			if(modifier.handler == _handler)
+			{
+				targetModifier = modifier;
+			}
+		}
+
+		if(targetModifier.handler == _handler)
+		{
+			speedModifiers.Remove(targetModifier);
+		}
+	}
+	#endregion Public Methods
+
 	#region Private Methods
 	/// <summary>
 	/// Wait until after GameManager is fully instantiated before doing anything with it
@@ -241,7 +316,14 @@ public class PlayerWalk : MonoBehaviour
 
 			//moveVector.Normalize();
 
-			moveVector *= currentSpeed;
+			float multiplier = 1;
+
+			foreach(SpeedModifier modifier in speedModifiers)
+			{
+				multiplier *= modifier.multiplier;
+			}
+
+			moveVector *= currentSpeed * multiplier;
 
 			controller.SimpleMove(moveVector);
 

@@ -31,6 +31,10 @@ public class PhotoCamera : MonoBehaviour
 	[MinValue(0), MaxValue(1080)]
 	[SerializeField, Tooltip("The height of photos taken with this camera")]
 	int photoHeight = 720;
+
+	[Header("Movement")]
+	[SerializeField, Tooltip("A multiplier to apply to player speed when the camera is out")]
+	float speedMultiplier = .8f;
 	#endregion Variables
 
 	#region Properties
@@ -47,6 +51,15 @@ public class PhotoCamera : MonoBehaviour
 				canTakePhotos = value;
 
 				camera.enabled = canTakePhotos;
+
+				if(canTakePhotos)
+				{
+					PlayerCharacter.Instance.PlayerWalk.AddSpeedModifer(this, speedMultiplier);					
+				}
+				else
+				{
+					PlayerCharacter.Instance.PlayerWalk.RemoveSpeedModifier(this);
+				}
 			}
 		}
 	}
