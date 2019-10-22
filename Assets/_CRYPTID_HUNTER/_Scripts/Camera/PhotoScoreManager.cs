@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
@@ -37,6 +38,14 @@ public class PhotoScoreManager : Singleton<PhotoScoreManager>
 
 	[SerializeField, Tooltip("The debug display of the score of the last photo taken")]
 	TextMeshProUGUI debugScoreDisplay;
+
+	[MinValue(0f)]
+	[SerializeField, Tooltip("The amount of time in seconds to show the preview for")]
+	float scoreDisplayTime = 5f;
+
+	[MinValue(0f)]
+	[SerializeField, Tooltip("The amount of time to spend on a fade-out after the preview time has passed")]
+	float scoreFadeOutTime = 0.5f;
 	#endregion Variables
 
 	#region MonoBehaviour
@@ -55,6 +64,11 @@ public class PhotoScoreManager : Singleton<PhotoScoreManager>
 	protected override void CustomAwake()
 	{
 		photos = new List<PhotoScore>();
+
+		if (debugScoreDisplay != null)
+		{
+			debugScoreDisplay.enabled = false;
+		}
 	}
 	#endregion Protected Methods
 
@@ -138,9 +152,38 @@ public class PhotoScoreManager : Singleton<PhotoScoreManager>
 		{
 			debugScoreDisplay.text = $"Last Photo Score: {score}/{photoScore.MaxScore}";
 			debugScoreDisplay.enabled = true;
+
+			StartCoroutine(ScoreDisplayFadeOut());
 		}
 
 		photos.Add(photoScore);
+	}
+
+	/// <summary>
+	/// The timer showing the preview for a certain amount of time and then fading out
+	/// </summary>
+	/// <returns></returns>
+	private IEnumerator ScoreDisplayFadeOut()
+	{
+		yield return new WaitForSeconds(scoreDisplayTime);
+
+		AnimationCurve interp = AnimationCurve.Linear(0, 1, 1, 0);
+
+		float timeElapsed = 0f;
+		Color fadeColor = Color.white;
+
+		while (timeElapsed < scoreFadeOutTime)
+		{
+			yield return null;
+
+			timeElapsed += Time.deltaTime;
+
+			fadeColor.a = interp.Evaluate(timeElapsed / scoreFadeOutTime);
+			debugScoreDisplay.color = fadeColor;
+		}
+
+		debugScoreDisplay.enabled = false;
+		debugScoreDisplay.color = Color.white;
 	}
 	#endregion Private Methods
 }
