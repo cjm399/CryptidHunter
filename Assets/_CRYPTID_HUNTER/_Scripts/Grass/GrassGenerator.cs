@@ -31,6 +31,8 @@ public class GrassGenerator : MonoBehaviour
     [Button("GenerateGrass")]
     private void GenerateGrass()
     {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player.SetActive(false);
         Random.InitState(seed);
         List<Vector3> positions = new List<Vector3>(numberOfGrassTufts);
         List<int> indicies = new List<int>(numberOfGrassTufts);
@@ -62,5 +64,7 @@ public class GrassGenerator : MonoBehaviour
         mesh.SetColors(colors);
         mesh.SetNormals(normals);
         meshFilter.mesh = mesh;
+
+        player.SetActive(true);
     }
 }
