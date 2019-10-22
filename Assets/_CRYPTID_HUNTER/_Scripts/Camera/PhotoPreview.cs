@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 using Sirenix.OdinInspector;
 
+using TMPro;
+
 public class PhotoPreview : MonoBehaviour
 {
 	#region Variables
@@ -15,6 +17,10 @@ public class PhotoPreview : MonoBehaviour
 	[Required]
 	[SerializeField, Tooltip("The UI element to show the photo with")]
 	RawImage photoDisplay;
+
+	[Required]
+	[SerializeField, Tooltip("The UI element to show the save-message instruction on")]
+	TextMeshProUGUI saveTipDisplay;
 
 	[MinValue(0f)]
 	[SerializeField, Tooltip("The amount of time in seconds to show the preview for")]
@@ -63,6 +69,7 @@ public class PhotoPreview : MonoBehaviour
 		photoDisplay.texture = _photo.Texture;
 
 		photoDisplay.enabled = true;
+		saveTipDisplay.enabled = true;
 
 		previewRoutine = StartCoroutine(PreviewTimer());
 	}
@@ -88,10 +95,13 @@ public class PhotoPreview : MonoBehaviour
 
 			fadeColor.a = interp.Evaluate(timeElapsed / fadeOutTime);
 			photoDisplay.color = fadeColor;
+			saveTipDisplay.color = fadeColor;
 		}
 
 		photoDisplay.enabled = false;
+		saveTipDisplay.enabled = false;
 		photoDisplay.color = Color.white;
+		saveTipDisplay.color = Color.white;
 	}
 	#endregion Private Methods
 }
