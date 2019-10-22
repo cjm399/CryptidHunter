@@ -14,6 +14,7 @@ public class TimeManager : Singleton<TimeManager>
 
     [Header("Time Passing Settings")]
 
+    [Range(.001f, 2f)]
     [Tooltip("The amount of time, in seconds, that need to pass in order for a minute to pass in-game")]
     [SerializeField] private float timePerMinute;
 
@@ -67,13 +68,21 @@ public class TimeManager : Singleton<TimeManager>
         timeUntilNextMinute = timePerMinute;
     }
 
+    private void Start()
+    {
+        OnMinutePassed?.Invoke(currHours, currMinutes);
+    }
+
     private void FixedUpdate()
     {
-        timeUntilNextMinute -= Time.fixedDeltaTime;
-        if(timeUntilNextMinute <= 0)
+        if (!PauseManager.Instance.Paused)
         {
-            timeUntilNextMinute = timePerMinute;
-            OneMinutePassed();
+            timeUntilNextMinute -= Time.fixedDeltaTime;
+            if (timeUntilNextMinute <= 0)
+            {
+                timeUntilNextMinute = timePerMinute;
+                OneMinutePassed();
+            }
         }
     }
 

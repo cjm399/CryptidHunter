@@ -11,7 +11,7 @@ public class PlanetaryOrbit : MonoBehaviour
 
     private int initHours;
     private int initMinutes;
-    private int percentage = 0;
+    private float percentage = 0;
     private float degreesPerDay = 360;
     private Transform cachedTransform;
 
@@ -22,25 +22,16 @@ public class PlanetaryOrbit : MonoBehaviour
         TimeManager.Instance.OnMinutePassed += OnMinutePassedHandler;
     }
 
-    private void Update()
-    {
-        float secondsPerDay = TimeManager.Instance.TimePerMinute * 60 * 24;
-        float degreesPerSecond = (degreesPerDay / secondsPerDay);
-        cachedTransform.RotateAround(Vector3.zero, Vector3.right, Time.deltaTime * degreesPerSecond);
-        transform.LookAt(Vector3.zero);
-    }
-
 
     private void OnMinutePassedHandler(int hours, int minutes)
     {
-        if (hours == 0 && minutes == 0)
-        {
-            percentage = 0;
-        }
-        else
-        {
-            percentage = 2359 / (hours * 100 + minutes);
-        }
+        float tpm = TimeManager.Instance.TimePerMinute;
+        float secondsPerDay = tpm * 60 * 24;
+        float degreesPerSecond = (degreesPerDay / secondsPerDay);
+        float currSeconds = (minutes * tpm) + (hours*60* tpm);
+
+        cachedTransform.RotateAround(Vector3.zero, Vector3.right, degreesPerSecond*tpm); //TODO: Make this lerp between positions somehow.
+        transform.LookAt(Vector3.zero);
     }
 
 
