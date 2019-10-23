@@ -152,6 +152,15 @@ MonoBehaviour:
   pauseMenu: {fileID: 0}
   pauseMain: {fileID: 0}
   settings: {fileID: 0}
+  winScreen: {fileID: 0}
+  loseScreen: {fileID: 0}
+  scoreDisplay: {fileID: 0}
+  loseCondition: {fileID: 0}
+  photoScore:
+    score: 0
+    maxScore: 0
+  photoCamera: {fileID: 0}
+  bestPhoto: {fileID: 0}
 --- !u!4 &244060087
 Transform:
   m_ObjectHideFlags: 0
@@ -454,7 +463,12 @@ PrefabInstance:
     - target: {fileID: 2112033789497866560, guid: 72f38c88cd6d3614fa50c411eb0f9864,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SettingsButton
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112033789497866560, guid: 72f38c88cd6d3614fa50c411eb0f9864,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2112033789714910284, guid: 72f38c88cd6d3614fa50c411eb0f9864,
         type: 3}
