@@ -27,17 +27,23 @@ public class PauseManager : Singleton<PauseManager>
 	// Whether pause was toggled this frame
 	bool toggledPauseThisFrame;
 
-    [SerializeField, Tooltip("Pause Manu UI Game Object")]
+    [SerializeField, Tooltip("Pause Menu UI Game Object")]
     GameObject pauseMenu;
 
-	#endregion Variables
+    [SerializeField, Tooltip("Main Pause Menu")]
+    GameObject pauseMain;
 
-	#region Properties
-	/// <summary>
-	/// Whether the player can currently toggle the paused state (set to false in any scene that cannot be paused)
-	/// </summary>
-	/// <value></value>
-	public bool Pausable
+    [SerializeField, Tooltip("Settings Menu")]
+    GameObject settings;
+
+    #endregion Variables
+
+    #region Properties
+    /// <summary>
+    /// Whether the player can currently toggle the paused state (set to false in any scene that cannot be paused)
+    /// </summary>
+    /// <value></value>
+    public bool Pausable
 	{
 		get { return pausable; }
 		set
@@ -150,6 +156,8 @@ public class PauseManager : Singleton<PauseManager>
         if (paused)
         {
             pauseMenu.SetActive(true);
+            pauseMain.SetActive(true);
+            settings.SetActive(false);
         }
         else
         {
