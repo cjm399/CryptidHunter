@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/TextMesh Pro/Examples & Extras.meta
 guid: ce51c8e33b734b4db6086586558c53a3
+=======
+guid: 5f3285a9deeea744daa558db24ab730d
+>>>>>>> 339b115c34b85ed1c8a861438919726da4a8f3d0:Assets/_CRYPTID_HUNTER/Art/Materials.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
