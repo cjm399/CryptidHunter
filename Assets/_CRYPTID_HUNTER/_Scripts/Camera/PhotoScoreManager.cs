@@ -61,14 +61,14 @@ public class PhotoScoreManager : Singleton<PhotoScoreManager>
 	#endregion Events
 
 	#region MonoBehaviour
-	private void OnEnable()
+	private void Start()
 	{
-		PlayerCharacter.Instance.PhotoCamera.OnTakePhoto += ScorePhoto;
+		LevelManager.Instance.playerCharacter.PhotoCamera.OnTakePhoto += ScorePhoto;
 	}
 
 	private void OnDisable()
 	{
-		PlayerCharacter.Instance.PhotoCamera.OnTakePhoto -= ScorePhoto;
+		LevelManager.Instance.playerCharacter.PhotoCamera.OnTakePhoto -= ScorePhoto;
 	}
 	#endregion MonoBehaviour
 
@@ -102,7 +102,7 @@ public class PhotoScoreManager : Singleton<PhotoScoreManager>
 		// Calculate the total score achieved by the player
 		int score = 0;
 
-		Camera cam = PlayerCharacter.Instance.PhotoCamera.Camera;
+		Camera cam = LevelManager.Instance.playerCharacter.PhotoCamera.Camera;
 
 		foreach (PhotoTarget targetCryptid in targetCryptids)
 		{
@@ -128,8 +128,9 @@ public class PhotoScoreManager : Singleton<PhotoScoreManager>
 				//Physics.Raycast(ray, out result, distance, ~0, QueryTriggerInteraction.Ignore);
 				Physics.Raycast(ray, out result, distance, obstacleLayers, QueryTriggerInteraction.Ignore);
 
-				// If there is a clear line of sight between the target point and the camera, then give the player points for it
-				if(result.collider == null)
+                // If there is a clear line of sight between the target point and the camera, then give the player points for it
+                Debug.Log(result.collider.gameObject.name);
+				if(result.collider != null)
 				//if (result.collider?.GetComponent<TargetPoint>() != null)
 				{
 					score += targetPoint.Score;
@@ -137,11 +138,11 @@ public class PhotoScoreManager : Singleton<PhotoScoreManager>
 			}
 
 			// The player is not aiming directly at the cryptid while in range of it
-			if (!PlayerCharacter.Instance.CamRange.InRange)
+			if (!LevelManager.Instance.playerCharacter.CamRange.InRange)
 			{
-				bool centered = PlayerCharacter.Instance.CamRange.Centered;
+				bool centered = LevelManager.Instance.playerCharacter.CamRange.Centered;
 
-				bool inRange = Vector3.Distance(PlayerCharacter.Instance.PhotoCamera.transform.position, targetCryptid.transform.position) <= PlayerCharacter.Instance.CamRange.MaxRange;
+				bool inRange = Vector3.Distance(LevelManager.Instance.playerCharacter.PhotoCamera.transform.position, targetCryptid.transform.position) <= LevelManager.Instance.playerCharacter.CamRange.MaxRange;
 
 				if (!centered)
 				{

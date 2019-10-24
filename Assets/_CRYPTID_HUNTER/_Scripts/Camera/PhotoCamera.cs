@@ -75,11 +75,11 @@ public class PhotoCamera : MonoBehaviour
 
 				if(canTakePhotos)
 				{
-					PlayerCharacter.Instance.PlayerWalk.AddSpeedModifer(this, speedMultiplier);					
+					LevelManager.Instance.playerCharacter.PlayerWalk.AddSpeedModifer(this, speedMultiplier);					
 				}
 				else
 				{
-					PlayerCharacter.Instance.PlayerWalk.RemoveSpeedModifier(this);
+					LevelManager.Instance.playerCharacter.PlayerWalk.RemoveSpeedModifier(this);
 				}
 			}
 		}

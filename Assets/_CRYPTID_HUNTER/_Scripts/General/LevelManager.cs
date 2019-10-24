@@ -13,6 +13,8 @@ public class LevelManager : Singleton<LevelManager>
 	[MinValue(0)]
 	[SerializeField, Tooltip("The score required for the player to win")]
 	int scoreRequired = 10;
+
+    public PlayerCharacter playerCharacter;
 	#endregion Variables
 
 	#region Properties

@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LoadFirstScene : MonoBehaviour
-{
+{ 
     public void Start()
     {
-        SceneManager.LoadScene((int)Level.TestScene);
+        SceneManager.LoadScene((int)Level.Menu);
         Destroy(this);
     }
 }

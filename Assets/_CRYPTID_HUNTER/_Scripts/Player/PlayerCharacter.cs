@@ -5,7 +5,7 @@ using Sirenix.OdinInspector;
 /// <summary>
 /// Just an easy way for every script to find the player and their components
 /// </summary>
-public class PlayerCharacter : Singleton<PlayerCharacter>
+public class PlayerCharacter : MonoBehaviour//Singleton<PlayerCharacter>
 {
 	#region Variables
 	[Required]
@@ -23,6 +23,8 @@ public class PlayerCharacter : Singleton<PlayerCharacter>
 	[Required]
 	[SerializeField, Tooltip("The script handling player looking around")]
 	PlayerLook playerLook;
+
+    public Canvas myCanvas;
 	#endregion Variables
 
 	#region Properties
@@ -54,11 +56,12 @@ public class PlayerCharacter : Singleton<PlayerCharacter>
 	#region Public Methods
 	public void EndGame()
 	{
-		playerWalk.AddSpeedModifer(this, 0);
-		photoCamera.CanTakePhotos = false;
-		playerLook.AddLookBlock(this);
+        myCanvas.enabled = false;
+        //playerWalk.AddSpeedModifer(this, 0);
+        //photoCamera.CanTakePhotos = false;
+        //playerLook.AddLookBlock(this);
 
-		GameManager.Instance.HasReachedEnd = true;
-	}
+        //GameManager.Instance.HasReachedEnd = true;
+    }
 	#endregion Public Methods
 }

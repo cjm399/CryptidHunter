@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2972626599057546429}
   - component: {fileID: 2710917969987470988}
   - component: {fileID: 8510739406807778348}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: SaveTipDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 8018491174451810072}
   - component: {fileID: 8908390314902177826}
   - component: {fileID: 2660685751471954642}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PhotosLeftCountDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -326,7 +326,7 @@ GameObject:
   - component: {fileID: 8463985780287024921}
   - component: {fileID: 4235683009865864863}
   - component: {fileID: 208375066330973910}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: Reticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -412,7 +412,7 @@ GameObject:
   - component: {fileID: 8362258639643990653}
   - component: {fileID: 6518571432353468079}
   - component: {fileID: 6756095506890586342}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: Time
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -435,7 +435,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 36.340088, y: -31.300049}
+  m_AnchoredPosition: {x: 36.339844, y: -31.300049}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &6518571432353468079
@@ -795,7 +795,7 @@ GameObject:
   - component: {fileID: 4200565875731519134}
   - component: {fileID: 5027093449405659373}
   - component: {fileID: 7632838022540254264}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PhotoPreviewScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1227,6 +1227,7 @@ MonoBehaviour:
   camRange: {fileID: 5949195563033146205}
   playerWalk: {fileID: 7311591743642402137}
   playerLook: {fileID: 6864690230933418359}
+  myCanvas: {fileID: 6893785332225730821}
 --- !u!143 &7427737606092652503
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1306,7 +1307,7 @@ GameObject:
   - component: {fileID: 4769305426408239973}
   - component: {fileID: 3812071481987932552}
   - component: {fileID: 1429214842592696503}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

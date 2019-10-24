@@ -7,39 +7,45 @@ using Sirenix.OdinInspector;
 public class GameEndHandler : MonoBehaviour
 {
 	#region Variables
-	[SerializeField, Tooltip("The Menu script tracking all types of menus")]
-	Menu menu;
 
 	[ReadOnly]
 	[SerializeField, Tooltip("The photo taken so far with the greatest score")]
 	PhotoScore topPhoto;
-	#endregion Variables
 
-	#region MonoBehaviour
-	private void OnEnable()
+    private Menu menu;
+
+    #endregion Variables
+
+    #region MonoBehaviour
+    private void OnEnable()
 	{
 		StartCoroutine(InputSubscribe());
 	}
 
-	private void OnDisable()
+    private void Start()
+    {
+        menu = GameManager.Instance.menu;
+    }
+
+    private void OnDisable()
 	{
 		PhotoScoreManager.Instance.OnPhotoScored -= ComparePhotoTakenToTop;
 		LevelManager.Instance.OnGameOver -= EndGameTimeLimit;
-		PlayerCharacter.Instance.PhotoCamera.OnMaxPhotosTaken -= EndGamePhotoLimit;
+		LevelManager.Instance.playerCharacter.PhotoCamera.OnMaxPhotosTaken -= EndGamePhotoLimit;
 	}
 	#endregion MonoBehaviour
 
 	#region Private Methods
 	IEnumerator InputSubscribe()
 	{
-		while(PhotoScoreManager.Instance == null || LevelManager.Instance == null || PlayerCharacter.Instance?.PhotoCamera == null)
+		while(PhotoScoreManager.Instance == null || LevelManager.Instance == null || LevelManager.Instance.playerCharacter?.PhotoCamera == null)
 		{
 			yield return null;
 		}
 
 		PhotoScoreManager.Instance.OnPhotoScored += ComparePhotoTakenToTop;
 		LevelManager.Instance.OnGameOver += EndGameTimeLimit;
-		PlayerCharacter.Instance.PhotoCamera.OnMaxPhotosTaken += EndGamePhotoLimit;
+		LevelManager.Instance.playerCharacter.PhotoCamera.OnMaxPhotosTaken += EndGamePhotoLimit;
 	}
 
 	/// <summary>
@@ -47,14 +53,14 @@ public class GameEndHandler : MonoBehaviour
 	/// </summary>
 	private void EndGameTimeLimit()
 	{
-		PlayerCharacter.Instance.EndGame();
+		LevelManager.Instance.playerCharacter.EndGame();
 		menu.LoseTime(topPhoto);
 	}
 
 	private void EndGamePhotoLimit()
 	{
 		Debug.Log($"[GameEndHandler] Max photos taken. Ending game.");
-		PlayerCharacter.Instance.EndGame();
+		LevelManager.Instance.playerCharacter.EndGame();
 		menu.LosePhotoCount(topPhoto);
 	}
 
@@ -70,7 +76,7 @@ public class GameEndHandler : MonoBehaviour
 
 			if(topPhoto.Score >= LevelManager.Instance.ScoreRequired)
 			{
-				PlayerCharacter.Instance.EndGame();
+				LevelManager.Instance.playerCharacter.EndGame();
 				menu.Win(topPhoto);
 			}
 		}

@@ -7,7 +7,8 @@ using Sirenix.OdinInspector;
 public enum Level
 {
     Init = 0,
-    TestScene = 1
+    Menu = 1,
+    MainScene = 2
 }
 
 public class GameManager : Singleton<GameManager>
@@ -25,6 +26,8 @@ public class GameManager : Singleton<GameManager>
 	[ReadOnly]
 	[SerializeField, Tooltip("Whether the game is currently ongoing (will be true once an endgame state has been reached")]
 	bool hasGameEnded = false;
+
+    public Menu menu;
 	#endregion Variables
 
 	#region Properties
@@ -50,9 +53,18 @@ public class GameManager : Singleton<GameManager>
 			}
 		}
 	}
-	#endregion Properties
+    #endregion Properties
 
-	protected override void CustomAwake()
+    #region MONOBEHAVIOUR
+
+    private void Start()
+    {
+        menu = FindObjectOfType<Menu>();
+    }
+
+    #endregion
+
+    protected override void CustomAwake()
     {
         rewiredPlayer = Rewired.ReInput.players.GetPlayer(rewiredPlayerId);
     }

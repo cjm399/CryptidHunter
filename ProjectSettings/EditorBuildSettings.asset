@@ -12,9 +12,9 @@ EditorBuildSettings:
     path: Assets/_CRYPTID_HUNTER/_SCENES/Main_Menu.unity
     guid: 7428e6012a6e4954db6ff4bb6bde5d5d
   - enabled: 1
-    path: Assets/_CRYPTID_HUNTER/_SCENES/Test_CameraPhotos.unity
-    guid: 0ca4cdbbf98312144ab22ceced2a50f5
-  - enabled: 1
     path: Assets/_CRYPTID_HUNTER/_SCENES/Hunt_Nightwalker.unity
     guid: a84feab543160c240ad9b6f504b55903
+  - enabled: 1
+    path: Assets/_CRYPTID_HUNTER/_SCENES/Environment.unity
+    guid: afa37e9edcdaa964d9b4e21d437bd1d5
   m_configObjects: {}

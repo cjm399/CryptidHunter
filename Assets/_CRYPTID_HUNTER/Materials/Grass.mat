@@ -64,7 +64,7 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 1
     - _GrassHeight: 0.75
-    - _GrassWidth: 1.25
+    - _GrassWidth: 1.5
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1

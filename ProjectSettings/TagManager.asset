@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - PauseMenu
+  - Pause
+  - Settings
   layers:
   - Default
   - TransparentFX
@@ -17,7 +19,7 @@ TagManager:
   - Player
   - Cryptid
   - Terrain
-  - 
+  - Props
   - 
   - 
   - 

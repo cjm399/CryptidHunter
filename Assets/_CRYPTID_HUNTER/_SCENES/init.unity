@@ -305,7 +305,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 793513766}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2ca14494626b7f4b8ab11f1a7d0b187, type: 3}
   m_Name: 
@@ -399,7 +399,7 @@ GameObject:
   - component: {fileID: 905165227}
   - component: {fileID: 905165226}
   - component: {fileID: 905165225}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -526,6 +526,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4951285154944886162, guid: 6238b08c8ddaa6549884905e0e328be8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4951285154818895598, guid: 6238b08c8ddaa6549884905e0e328be8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4951285154944886161, guid: 6238b08c8ddaa6549884905e0e328be8,
         type: 3}
@@ -845,6 +855,86 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4951285156703639109, guid: 6238b08c8ddaa6549884905e0e328be8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4951285156622673371, guid: 6238b08c8ddaa6549884905e0e328be8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4951285154816598289, guid: 6238b08c8ddaa6549884905e0e328be8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4951285155739106264, guid: 6238b08c8ddaa6549884905e0e328be8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4951285156566357231, guid: 6238b08c8ddaa6549884905e0e328be8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4951285156612819297, guid: 6238b08c8ddaa6549884905e0e328be8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4951285156679594291, guid: 6238b08c8ddaa6549884905e0e328be8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4951285156687283476, guid: 6238b08c8ddaa6549884905e0e328be8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4951285156756305450, guid: 6238b08c8ddaa6549884905e0e328be8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4951285156884749439, guid: 6238b08c8ddaa6549884905e0e328be8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4951285154780658149, guid: 6238b08c8ddaa6549884905e0e328be8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4951285155129311333, guid: 6238b08c8ddaa6549884905e0e328be8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4951285155136949930, guid: 6238b08c8ddaa6549884905e0e328be8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4951285155962176182, guid: 6238b08c8ddaa6549884905e0e328be8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4951285156606513990, guid: 6238b08c8ddaa6549884905e0e328be8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4951285156655528234, guid: 6238b08c8ddaa6549884905e0e328be8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6238b08c8ddaa6549884905e0e328be8, type: 3}
 --- !u!114 &1256326189 stripped
@@ -958,6 +1048,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewiredPlayerId: 0
   hasGameEnded: 0
+  menu: {fileID: 1322372311}
 --- !u!114 &1392014285
 MonoBehaviour:
   m_ObjectHideFlags: 0
