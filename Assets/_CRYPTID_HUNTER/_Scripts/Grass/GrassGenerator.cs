@@ -35,9 +35,11 @@ public class GrassGenerator : MonoBehaviour
         player.SetActive(false);
         Random.InitState(seed);
         List<Vector3> positions = new List<Vector3>(numberOfGrassTufts);
-        List<int> indicies = new List<int>(numberOfGrassTufts);
+        List<int> indicies = new List<int>();//(numberOfGrassTufts);
         List<Color> colors = new List<Color>(numberOfGrassTufts);
         List<Vector3> normals = new List<Vector3>(numberOfGrassTufts);
+
+        int finalGrassNumb = 0;
         for (int i = 0; i < numberOfGrassTufts; ++i)
         {
             Vector3 origin = this.transform.position;
@@ -46,18 +48,23 @@ public class GrassGenerator : MonoBehaviour
             origin.z += areaToGrow.y * Random.Range(-0.5f, 0.5f);
             Ray ray = new Ray(origin, Vector3.down);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, hitLayer))
+            if (Physics.SphereCast(ray, .5f, out hit))//.Raycast(ray, out hit))
             {
+                if(((1 << hit.collider.gameObject.layer) & hitLayer.value) == 0)
+                {
+                    continue;
+                }
                 Vector3 grassPos = hit.point;
                 grassPos.y += grassOffset;
                 grassPos -= this.transform.position;
 
                 positions.Add(grassPos);
-                indicies.Add(i);
+                indicies.Add(finalGrassNumb++);
                 colors.Add(new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), 1));
                 normals.Add(hit.normal);
             }
         }
+
         mesh = new Mesh();
         mesh.SetVertices(positions);
         mesh.SetIndices(indicies.ToArray(), MeshTopology.Points, 0);
