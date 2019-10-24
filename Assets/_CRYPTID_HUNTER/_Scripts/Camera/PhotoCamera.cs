@@ -154,7 +154,7 @@ public class PhotoCamera : MonoBehaviour
 	[Button("Take Photo", ButtonSizes.Medium)]
 	public Photo TakePhoto()
 	{
-		if (camera == null || !canTakePhotos || PauseManager.Instance.Paused || (maxPhotos > 0 && PhotoCount >= maxPhotos))
+		if (camera == null || !canTakePhotos || PauseManager.Instance.Paused || (maxPhotos > 0 && PhotoCount >= maxPhotos) || GameManager.Instance.HasReachedEnd)
 		{
 			return null;
 		}
@@ -187,6 +187,7 @@ public class PhotoCamera : MonoBehaviour
 
 		if(PhotoCount >= maxPhotos && maxPhotos > 0)
 		{
+			Debug.Log($"[PhotoCamera] Max photos taken");
 			OnMaxPhotosTaken?.Invoke();
 		}
 

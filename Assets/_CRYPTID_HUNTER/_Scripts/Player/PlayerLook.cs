@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 
 using UnityEngine;
 
@@ -45,7 +46,21 @@ public class PlayerLook : MonoBehaviour
 	[MinValue(-0f), MaxValue(360f)]
 	[SerializeField, Tooltip("The maximum rotation allowed for the camera's vertical axis")]
 	float maxCamHorizRotation = 90f;
+
+	[ReadOnly]
+	[SerializeField, Tooltip("A list of all scripts blocking the player from looking around")]
+	List<MonoBehaviour> lookBlocks = new List<MonoBehaviour>();
 	#endregion Variables
+
+	#region Properties
+	/// <summary>
+	/// Whether the player can look around
+	/// </summary>
+	public bool CanLook
+	{
+		get { return lookBlocks.Count == 0; }
+	}
+	#endregion Properties
 
 	#region MonoBehaviour
 	private void OnEnable()
@@ -91,6 +106,30 @@ public class PlayerLook : MonoBehaviour
 		}
 		lookObject.transform.localEulerAngles = camRotation;
 	}
+
+	/// <summary>
+	/// Add a new block to prevent the player from looking around
+	/// </summary>
+	/// <param name="_block">The MonoBehaviour stopping the player from looking around</param>
+	public void AddLookBlock(MonoBehaviour _block)
+	{
+		if(!lookBlocks.Contains(_block))
+		{
+			lookBlocks.Add(_block);
+		}
+	}
+
+	/// <summary>
+	/// Remove a block that was preventing the player from looking around
+	/// </summary>
+	/// <param name="_block">The MonoBehaviour that was stopping the player from looking around</param>
+	public void RemoveLookBlock(MonoBehaviour _block)
+	{
+		if (lookBlocks.Contains(_block))
+		{
+			lookBlocks.Remove(_block);
+		}
+	}
 	#endregion Public Methods
 
 	#region Private Methods
@@ -114,7 +153,7 @@ public class PlayerLook : MonoBehaviour
 	/// <param name="_eventData">The Rewired input event data</param>
 	private void TryLook(InputActionEventData _eventData)
 	{
-		if(PauseManager.Instance.Paused)
+		if(PauseManager.Instance.Paused || !CanLook || GameManager.Instance.HasReachedEnd)
 		{
 			return;
 		}

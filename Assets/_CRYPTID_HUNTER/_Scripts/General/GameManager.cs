@@ -21,6 +21,10 @@ public class GameManager : Singleton<GameManager>
 	[MinValue(0)]
     [SerializeField, Tooltip("The Rewired Player ID to use for getting input")]
     public int rewiredPlayerId = 0;
+	
+	[ReadOnly]
+	[SerializeField, Tooltip("Whether the game is currently ongoing (will be true once an endgame state has been reached")]
+	bool hasGameEnded = false;
 	#endregion Variables
 
 	#region Properties
@@ -30,6 +34,21 @@ public class GameManager : Singleton<GameManager>
 	public Rewired.Player RewiredPlayer
 	{
 		get { return rewiredPlayer; }
+	}
+
+	/// <summary>
+	/// Whether the game is currently running (will be true once an endgame state has been reached)
+	/// </summary>
+	public bool HasReachedEnd
+	{
+		get { return hasGameEnded; }
+		set
+		{
+			if(hasGameEnded != value)
+			{
+				hasGameEnded = value;
+			}
+		}
 	}
 	#endregion Properties
 

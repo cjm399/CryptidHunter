@@ -19,6 +19,10 @@ public class PlayerCharacter : Singleton<PlayerCharacter>
 	[Required]
 	[SerializeField, Tooltip("The script handling player movement")]
 	PlayerWalk playerWalk;
+
+	[Required]
+	[SerializeField, Tooltip("The script handling player looking around")]
+	PlayerLook playerLook;
 	#endregion Variables
 
 	#region Properties
@@ -46,4 +50,15 @@ public class PlayerCharacter : Singleton<PlayerCharacter>
 		get { return playerWalk; }
 	}
 	#endregion Properties
+
+	#region Public Methods
+	public void EndGame()
+	{
+		playerWalk.AddSpeedModifer(this, 0);
+		photoCamera.CanTakePhotos = false;
+		playerLook.AddLookBlock(this);
+
+		GameManager.Instance.HasReachedEnd = true;
+	}
+	#endregion Public Methods
 }

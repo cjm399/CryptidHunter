@@ -4,12 +4,34 @@ using UnityEngine;
 
 using Sirenix.OdinInspector;
 
-public class LevelManager : MonoBehaviour
+public class LevelManager : Singleton<LevelManager>
 {
-    [ValidateInput("TimeFormattedString", "You must provide a string of the following format HH:MM (Military Time)")]
+	#region Variables
+	[ValidateInput("TimeFormattedString", "You must provide a string of the following format HH:MM (Military Time)")]
     [SerializeField] private string GameOverTime;
 
-    void Start()
+	[MinValue(0)]
+	[SerializeField, Tooltip("The score required for the player to win")]
+	int scoreRequired = 10;
+	#endregion Variables
+
+	#region Properties
+	/// <summary>
+	/// The score required for the player to win
+	/// </summary>
+	public int ScoreRequired
+	{
+		get { return scoreRequired; }
+	}
+	#endregion Properties
+
+	#region Events
+	public delegate void GameOverEventHandler();
+	public event GameOverEventHandler OnGameOver;
+	#endregion Events
+
+	#region MonoBehaviour
+	void Start()
     {
         TimeManager.Instance.OnMinutePassed += MinutePassedHandler;
     }
@@ -23,25 +45,28 @@ public class LevelManager : MonoBehaviour
     {
         TimeManager.Instance.OnMinutePassed -= MinutePassedHandler;
     }
+	#endregion MonoBehaviour
 
-
-    private void MinutePassedHandler(int hours, int minutes)
+	#region Private Methods
+	private void MinutePassedHandler(int hours, int minutes)
     {
         string _text = TextHelper.Instance.FormatTime(hours, minutes, true);
 
         if(_text == GameOverTime)
         {
-            Debug.Log("Game Over");
+            Debug.Log("[LevelManager] Game Over");
+			OnGameOver?.Invoke();
         }
     }
+	#endregion Private Methods
 
-    #region ODIN_VALIDATION
-    /// <summary>
-    /// Check whether a string is formatted to time;
-    /// </summary>
-    /// <param name="_text">The string to check</param>
-    /// <returns>True if the string is formatted to military time</returns>
-    private bool TimeFormattedString(string _text)
+	#region ODIN_VALIDATION
+	/// <summary>
+	/// Check whether a string is formatted to time;
+	/// </summary>
+	/// <param name="_text">The string to check</param>
+	/// <returns>True if the string is formatted to military time</returns>
+	private bool TimeFormattedString(string _text)
     {
         if (_text.Length != 5)
             return false;
