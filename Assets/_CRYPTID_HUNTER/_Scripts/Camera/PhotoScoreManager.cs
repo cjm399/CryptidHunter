@@ -48,6 +48,18 @@ public class PhotoScoreManager : Singleton<PhotoScoreManager>
 	float scoreFadeOutTime = 0.5f;
 	#endregion Variables
 
+	#region Events
+	/// <summary>
+	/// Handler for event invoked when a photo is scored
+	/// </summary>
+	/// <param name="_photoScore">The photo with a score attached</param>
+	public delegate void PhotoScoredEventHandler(PhotoScore _photoScore);
+	/// <summary>
+	/// Event invoked when a photo is given a score
+	/// </summary>
+	public event PhotoScoredEventHandler OnPhotoScored;
+	#endregion Events
+
 	#region MonoBehaviour
 	private void OnEnable()
 	{
@@ -157,6 +169,8 @@ public class PhotoScoreManager : Singleton<PhotoScoreManager>
 		}
 
 		photos.Add(photoScore);
+
+		OnPhotoScored?.Invoke(photoScore);
 	}
 
 	/// <summary>

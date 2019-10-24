@@ -289,7 +289,7 @@ public class PlayerWalk : MonoBehaviour
 		float walkAxis = GameManager.Instance.RewiredPlayer.GetAxis(walkActionName);
 		float strafeAxis = GameManager.Instance.RewiredPlayer.GetAxis(strafeActionName);
 
-		if(PauseManager.Instance.Paused)
+		if(PauseManager.Instance.Paused || GameManager.Instance.HasReachedEnd)
 		{
 			walkAxis = 0;
 			strafeAxis = 0;

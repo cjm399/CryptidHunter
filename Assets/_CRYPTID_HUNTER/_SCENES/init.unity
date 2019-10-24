@@ -355,34 +355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _version: 2
-  _crossSceneReferences:
-  - _sourceObject: {fileID: 1322372311}
-    _sourceField: photoCamera
-    DEPRECATED_fromObject:
-      scene:
-        editorAssetGUID: 
-        name: 
-        _path: 
-      fullPath: 
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 0
-      editorPrefabRelativePath: 
-      version: 0
-    _toObject:
-      scene:
-        editorAssetGUID: a84feab543160c240ad9b6f504b55903
-        name: Hunt_Nightwalker
-        _path: Assets/_CRYPTID_HUNTER/_SCENES/Hunt_Nightwalker.unity
-      fullPath: /Player/Main Camera/PhotoCamera
-      componentName: PhotoCamera, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      componentIndex: 0
-      editorLocalId: -894842860
-      editorPrefabRelativePath: Main Camera/PhotoCamera
-      version: 1
-    _data:
-      data: []
+  _crossSceneReferences: []
   _realSceneRootsForPostBuild: []
   _mergedScenes: []
 --- !u!114 &809388732
@@ -934,13 +907,11 @@ MonoBehaviour:
   settings: {fileID: 1519037607}
   winScreen: {fileID: 1655584971}
   loseScreen: {fileID: 994488689}
-  scoreDisplay: {fileID: 1707598429}
+  winScoreDisplay: {fileID: 1707598429}
+  winPhotoDisplay: {fileID: 1256326189}
+  loseScoreDisplay: {fileID: 5404324287771597265}
+  losePhotoDisplay: {fileID: 5404324287771597264}
   loseCondition: {fileID: 1775783885}
-  photoScore:
-    score: 0
-    maxScore: 0
-  photoCamera: {fileID: 0}
-  bestPhoto: {fileID: 1256326189}
 --- !u!1 &1392014282
 GameObject:
   m_ObjectHideFlags: 0
@@ -986,6 +957,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rewiredPlayerId: 0
+  hasGameEnded: 0
 --- !u!114 &1392014285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1338,6 +1310,30 @@ PrefabInstance:
       objectReference: {fileID: 1322372311}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a986b5a9537b4249a9b5eae2bcefc69, type: 3}
+--- !u!114 &5404324287771597264 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5404324287437425110, guid: 3a986b5a9537b4249a9b5eae2bcefc69,
+    type: 3}
+  m_PrefabInstance: {fileID: 5404324287771597263}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -98529514, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5404324287771597265 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5404324286115680236, guid: 3a986b5a9537b4249a9b5eae2bcefc69,
+    type: 3}
+  m_PrefabInstance: {fileID: 5404324287771597263}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6419397832979659963
 PrefabInstance:
   m_ObjectHideFlags: 0
