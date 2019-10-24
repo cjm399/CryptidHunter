@@ -169,17 +169,17 @@ MonoBehaviour:
   _isMainScene: 1
   _sceneSetup:
   - scene:
-      editorAssetGUID: afa37e9edcdaa964d9b4e21d437bd1d5
-      name: Environment
-      _path: Assets/_CRYPTID_HUNTER/_SCENES/Environment.unity
-    loadInEditor: 1
-    loadMethod: 0
-  - scene:
       editorAssetGUID: 003cea3a55c49ce4980135f4f105c69e
       name: init
       _path: Assets/_CRYPTID_HUNTER/_SCENES/init.unity
     loadInEditor: 1
     loadMethod: 3
+  - scene:
+      editorAssetGUID: afa37e9edcdaa964d9b4e21d437bd1d5
+      name: Environment
+      _path: Assets/_CRYPTID_HUNTER/_SCENES/Environment.unity
+    loadInEditor: 1
+    loadMethod: 0
   _thisScenePath: Assets/_CRYPTID_HUNTER/_SCENES/Hunt_Nightwalker.unity
 --- !u!4 &316813740
 Transform:
@@ -292,7 +292,7 @@ MonoBehaviour:
   minPercent: 0.75
   obstacleLayers:
     serializedVersion: 2
-    m_Bits: 823
+    m_Bits: 3895
   photos: []
   debugScoreDisplay: {fileID: 2041365913}
   scoreDisplayTime: 5
@@ -636,22 +636,22 @@ PrefabInstance:
     - target: {fileID: 4121264037974004240, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4264920954317136290, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6798341264224832236, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7575230039220320055, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0, type: 3}

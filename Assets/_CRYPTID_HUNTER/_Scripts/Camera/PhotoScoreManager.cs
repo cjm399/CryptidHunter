@@ -129,8 +129,8 @@ public class PhotoScoreManager : Singleton<PhotoScoreManager>
 				Physics.Raycast(ray, out result, distance, obstacleLayers, QueryTriggerInteraction.Ignore);
 
                 // If there is a clear line of sight between the target point and the camera, then give the player points for it
-                Debug.Log(result.collider.gameObject.name);
-				if(result.collider != null)
+                Debug.Log(result.collider?.gameObject?.name);
+				if(result.collider == null)
 				//if (result.collider?.GetComponent<TargetPoint>() != null)
 				{
 					score += targetPoint.Score;
