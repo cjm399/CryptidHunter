@@ -176,7 +176,7 @@ public class PauseManager : Singleton<PauseManager>
 	/// <param name="_eventData">The Rewired input event data</param>
 	private void TryPause(InputActionEventData _eventData)
 	{
-		if (!toggledPauseThisFrame && !GameManager.Instance.HasReachedEnd)
+		if (!toggledPauseThisFrame && !LevelManager.Instance.IsGameOver)
 		{
 			TogglePause();
 		}
