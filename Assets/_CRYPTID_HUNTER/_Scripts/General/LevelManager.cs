@@ -8,22 +8,55 @@ public class LevelManager : Singleton<LevelManager>
 {
 	#region Variables
 	[ValidateInput("TimeFormattedString", "You must provide a string of the following format HH:MM (Military Time)")]
-    [SerializeField] private string GameOverTime;
+    [SerializeField, Tooltip("The time at which the game ends")]
+	private string gameOverTime;
 
 	[MinValue(0)]
 	[SerializeField, Tooltip("The score required for the player to win")]
 	int scoreRequired = 10;
 
-    public PlayerCharacter playerCharacter;
+	[ReadOnly]
+	[SerializeField, Tooltip("Whether the game is currently ongoing (will be true once an endgame state has been reached")]
+	bool isGameOver = false;
+
+	public PlayerCharacter playerCharacter;
 	#endregion Variables
 
 	#region Properties
+	/// <summary>
+	/// The time at which the game ends
+	/// </summary>
+	public string GameOverTime
+	{
+		get { return gameOverTime; }
+	}
+	
 	/// <summary>
 	/// The score required for the player to win
 	/// </summary>
 	public int ScoreRequired
 	{
 		get { return scoreRequired; }
+	}
+
+	/// <summary>
+	/// Whether the game is currently running (will be true once an endgame state has been reached)
+	/// </summary>
+	public bool IsGameOver
+	{
+		get { return isGameOver; }
+		set
+		{
+			if (isGameOver != value)
+			{
+				isGameOver = value;
+
+				if (isGameOver)
+				{
+					OnGameOver?.Invoke();
+				}
+			}
+		}
 	}
 	#endregion Properties
 
@@ -32,34 +65,7 @@ public class LevelManager : Singleton<LevelManager>
 	public event GameOverEventHandler OnGameOver;
 	#endregion Events
 
-	#region MonoBehaviour
-	void Start()
-    {
-        TimeManager.Instance.OnMinutePassed += MinutePassedHandler;
-    }
-
-    private void OnDisable()
-    {
-        TimeManager.Instance.OnMinutePassed -= MinutePassedHandler;
-    }
-
-    private void OnDestroy()
-    {
-        TimeManager.Instance.OnMinutePassed -= MinutePassedHandler;
-    }
-	#endregion MonoBehaviour
-
 	#region Private Methods
-	private void MinutePassedHandler(int hours, int minutes)
-    {
-        string _text = TextHelper.Instance.FormatTime(hours, minutes, true);
-
-        if(_text == GameOverTime)
-        {
-            Debug.Log("[LevelManager] Game Over");
-			OnGameOver?.Invoke();
-        }
-    }
 	#endregion Private Methods
 
 	#region ODIN_VALIDATION
