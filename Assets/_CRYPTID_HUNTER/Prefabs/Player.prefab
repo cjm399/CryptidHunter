@@ -736,14 +736,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   photoActionName: Take Photo
   saveActionName: Save Photo
-  canTakePhotos: 1
+  canTakePhotos: 0
   camera: {fileID: 7107192114666827536}
   photoWidth: 1280
   photoHeight: 720
   maxPhotos: 12
   photos: []
   photosLeftCountDisplay: {fileID: 2660685751471954642}
-  speedMultiplier: 0.6
+  speedMultiplier: 0.4
 --- !u!114 &771028311199553181
 MonoBehaviour:
   m_ObjectHideFlags: 0

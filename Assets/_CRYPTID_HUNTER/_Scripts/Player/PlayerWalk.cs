@@ -71,6 +71,9 @@ public class PlayerWalk : MonoBehaviour
 
 	[Header("Sprinting")]
 
+	[SerializeField, Tooltip("Whether the player can sprint")]
+	bool canSprint = true;
+
 	[MinValue(0f)]
 	[SerializeField, Tooltip("The sprinting speed")]
 	float sprintSpeed = 13f;
@@ -159,6 +162,19 @@ public class PlayerWalk : MonoBehaviour
 					OnStopSprinting?.Invoke();
 				}
 			}
+		}
+	}
+
+	/// <summary>
+	/// Whether the player can sprint
+	/// </summary>
+	public bool CanSprint
+	{
+		get { return canSprint; }
+		set
+		{
+			canSprint = value;
+			IsSprinting = canSprint && isSprinting;
 		}
 	}
 	#endregion Getters & Setters
@@ -376,7 +392,7 @@ public class PlayerWalk : MonoBehaviour
 	/// <param name="_eventData">The Rewired input event data</param>
 	private void TrySprint(InputActionEventData _eventData)
 	{
-		IsSprinting = isWalking && _eventData.GetButton();
+		IsSprinting = isWalking && _eventData.GetButton() && canSprint;
 	}
 
 	/// <summary>
