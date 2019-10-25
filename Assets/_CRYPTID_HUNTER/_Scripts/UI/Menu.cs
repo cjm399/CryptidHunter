@@ -43,6 +43,19 @@ public class Menu : MonoBehaviour
 	TextMeshProUGUI loseCondition;
 	#endregion Variables
 
+	#region MonoBehaviour
+	private void OnEnable()
+	{
+		PauseManager.Instance.OnPause += ShowPauseMenu;
+		PauseManager.Instance.OnResume += HidePauseMenu;
+	}
+
+	private void OnDisable()
+	{
+		PauseManager.Instance.OnPause -= ShowPauseMenu;
+		PauseManager.Instance.OnResume -= HidePauseMenu;
+	}
+	#endregion MonoBehaviour
 
 	#region Public Methods
 	public void Win(PhotoScore _photoScore)
@@ -50,6 +63,7 @@ public class Menu : MonoBehaviour
 		winScoreDisplay.text = $"Score: {_photoScore.Score}";
 		winPhotoDisplay.texture = _photoScore.Photo.Texture;
 		winScreen.SetActive(true);
+		ShowCursor();
 	}
 
 	public void LoseTime(PhotoScore _photoScore)
@@ -66,9 +80,24 @@ public class Menu : MonoBehaviour
 		Lose(_photoScore);
 	}
 
+	public void ShowPauseMenu()
+	{
+		pauseMenu.SetActive(true);
+		pauseMain.SetActive(true);
+		settings.SetActive(false);
+		ShowCursor();
+	}
+
+	public void HidePauseMenu()
+	{
+		pauseMenu.SetActive(false);
+		HideCursor();
+	}
+
 	public void PlayButton()
 	{
 		SceneManager.LoadScene(2);
+		HideCursor();
 	}
 
 	public void RestartButton()
@@ -78,6 +107,7 @@ public class Menu : MonoBehaviour
 		pauseMenu.SetActive(false);
 		winScreen.SetActive(false);
 		loseScreen.SetActive(false);
+		HideCursor();
 	}
 
 	public void SettingsButton()
@@ -92,12 +122,17 @@ public class Menu : MonoBehaviour
 		pauseMenu.SetActive(false);
 		winScreen.SetActive(false);
 		loseScreen.SetActive(false);
+		ShowCursor();
 	}
 
 	public void QuitButton()
 	{
 		Application.Quit();
 		Debug.Log("Quit the Game");
+
+#if UNITY_EDITOR
+		UnityEditor.EditorApplication.ExitPlaymode();
+#endif
 	}
 
 	public void BackButton()
@@ -128,6 +163,23 @@ public class Menu : MonoBehaviour
 		}
 
 		loseScreen.SetActive(true);
+		ShowCursor();
+	}
+
+	private void ShowCursor()
+	{
+#if !UNITY_EDITOR
+		Cursor.lockState = CursorLockMode.None;
+		Cursor.visible = true;
+#endif
+	}
+
+	private void HideCursor()
+	{
+#if !UNITY_EDITOR
+		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
+#endif
 	}
 	#endregion Private Methods
 }

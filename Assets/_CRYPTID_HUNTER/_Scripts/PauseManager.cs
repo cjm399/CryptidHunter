@@ -152,19 +152,6 @@ public class PauseManager : Singleton<PauseManager>
 	public void TogglePause()
 	{
 		Paused = !paused;
-
-        if (paused)
-        {
-            pauseMenu.SetActive(true);
-            pauseMain.SetActive(true);
-            settings.SetActive(false);
-        }
-        else
-        {
-            pauseMenu.SetActive(false);
-        }
-
-
     }
 
 	#endregion Public Methods
