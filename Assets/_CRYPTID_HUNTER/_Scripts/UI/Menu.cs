@@ -105,6 +105,12 @@ public class Menu : MonoBehaviour
 		pauseMain.SetActive(true);
 		settings.SetActive(false);
 	}
+
+    public void SurveyButton()
+    {
+        Application.OpenURL("https://forms.gle/TNL6Gw9UdkwExpGt6");
+        Debug.Log("Menu.cs: Open Link");
+    }
 	#endregion Public Methods
 
 	#region Private Methods
