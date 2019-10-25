@@ -25,7 +25,7 @@ public class GameManager : Singleton<GameManager>
 	
 	[ReadOnly]
 	[SerializeField, Tooltip("Whether the game is currently ongoing (will be true once an endgame state has been reached")]
-	bool hasGameEnded = false;
+	bool hasReachedEnd = false;
 
     public Menu menu;
 	#endregion Variables
@@ -44,20 +44,30 @@ public class GameManager : Singleton<GameManager>
 	/// </summary>
 	public bool HasReachedEnd
 	{
-		get { return hasGameEnded; }
+		get { return hasReachedEnd; }
 		set
 		{
-			if(hasGameEnded != value)
+			if(hasReachedEnd != value)
 			{
-				hasGameEnded = value;
+				hasReachedEnd = value;
+
+				if(hasReachedEnd)
+				{
+					OnGameEnd?.Invoke();
+				}
 			}
 		}
 	}
-    #endregion Properties
+	#endregion Properties
 
-    #region MONOBEHAVIOUR
+	#region Events
+	public delegate void GameEndEventHandler();
+	public event GameEndEventHandler OnGameEnd;
+	#endregion Event
 
-    private void Start()
+	#region MONOBEHAVIOUR
+
+	private void Start()
     {
         menu = FindObjectOfType<Menu>();
     }
