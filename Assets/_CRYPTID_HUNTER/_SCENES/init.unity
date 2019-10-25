@@ -517,16 +517,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 905165224}
     m_Modifications:
-    - target: {fileID: 5931296503208490266, guid: 6238b08c8ddaa6549884905e0e328be8,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1322372311}
-    - target: {fileID: 5931296503208490266, guid: 6238b08c8ddaa6549884905e0e328be8,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SurveyButton
-      objectReference: {fileID: 0}
     - target: {fileID: 4951285154944886162, guid: 6238b08c8ddaa6549884905e0e328be8,
         type: 3}
       propertyPath: m_Name
@@ -651,6 +641,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5931296503208490266, guid: 6238b08c8ddaa6549884905e0e328be8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1322372311}
+    - target: {fileID: 5931296503208490266, guid: 6238b08c8ddaa6549884905e0e328be8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SurveyButton
       objectReference: {fileID: 0}
     - target: {fileID: 4951285156622673370, guid: 6238b08c8ddaa6549884905e0e328be8,
         type: 3}
@@ -1284,16 +1284,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 734493123}
     m_Modifications:
-    - target: {fileID: 919893043904956521, guid: 3a986b5a9537b4249a9b5eae2bcefc69,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1322372311}
-    - target: {fileID: 919893043904956521, guid: 3a986b5a9537b4249a9b5eae2bcefc69,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SurveyButton
-      objectReference: {fileID: 0}
     - target: {fileID: 5404324287322712254, guid: 3a986b5a9537b4249a9b5eae2bcefc69,
         type: 3}
       propertyPath: m_Name
@@ -1404,6 +1394,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 919893043904956521, guid: 3a986b5a9537b4249a9b5eae2bcefc69,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1322372311}
+    - target: {fileID: 919893043904956521, guid: 3a986b5a9537b4249a9b5eae2bcefc69,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SurveyButton
+      objectReference: {fileID: 0}
     - target: {fileID: 5404324286853067710, guid: 3a986b5a9537b4249a9b5eae2bcefc69,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1460,7 +1460,7 @@ PrefabInstance:
     - target: {fileID: 6419397832398341232, guid: 2636b82fef12c314a99158676fc034cf,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6419397832398341239, guid: 2636b82fef12c314a99158676fc034cf,
         type: 3}
