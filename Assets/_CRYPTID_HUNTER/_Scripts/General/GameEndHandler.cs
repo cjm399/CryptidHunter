@@ -31,7 +31,6 @@ public class GameEndHandler : MonoBehaviour
 	{
 		TimeManager.Instance.OnMinutePassed -= MinutePassedHandler;
 		PhotoScoreManager.Instance.OnPhotoScored -= ComparePhotoTakenToTop;
-		LevelManager.Instance.OnGameOver -= EndGameTimeLimit;
 		LevelManager.Instance.playerCharacter.PhotoCamera.OnMaxPhotosTaken -= EndGamePhotoLimit;
 	}
 	#endregion MonoBehaviour
@@ -46,7 +45,6 @@ public class GameEndHandler : MonoBehaviour
 
 		TimeManager.Instance.OnMinutePassed += MinutePassedHandler;
 		PhotoScoreManager.Instance.OnPhotoScored += ComparePhotoTakenToTop;
-		LevelManager.Instance.OnGameOver += EndGameTimeLimit;
 		LevelManager.Instance.playerCharacter.PhotoCamera.OnMaxPhotosTaken += EndGamePhotoLimit;
 	}
 
@@ -62,6 +60,8 @@ public class GameEndHandler : MonoBehaviour
 		if (_text == LevelManager.Instance.GameOverTime)
 		{
 			Debug.Log("[LevelManager] Game Over");
+			LevelManager.Instance.playerCharacter.EndGame();
+			menu.LoseTime(topPhoto);
 		}
 	}
 
