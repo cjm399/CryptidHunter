@@ -1288,6 +1288,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LoseScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 5404324287322712254, guid: 3a986b5a9537b4249a9b5eae2bcefc69,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5404324287322712253, guid: 3a986b5a9537b4249a9b5eae2bcefc69,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1418,6 +1423,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1322372311}
+    - target: {fileID: 5404324285917779095, guid: 3a986b5a9537b4249a9b5eae2bcefc69,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5404324285917779095, guid: 3a986b5a9537b4249a9b5eae2bcefc69,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a986b5a9537b4249a9b5eae2bcefc69, type: 3}
 --- !u!114 &5404324287771597264 stripped
@@ -1581,5 +1596,15 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1322372311}
+    - target: {fileID: 6419397832671592712, guid: 2636b82fef12c314a99158676fc034cf,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419397832671592712, guid: 2636b82fef12c314a99158676fc034cf,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2636b82fef12c314a99158676fc034cf, type: 3}
