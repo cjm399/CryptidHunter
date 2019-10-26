@@ -775,6 +775,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3806140463339374037, guid: 829f582c7480a3b488005ef7e8b63b8a,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 7107192115362908181}
     - target: {fileID: 5226160273400506737, guid: 829f582c7480a3b488005ef7e8b63b8a,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -869,6 +874,21 @@ PrefabInstance:
         type: 3}
       propertyPath: maxWalkSpeed
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1348601589270147706, guid: 829f582c7480a3b488005ef7e8b63b8a,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1348601589270147706, guid: 829f582c7480a3b488005ef7e8b63b8a,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1348601589270147706, guid: 829f582c7480a3b488005ef7e8b63b8a,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 829f582c7480a3b488005ef7e8b63b8a, type: 3}
