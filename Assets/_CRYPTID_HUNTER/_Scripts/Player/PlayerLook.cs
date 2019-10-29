@@ -153,7 +153,7 @@ public class PlayerLook : MonoBehaviour
 	/// <param name="_eventData">The Rewired input event data</param>
 	private void TryLook(InputActionEventData _eventData)
 	{
-		if(PauseManager.Instance.Paused || !CanLook || GameManager.Instance.HasReachedEnd)
+		if(PauseManager.Instance.Paused || !CanLook || LevelManager.Instance.IsGameOver)
 		{
 			return;
 		}

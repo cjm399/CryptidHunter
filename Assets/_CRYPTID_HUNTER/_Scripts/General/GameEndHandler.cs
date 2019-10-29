@@ -27,10 +27,10 @@ public class GameEndHandler : MonoBehaviour
         menu = GameManager.Instance.menu;
     }
 
-    private void OnDisable()
+	private void OnDisable()
 	{
+		TimeManager.Instance.OnMinutePassed -= MinutePassedHandler;
 		PhotoScoreManager.Instance.OnPhotoScored -= ComparePhotoTakenToTop;
-		LevelManager.Instance.OnGameOver -= EndGameTimeLimit;
 		LevelManager.Instance.playerCharacter.PhotoCamera.OnMaxPhotosTaken -= EndGamePhotoLimit;
 	}
 	#endregion MonoBehaviour
@@ -38,14 +38,31 @@ public class GameEndHandler : MonoBehaviour
 	#region Private Methods
 	IEnumerator InputSubscribe()
 	{
-		while(PhotoScoreManager.Instance == null || LevelManager.Instance == null || LevelManager.Instance.playerCharacter?.PhotoCamera == null)
+		while(TimeManager.Instance == null || PhotoScoreManager.Instance == null || LevelManager.Instance == null || LevelManager.Instance.playerCharacter?.PhotoCamera == null)
 		{
 			yield return null;
 		}
 
+		TimeManager.Instance.OnMinutePassed += MinutePassedHandler;
 		PhotoScoreManager.Instance.OnPhotoScored += ComparePhotoTakenToTop;
-		LevelManager.Instance.OnGameOver += EndGameTimeLimit;
 		LevelManager.Instance.playerCharacter.PhotoCamera.OnMaxPhotosTaken += EndGamePhotoLimit;
+	}
+
+	/// <summary>
+	/// Check whether the game's end time has arrived yet
+	/// </summary>
+	/// <param name="hours">The current hour</param>
+	/// <param name="minutes">The current minute</param>
+	private void MinutePassedHandler(int hours, int minutes)
+	{
+		string _text = TextHelper.Instance.FormatTime(hours, minutes, true);
+
+		if (_text == LevelManager.Instance.GameOverTime)
+		{
+			Debug.Log("[LevelManager] Game Over");
+			LevelManager.Instance.playerCharacter.EndGame();
+			menu.LoseTime(topPhoto);
+		}
 	}
 
 	/// <summary>

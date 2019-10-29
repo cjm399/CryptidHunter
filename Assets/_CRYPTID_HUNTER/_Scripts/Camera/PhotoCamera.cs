@@ -75,11 +75,13 @@ public class PhotoCamera : MonoBehaviour
 
 				if(canTakePhotos)
 				{
-					LevelManager.Instance.playerCharacter.PlayerWalk.AddSpeedModifer(this, speedMultiplier);					
+					LevelManager.Instance.playerCharacter.PlayerWalk.AddSpeedModifer(this, speedMultiplier);
+					LevelManager.Instance.playerCharacter.PlayerWalk.CanSprint = false;
 				}
 				else
 				{
 					LevelManager.Instance.playerCharacter.PlayerWalk.RemoveSpeedModifier(this);
+					LevelManager.Instance.playerCharacter.PlayerWalk.CanSprint = true;
 				}
 			}
 		}
@@ -154,7 +156,7 @@ public class PhotoCamera : MonoBehaviour
 	[Button("Take Photo", ButtonSizes.Medium)]
 	public Photo TakePhoto()
 	{
-		if (camera == null || !canTakePhotos || PauseManager.Instance.Paused || (maxPhotos > 0 && PhotoCount >= maxPhotos) || GameManager.Instance.HasReachedEnd)
+		if (camera == null || !canTakePhotos || PauseManager.Instance.Paused || (maxPhotos > 0 && PhotoCount >= maxPhotos) || LevelManager.Instance.IsGameOver)
 		{
 			return null;
 		}

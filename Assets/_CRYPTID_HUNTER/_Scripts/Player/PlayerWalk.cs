@@ -71,6 +71,9 @@ public class PlayerWalk : MonoBehaviour
 
 	[Header("Sprinting")]
 
+	[SerializeField, Tooltip("Whether the player can sprint")]
+	bool canSprint = true;
+
 	[MinValue(0f)]
 	[SerializeField, Tooltip("The sprinting speed")]
 	float sprintSpeed = 13f;
@@ -159,6 +162,19 @@ public class PlayerWalk : MonoBehaviour
 					OnStopSprinting?.Invoke();
 				}
 			}
+		}
+	}
+
+	/// <summary>
+	/// Whether the player can sprint
+	/// </summary>
+	public bool CanSprint
+	{
+		get { return canSprint; }
+		set
+		{
+			canSprint = value;
+			IsSprinting = canSprint && isSprinting;
 		}
 	}
 	#endregion Getters & Setters
@@ -289,7 +305,24 @@ public class PlayerWalk : MonoBehaviour
 		float walkAxis = GameManager.Instance.RewiredPlayer.GetAxis(walkActionName);
 		float strafeAxis = GameManager.Instance.RewiredPlayer.GetAxis(strafeActionName);
 
-		if(PauseManager.Instance.Paused || GameManager.Instance.HasReachedEnd)
+		// This function is called when either axis is active, so this is a way to ensure that, when both axes are active, the function only runs once per frame
+		// Arbitrary way to decide which one is the one that exits without doing anything
+		if(_eventData.actionName == walkActionName)
+		{
+			if (Mathf.Abs(walkAxis) <= Mathf.Abs(strafeAxis))
+			{
+				return;
+			}
+		}
+		else
+		{
+			if (Mathf.Abs(strafeAxis) < Mathf.Abs(walkAxis))
+			{
+				return;
+			}
+		}
+
+		if(PauseManager.Instance.Paused || LevelManager.Instance.IsGameOver)
 		{
 			walkAxis = 0;
 			strafeAxis = 0;
@@ -309,12 +342,14 @@ public class PlayerWalk : MonoBehaviour
 		{
 			Vector3 moveVector = Vector3.zero;
 			Vector2 inputAxes = new Vector2(strafeAxis, walkAxis);
-			inputAxes.Normalize();
 
-			moveVector += transform.TransformDirection(Vector3.forward) * inputAxes.y;
-			moveVector += transform.TransformDirection(Vector3.right) * inputAxes.x;
+			moveVector += transform.forward * inputAxes.y;
+			moveVector += transform.right * inputAxes.x;
 
-			//moveVector.Normalize();
+			if (moveVector.magnitude > 1)
+			{
+				moveVector.Normalize();
+			}
 
 			float multiplier = 1;
 
@@ -357,7 +392,7 @@ public class PlayerWalk : MonoBehaviour
 	/// <param name="_eventData">The Rewired input event data</param>
 	private void TrySprint(InputActionEventData _eventData)
 	{
-		IsSprinting = isWalking && _eventData.GetButton();
+		IsSprinting = isWalking && _eventData.GetButton() && canSprint;
 	}
 
 	/// <summary>

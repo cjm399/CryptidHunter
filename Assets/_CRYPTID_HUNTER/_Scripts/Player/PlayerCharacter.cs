@@ -56,12 +56,12 @@ public class PlayerCharacter : MonoBehaviour//Singleton<PlayerCharacter>
 	#region Public Methods
 	public void EndGame()
 	{
-        myCanvas.enabled = false;
-        //playerWalk.AddSpeedModifer(this, 0);
-        //photoCamera.CanTakePhotos = false;
-        //playerLook.AddLookBlock(this);
+		myCanvas.enabled = false;
+		playerWalk.AddSpeedModifer(this, 0);
+		photoCamera.CanTakePhotos = false;
+		playerLook.AddLookBlock(this);
 
-        //GameManager.Instance.HasReachedEnd = true;
-    }
+		LevelManager.Instance.IsGameOver = true;
+	}
 	#endregion Public Methods
 }

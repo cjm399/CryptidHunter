@@ -152,19 +152,6 @@ public class PauseManager : Singleton<PauseManager>
 	public void TogglePause()
 	{
 		Paused = !paused;
-
-        if (paused)
-        {
-            pauseMenu.SetActive(true);
-            pauseMain.SetActive(true);
-            settings.SetActive(false);
-        }
-        else
-        {
-            pauseMenu.SetActive(false);
-        }
-
-
     }
 
 	#endregion Public Methods
@@ -176,7 +163,7 @@ public class PauseManager : Singleton<PauseManager>
 	/// <param name="_eventData">The Rewired input event data</param>
 	private void TryPause(InputActionEventData _eventData)
 	{
-		if (!toggledPauseThisFrame && !GameManager.Instance.HasReachedEnd)
+		if (!toggledPauseThisFrame && !LevelManager.Instance.IsGameOver)
 		{
 			TogglePause();
 		}
