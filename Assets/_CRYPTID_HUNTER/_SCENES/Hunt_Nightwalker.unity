@@ -229,17 +229,17 @@ MonoBehaviour:
   _isMainScene: 1
   _sceneSetup:
   - scene:
-      editorAssetGUID: afa37e9edcdaa964d9b4e21d437bd1d5
-      name: Environment
-      _path: Assets/_CRYPTID_HUNTER/_SCENES/Environment.unity
-    loadInEditor: 1
-    loadMethod: 0
-  - scene:
       editorAssetGUID: 003cea3a55c49ce4980135f4f105c69e
       name: init
       _path: Assets/_CRYPTID_HUNTER/_SCENES/init.unity
     loadInEditor: 1
     loadMethod: 3
+  - scene:
+      editorAssetGUID: afa37e9edcdaa964d9b4e21d437bd1d5
+      name: Environment
+      _path: Assets/_CRYPTID_HUNTER/_SCENES/Environment.unity
+    loadInEditor: 1
+    loadMethod: 0
   _thisScenePath: Assets/_CRYPTID_HUNTER/_SCENES/Hunt_Nightwalker.unity
 --- !u!4 &316813740
 Transform:
@@ -487,55 +487,6 @@ MonoBehaviour:
   topPhoto:
     score: 0
     maxScore: 0
---- !u!1 &1323789313 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8904485854473798918, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
-    type: 3}
-  m_PrefabInstance: {fileID: 8904485853618185451}
-  m_PrefabAsset: {fileID: 0}
---- !u!195 &1323789315
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1323789313}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.6
-  m_Speed: 10
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 1.6
-  m_BaseOffset: 0.8
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
---- !u!114 &1323789316
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1323789313}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: affff2c92f6b21e46a62ff274b8e90f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
-  movespots:
-  - {fileID: 1947754434}
-  - {fileID: 29113955}
-  - {fileID: 491720217}
-  - {fileID: 328915691}
-  - {fileID: 192547996}
-  Player: {fileID: 468562433}
-  EnemyRunDistance: 4
 --- !u!114 &1384020753 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7107192115459729063, guid: 829f582c7480a3b488005ef7e8b63b8a,
@@ -620,7 +571,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 8904485853618185451}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1323789313}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1dfafb1258de1ac47944cac2afd20dac, type: 3}
@@ -899,6 +850,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 977753611750787493, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
+        type: 3}
+      propertyPath: movespots.Array.data[0]
+      value: 
+      objectReference: {fileID: 1947754434}
+    - target: {fileID: 977753611750787493, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
+        type: 3}
+      propertyPath: movespots.Array.data[1]
+      value: 
+      objectReference: {fileID: 29113955}
+    - target: {fileID: 977753611750787493, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
+        type: 3}
+      propertyPath: movespots.Array.data[2]
+      value: 
+      objectReference: {fileID: 491720217}
+    - target: {fileID: 977753611750787493, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
+        type: 3}
+      propertyPath: movespots.Array.data[3]
+      value: 
+      objectReference: {fileID: 328915691}
+    - target: {fileID: 977753611750787493, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
+        type: 3}
+      propertyPath: movespots.Array.data[4]
+      value: 
+      objectReference: {fileID: 192547996}
+    - target: {fileID: 977753611750787493, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
+        type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 468562433}
     - target: {fileID: 8904485854473798918, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
         type: 3}
       propertyPath: m_Name
@@ -912,7 +893,7 @@ PrefabInstance:
     - target: {fileID: 8904485854473798916, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.761
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8904485854473798916, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
         type: 3}
@@ -963,26 +944,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4121264037974004240, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4264920954317136290, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6798341264224832236, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7575230039220320055, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0, type: 3}
