@@ -703,7 +703,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 8000
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -1265,6 +1265,7 @@ MonoBehaviour:
   startWalkSpeed: 5
   maxWalkSpeed: 10
   walkAcceleration: 0.1
+  canSprint: 1
   sprintSpeed: 13
   sprintAcceleration: 0.2
   maxSprintEnergy: 100

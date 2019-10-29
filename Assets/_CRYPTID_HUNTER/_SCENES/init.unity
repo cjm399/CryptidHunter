@@ -310,6 +310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2ca14494626b7f4b8ab11f1a7d0b187, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySetup: {fileID: 809388732}
 --- !u!4 &793513768
 Transform:
   m_ObjectHideFlags: 0
@@ -371,7 +372,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isMainScene: 0
-  _sceneSetup: []
+  _sceneSetup:
+  - scene:
+      editorAssetGUID: 003cea3a55c49ce4980135f4f105c69e
+      name: init
+      _path: Assets/_CRYPTID_HUNTER/_SCENES/init.unity
+    loadInEditor: 1
+    loadMethod: 1
+  - scene:
+      editorAssetGUID: afa37e9edcdaa964d9b4e21d437bd1d5
+      name: Environment
+      _path: Assets/_CRYPTID_HUNTER/_SCENES/Environment.unity
+    loadInEditor: 1
+    loadMethod: 1
   _thisScenePath: Assets/_CRYPTID_HUNTER/_SCENES/init.unity
 --- !u!4 &809388733
 Transform:
