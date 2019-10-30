@@ -310,7 +310,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2ca14494626b7f4b8ab11f1a7d0b187, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mySetup: {fileID: 809388732}
 --- !u!4 &793513768
 Transform:
   m_ObjectHideFlags: 0
@@ -1694,6 +1693,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042239738740691102, guid: 2636b82fef12c314a99158676fc034cf,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1322372311}
+    - target: {fileID: 6042239738740691102, guid: 2636b82fef12c314a99158676fc034cf,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SurveyButton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2636b82fef12c314a99158676fc034cf, type: 3}
