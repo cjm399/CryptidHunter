@@ -22,6 +22,14 @@ public class PhotoPreview : MonoBehaviour
 	[SerializeField, Tooltip("The UI element to show the save-message instruction on")]
 	TextMeshProUGUI saveTipDisplay;
 
+	[ValidateInput("StringNotEmpty", "You must provide a message here")]
+	[SerializeField, Tooltip("The message to display when able to save a picture")]
+	string saveTipMessage = "Press 'Q' to save photo.";
+
+	[ValidateInput("StringNotEmpty", "You must provide a message here")]
+	[SerializeField, Tooltip("The message to display when a picture has been saved")]
+	string saveConfirmMessage = "The photo has been saved.";
+
 	[MinValue(0f)]
 	[SerializeField, Tooltip("The amount of time in seconds to show the preview for")]
 	float previewTime = 5f;
@@ -40,11 +48,13 @@ public class PhotoPreview : MonoBehaviour
 	private void OnEnable()
 	{
 		camera.OnTakePhoto += ShowPreview;
+		camera.OnSavePhoto += ShowSaveMessage;
 	}
 
 	private void OnDisable()
 	{
 		camera.OnTakePhoto -= ShowPreview;
+		camera.OnSavePhoto -= ShowSaveMessage;
 	}
 	#endregion MonoBehaviour
 
@@ -69,6 +79,7 @@ public class PhotoPreview : MonoBehaviour
 		photoDisplay.texture = _photo.Texture;
 
 		photoDisplay.enabled = true;
+		saveTipDisplay.text = saveTipMessage;
 		saveTipDisplay.enabled = true;
 
 		previewRoutine = StartCoroutine(PreviewTimer());
@@ -102,6 +113,14 @@ public class PhotoPreview : MonoBehaviour
 		saveTipDisplay.enabled = false;
 		photoDisplay.color = Color.white;
 		saveTipDisplay.color = Color.white;
+	}
+
+	/// <summary>
+	/// Show the message confirming that the last photo taken has been saved to file
+	/// </summary>
+	private void ShowSaveMessage()
+	{
+		saveTipDisplay.text = saveConfirmMessage;
 	}
 	#endregion Private Methods
 }

@@ -124,6 +124,15 @@ public class PhotoCamera : MonoBehaviour
 	public event TakePhotoEventHandler OnTakePhoto;
 
 	/// <summary>
+	/// Handler for event called when the last photo taken has been saved to file
+	/// </summary>
+	public delegate void SavePhotoEventHandler();
+	/// <summary>
+	/// Event invoked when the last photo taken is saved to file
+	/// </summary>
+	public event SavePhotoEventHandler OnSavePhoto;
+
+	/// <summary>
 	/// Handler for event called when the player has reached maximum number of photos allowed
 	/// </summary>
 	public delegate void MaxPhotosTakenEventHandler();
@@ -252,7 +261,7 @@ public class PhotoCamera : MonoBehaviour
 			try
 			{
 				File.WriteAllBytes(filePath + fileName, bytes);
-
+				OnSavePhoto?.Invoke();
 				Debug.Log($"[PhotoCamera] Creating photo at {filePath}{fileName}");
 			} catch(System.Exception e)
 			{
