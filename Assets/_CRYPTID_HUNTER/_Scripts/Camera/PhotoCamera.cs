@@ -148,6 +148,8 @@ public class PhotoCamera : MonoBehaviour
 		StartCoroutine(InputSubscribe());
 
 		UpdatePhotosLeftDisplayText();
+
+		camera.enabled = canTakePhotos;
 	}
 
     private void OnDisable()
