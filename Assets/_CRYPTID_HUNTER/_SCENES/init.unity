@@ -957,6 +957,16 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 1620161827487821722, guid: 6238b08c8ddaa6549884905e0e328be8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1322372311}
+    - target: {fileID: 1620161827487821722, guid: 6238b08c8ddaa6549884905e0e328be8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenPhotosFolder
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6238b08c8ddaa6549884905e0e328be8, type: 3}
 --- !u!114 &1256326189 stripped
@@ -1521,6 +1531,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 7099575274282396100, guid: 3a986b5a9537b4249a9b5eae2bcefc69,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1322372311}
+    - target: {fileID: 7099575274282396100, guid: 3a986b5a9537b4249a9b5eae2bcefc69,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenPhotosFolder
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a986b5a9537b4249a9b5eae2bcefc69, type: 3}
 --- !u!114 &5404324287771597264 stripped
@@ -1703,6 +1723,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SurveyButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4725611021432901642, guid: 2636b82fef12c314a99158676fc034cf,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1322372311}
+    - target: {fileID: 4725611021432901642, guid: 2636b82fef12c314a99158676fc034cf,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenPhotosFolder
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2636b82fef12c314a99158676fc034cf, type: 3}
