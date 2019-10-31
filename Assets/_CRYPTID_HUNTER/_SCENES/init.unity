@@ -1150,6 +1150,56 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6092568661499606110, guid: c167ed0984f904976b2256fa3f883533,
+        type: 3}
+      propertyPath: sounds.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6092568661499606110, guid: c167ed0984f904976b2256fa3f883533,
+        type: 3}
+      propertyPath: sounds.Array.data[1].pitch
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6092568661499606110, guid: c167ed0984f904976b2256fa3f883533,
+        type: 3}
+      propertyPath: sounds.Array.data[1].name
+      value: cryptidRun
+      objectReference: {fileID: 0}
+    - target: {fileID: 6092568661499606110, guid: c167ed0984f904976b2256fa3f883533,
+        type: 3}
+      propertyPath: sounds.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0cccdefb0118bda4ba90820b8a15e26e, type: 3}
+    - target: {fileID: 6092568661499606110, guid: c167ed0984f904976b2256fa3f883533,
+        type: 3}
+      propertyPath: sounds.Array.data[1].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6092568661499606110, guid: c167ed0984f904976b2256fa3f883533,
+        type: 3}
+      propertyPath: sounds.Array.data[1].volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6092568661499606110, guid: c167ed0984f904976b2256fa3f883533,
+        type: 3}
+      propertyPath: sounds.Array.data[2].pitch
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6092568661499606110, guid: c167ed0984f904976b2256fa3f883533,
+        type: 3}
+      propertyPath: sounds.Array.data[2].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0d27121f3f1bad447825e0dd6244b3cc, type: 3}
+    - target: {fileID: 6092568661499606110, guid: c167ed0984f904976b2256fa3f883533,
+        type: 3}
+      propertyPath: sounds.Array.data[2].name
+      value: woodsJog
+      objectReference: {fileID: 0}
+    - target: {fileID: 6092568661499606110, guid: c167ed0984f904976b2256fa3f883533,
+        type: 3}
+      propertyPath: sounds.Array.data[2].loop
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c167ed0984f904976b2256fa3f883533, type: 3}
 --- !u!4 &1469092682 stripped
