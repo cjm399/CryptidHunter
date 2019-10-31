@@ -638,6 +638,34 @@ PrefabInstance:
       propertyPath: m_firstOverflowCharacterIndex
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4984942228645283, guid: 72f38c88cd6d3614fa50c411eb0f9864, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 244060086}
+    - target: {fileID: 4984942228645283, guid: 72f38c88cd6d3614fa50c411eb0f9864, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenPhotosFolder
+      objectReference: {fileID: 0}
+    - target: {fileID: 134051215814038130, guid: 72f38c88cd6d3614fa50c411eb0f9864,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 134051215814038130, guid: 72f38c88cd6d3614fa50c411eb0f9864,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 134051215814038130, guid: 72f38c88cd6d3614fa50c411eb0f9864,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 134051215814038130, guid: 72f38c88cd6d3614fa50c411eb0f9864,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72f38c88cd6d3614fa50c411eb0f9864, type: 3}
 --- !u!1 &1122709526

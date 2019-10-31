@@ -123,4 +123,16 @@ public class PhotoPreview : MonoBehaviour
 		saveTipDisplay.text = saveConfirmMessage;
 	}
 	#endregion Private Methods
+
+	#region Odin Validation
+	/// <summary>
+	/// Check that a given string is not null or empty (used with Odin to ensure Rewired input action names are not blank)
+	/// </summary>
+	/// <param name="_text">The string to check</param>
+	/// <returns></returns>
+	private bool StringNotEmpty(string _text)
+	{
+		return !string.IsNullOrEmpty(_text);
+	}
+	#endregion Odin Validation
 }

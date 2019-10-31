@@ -146,6 +146,13 @@ public class Menu : MonoBehaviour
         Application.OpenURL("https://forms.gle/TNL6Gw9UdkwExpGt6");
         Debug.Log("Menu.cs: Open Link");
     }
+
+	public void OpenPhotosFolder()
+	{
+		string filePath = Application.persistentDataPath + $"/Photos/";
+
+		Application.OpenURL("file://" + filePath);
+	}
 	#endregion Public Methods
 
 	#region Private Methods
