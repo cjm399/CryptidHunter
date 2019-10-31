@@ -3,7 +3,7 @@ using System;
 using UnityEngine;
 
 // To access audio clips in other classes simply do: 
-// FindObjectOfType<AudioManaager>().Play("soundYouWantToPlay");
+// FindObjectOfType<AudioManager>().Play("soundYouWantToPlay");
 
 // This will also be a singleton class
 public class AudioManager : MonoBehaviour
@@ -30,6 +30,7 @@ public class AudioManager : MonoBehaviour
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
             s.source.loop = s.loop;
+            s.source.playOnAwake = s.playOnAwake;
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
         }
@@ -49,7 +50,7 @@ public class AudioManager : MonoBehaviour
             return;
         }
         s.source.Play();
-        Debug.Log("Played");
+        Debug.Log("Played " + name);
     }
     public void Stop(string name)
     {

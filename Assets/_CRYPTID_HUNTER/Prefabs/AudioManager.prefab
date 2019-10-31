@@ -48,5 +48,34 @@ MonoBehaviour:
     name: Theme
     clip: {fileID: 8300000, guid: b847f4e76f52e4d82b0d692f8d44c5ed, type: 3}
     loop: 1
+    playOnAwake: 1
     volume: 1
+    pitch: 0.1
+  - source: {fileID: 0}
+    name: Nightwalker_Steps
+    clip: {fileID: 8300000, guid: 0cccdefb0118bda4ba90820b8a15e26e, type: 3}
+    loop: 0
+    playOnAwake: 0
+    volume: 0.7
+    pitch: 0.1
+  - source: {fileID: 0}
+    name: Player_Woods_Steps
+    clip: {fileID: 8300000, guid: 0d27121f3f1bad447825e0dd6244b3cc, type: 3}
+    loop: 0
+    playOnAwake: 0
+    volume: 0.8
+    pitch: 0.1
+  - source: {fileID: 0}
+    name: Wind
+    clip: {fileID: 8300000, guid: 33bd0767ada604e9a98729a42483bc99, type: 3}
+    loop: 1
+    playOnAwake: 0
+    volume: 0.69
+    pitch: 0.1
+  - source: {fileID: 0}
+    name: Owl
+    clip: {fileID: 8300000, guid: f49a98683c89a48a4b283823780515d8, type: 3}
+    loop: 0
+    playOnAwake: 0
+    volume: 0.7
     pitch: 0.1

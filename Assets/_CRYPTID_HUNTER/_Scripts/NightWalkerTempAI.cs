@@ -51,10 +51,10 @@ public class NightWalkerTempAI : MonoBehaviour
         currentPos = _agent.gameObject.transform.position;
 
         _agent.SetDestination(newPos);
-        FindObjectOfType<AudioManager>().Play("cryptidRun");
+        FindObjectOfType<AudioManager>().Play("Nightwalker_Steps");
         if (Vector3.Distance(_agent.gameObject.transform.position,newPos)<2.0f)
         {
-            FindObjectOfType<AudioManager>().Stop("cryptidRun");
+            FindObjectOfType<AudioManager>().Stop("Nightwalker_Steps");
             state = 0;
         }
 
