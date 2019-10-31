@@ -97,7 +97,8 @@ public class Menu : MonoBehaviour
 	public void PlayButton()
 	{
 		SceneManager.LoadScene(2);
-		HideCursor();
+        FindObjectOfType<AudioManager>().Play("Wind");
+        HideCursor();
 	}
 
 	public void RestartButton()

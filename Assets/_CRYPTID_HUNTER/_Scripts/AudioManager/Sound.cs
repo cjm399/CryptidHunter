@@ -12,6 +12,7 @@ public class Sound
     public AudioClip clip;
 
     public bool loop;
+    public bool playOnAwake;
 
     [Range(0f, 1f)]
     public float volume;
