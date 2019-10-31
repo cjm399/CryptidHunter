@@ -29,7 +29,7 @@ public class HudManager : MonoBehaviour
 
     private void MinutePassedHandler(int hours, int minutes)
     {
-        timeTMP.text = TextHelper.Instance.FormatTime(hours, minutes, Settings.Instance.useMilitaryTime);
+        timeTMP.text = TextHelper.Instance.FormatTime(hours, minutes, SettingsManager.Instance.useMilitaryTime);
     }
 
 
