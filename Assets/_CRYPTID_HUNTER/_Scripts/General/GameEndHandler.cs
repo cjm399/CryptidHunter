@@ -29,9 +29,7 @@ public class GameEndHandler : MonoBehaviour
 
 	private void OnDisable()
 	{
-		TimeManager.Instance.OnMinutePassed -= MinutePassedHandler;
-		PhotoScoreManager.Instance.OnPhotoScored -= ComparePhotoTakenToTop;
-		LevelManager.Instance.playerCharacter.PhotoCamera.OnMaxPhotosTaken -= EndGamePhotoLimit;
+		InputUnsubscribe();
 	}
 	#endregion MonoBehaviour
 
@@ -48,6 +46,13 @@ public class GameEndHandler : MonoBehaviour
 		LevelManager.Instance.playerCharacter.PhotoCamera.OnMaxPhotosTaken += EndGamePhotoLimit;
 	}
 
+	private void InputUnsubscribe()
+	{
+		TimeManager.Instance.OnMinutePassed -= MinutePassedHandler;
+		PhotoScoreManager.Instance.OnPhotoScored -= ComparePhotoTakenToTop;
+		LevelManager.Instance.playerCharacter.PhotoCamera.OnMaxPhotosTaken -= EndGamePhotoLimit;
+	}
+
 	/// <summary>
 	/// Check whether the game's end time has arrived yet
 	/// </summary>
@@ -60,6 +65,7 @@ public class GameEndHandler : MonoBehaviour
 		if (_text == LevelManager.Instance.GameOverTime)
 		{
 			Debug.Log("[LevelManager] Game Over");
+			InputUnsubscribe();
 			LevelManager.Instance.playerCharacter.EndGame();
 			menu.LoseTime(topPhoto);
 		}
@@ -70,6 +76,7 @@ public class GameEndHandler : MonoBehaviour
 	/// </summary>
 	private void EndGameTimeLimit()
 	{
+		InputUnsubscribe();
 		LevelManager.Instance.playerCharacter.EndGame();
 		menu.LoseTime(topPhoto);
 	}
@@ -77,6 +84,7 @@ public class GameEndHandler : MonoBehaviour
 	private void EndGamePhotoLimit()
 	{
 		Debug.Log($"[GameEndHandler] Max photos taken. Ending game.");
+		InputUnsubscribe();
 		LevelManager.Instance.playerCharacter.EndGame();
 		menu.LosePhotoCount(topPhoto);
 	}
@@ -94,6 +102,7 @@ public class GameEndHandler : MonoBehaviour
 			if(topPhoto.Score >= LevelManager.Instance.ScoreRequired)
 			{
 				LevelManager.Instance.playerCharacter.EndGame();
+				InputUnsubscribe();
 				menu.Win(topPhoto);
 			}
 		}
