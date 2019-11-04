@@ -12,6 +12,7 @@ public class NightWalkerTempAI : MonoBehaviour
     private int randomSpot;
     private int state = 0; //state machine tracker 0 is idle, 1 is fleeing
     private float distance;
+    public float fovAngle = 110f;
     private Vector3 newPos;
     private Vector3 currentPos;
 
@@ -68,8 +69,22 @@ public class NightWalkerTempAI : MonoBehaviour
         //TODO play idle animation
         if (distance < EnemyRunDistance)
         {
-            randomSpot = Random.Range(0, movespots.Length);
-            state = 1;
+            Vector3 direction = Player.transform.position - transform.position;
+            float angle = Vector3.Angle(direction, transform.forward);
+            if(angle < fovAngle*0.5f) //checks if the player is within the enemy field of view
+            {
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position + transform.up, direction.normalized, out hit, EnemyRunDistance))
+                {
+                    if(hit.collider.gameObject == Player) //checks if there is anything in front of the player
+                    {
+                        randomSpot = Random.Range(0, movespots.Length);
+                        state = 1;  //activate flee state
+                    }
+                }
+                
+            }
+            
         }
         else
         {
