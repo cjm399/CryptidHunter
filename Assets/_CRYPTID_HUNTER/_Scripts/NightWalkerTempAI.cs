@@ -10,7 +10,7 @@ public class NightWalkerTempAI : MonoBehaviour
     public float speed;
     public Transform[] movespots;
     private int randomSpot;
-    private int state = 0;
+    private int state = 0; //state machine tracker 0 is idle, 1 is fleeing
     private float distance;
     private Vector3 newPos;
     private Vector3 currentPos;
@@ -29,7 +29,7 @@ public class NightWalkerTempAI : MonoBehaviour
     }
     private void Update()
     {
-        switch (state)
+        switch (state) //state machine
         {
             case 0:
                 idle_state();
@@ -50,11 +50,13 @@ public class NightWalkerTempAI : MonoBehaviour
         newPos = movespots[randomSpot].position;
         currentPos = _agent.gameObject.transform.position;
 
-        _agent.SetDestination(newPos);
-        FindObjectOfType<AudioManager>().Play("Nightwalker_Steps");
-        if (Vector3.Distance(_agent.gameObject.transform.position,newPos)<2.0f)
+        _agent.SetDestination(newPos);                                          //moves nightwalker to random way-point
+
+        FindObjectOfType<AudioManager>().Play("nightwalker_steps");             //plays nightwalker run audio
+
+        if (Vector3.Distance(_agent.gameObject.transform.position,newPos)<2.0f) //checks if agent has (basically) made it to his destination
         {
-            FindObjectOfType<AudioManager>().Stop("Nightwalker_Steps");
+            FindObjectOfType<AudioManager>().Stop("nightwalker_steps");         //stops audio and switches back to an idle state
             state = 0;
         }
 
