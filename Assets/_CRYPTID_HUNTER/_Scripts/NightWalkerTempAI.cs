@@ -53,11 +53,12 @@ public class NightWalkerTempAI : MonoBehaviour
 
         _agent.SetDestination(newPos);                                          //moves nightwalker to random way-point
 
-        FindObjectOfType<AudioManager>().Play("nightwalker_steps");             //plays nightwalker run audio
+        GetComponent<AudioSource>().Play();             //plays nightwalker run audio
+        Debug.Log("Played Nightwalker_Steps");
 
         if (Vector3.Distance(_agent.gameObject.transform.position,newPos)<2.0f) //checks if agent has (basically) made it to his destination
         {
-            FindObjectOfType<AudioManager>().Stop("nightwalker_steps");         //stops audio and switches back to an idle state
+            GetComponent<AudioSource>().Stop();         //stops audio and switches back to an idle state
             state = 0;
         }
 

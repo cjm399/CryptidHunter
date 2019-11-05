@@ -19,10 +19,6 @@ public class PhotoCamera : MonoBehaviour
 	[SerializeField, Tooltip("The Rewired action name for taking pictures")]
 	string photoActionName = "Take Photo";
 
-	[ValidateInput("StringNotEmpty", "You must provide a non-empty string here")]
-	[SerializeField, Tooltip("The Rewired action name for saving pictures")]
-	string saveActionName = "Save Photo";
-
 	[Header("Camera Settings")]
 	
 	[SerializeField, Tooltip("Whether the player can take pictures")]
@@ -155,7 +151,6 @@ public class PhotoCamera : MonoBehaviour
     private void OnDisable()
 	{
 		GameManager.Instance?.RewiredPlayer?.RemoveInputEventDelegate(TryTakePhoto, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, photoActionName);
-		GameManager.Instance?.RewiredPlayer?.RemoveInputEventDelegate(InputSavePhoto, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, saveActionName);
 	}
 	#endregion MonoBehaviour
 
@@ -194,6 +189,9 @@ public class PhotoCamera : MonoBehaviour
 
 		photos.Add(photo);
 
+		// Now save the photo to the hard drive
+		SavePhoto(photo);
+
 		UpdatePhotosLeftDisplayText();
 
 		OnTakePhoto?.Invoke(photo);
@@ -220,7 +218,6 @@ public class PhotoCamera : MonoBehaviour
 		}
 
 		GameManager.Instance.RewiredPlayer.AddInputEventDelegate(TryTakePhoto, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, photoActionName);
-		GameManager.Instance?.RewiredPlayer?.AddInputEventDelegate(InputSavePhoto, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, saveActionName);
 	}
 
 	/// <summary>
@@ -232,43 +229,28 @@ public class PhotoCamera : MonoBehaviour
 		TakePhoto();
 	}
 
-
-
-	/// <summary>
-	/// Save the last photo taken to file when receiving input
-	/// </summary>
-	/// <param name="_eventData">The Rewired input event data</param>
-	private void InputSavePhoto(InputActionEventData _eventData)
-	{
-		SavePhoto();
-	}
-
 	/// <summary>
 	/// Save the last photo taken to file
 	/// </summary>
-	private void SavePhoto()
+	private void SavePhoto(Photo _photo)
 	{
-		if (photos.Count > 0)
+		byte[] bytes = _photo.Texture.EncodeToPNG();
+
+		string filePath = Application.persistentDataPath + $"/Photos/";
+
+		string fileName = $"CryptidHunters_Photo_{System.DateTime.Now:dd-MM-yyyy_hh-mm-ss}.png";
+
+		Directory.CreateDirectory(filePath);
+
+		try
 		{
-			Photo photo = photos[photos.Count - 1];
-
-			byte[] bytes = photo.Texture.EncodeToPNG();
-
-			string filePath = Application.persistentDataPath + $"/Photos/";
-
-			string fileName = $"CryptidHunters_Photo_{System.DateTime.Now:dMMyyyy_hmmss}.png";
-
-			Directory.CreateDirectory(filePath);
-
-			try
-			{
-				File.WriteAllBytes(filePath + fileName, bytes);
-				OnSavePhoto?.Invoke();
-				Debug.Log($"[PhotoCamera] Creating photo at {filePath}{fileName}");
-			} catch(System.Exception e)
-			{
-				Debug.LogError($"[PhotoCamera] Encountered error trying to save photo. Error Stack Trace:\n{e.StackTrace}");
-			}
+			File.WriteAllBytes(filePath + fileName, bytes);
+			OnSavePhoto?.Invoke();
+			Debug.Log($"[PhotoCamera] Creating photo at {filePath}{fileName}");
+		}
+		catch (System.Exception e)
+		{
+			Debug.LogError($"[PhotoCamera] Encountered error trying to save photo. Error Stack Trace:\n{e.StackTrace}");
 		}
 	}
 
