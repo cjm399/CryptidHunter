@@ -128,14 +128,14 @@ public class PlayerWalk : MonoBehaviour
 				if (isWalking)
 				{
 					OnStartMoving?.Invoke();
-                    FindObjectOfType<AudioManager>().Play("Player_Woods_Steps");
+                    AudioManager.instance.Play("Player_Woods_Steps");
                 }
 				else
 				{
 					IsSprinting = false;
 
 					OnStopMoving?.Invoke();
-                    FindObjectOfType<AudioManager>().Stop("Player_Woods_Steps");
+					AudioManager.instance.Stop("Player_Woods_Steps");
                 }
 			}
 		}
