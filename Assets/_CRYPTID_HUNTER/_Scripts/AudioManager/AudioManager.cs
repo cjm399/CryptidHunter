@@ -24,43 +24,51 @@ public class AudioManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
+    }
 
+    // Creates a new game object for each sound under the Audio Manager
+    void Start()
+    {
         foreach (Sound s in sounds)
         {
-            s.source = gameObject.AddComponent<AudioSource>();
+            GameObject sound = new GameObject("Sound_" + s.name);
+            sound.transform.SetParent(this.transform);
+            s.source = sound.AddComponent<AudioSource>();
             s.source.clip = s.clip;
             s.source.loop = s.loop;
             s.source.playOnAwake = s.playOnAwake;
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
-        }
-    }
+            s.source.priority = s.priority;
 
-    void Start()
-    {
-        Play("Theme");
+            if(s.source.playOnAwake)
+            {
+                Play(s.name);
+            }
+        }
     }
 
     public void Play(string name)
     {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
+        AudioSource s = GameObject.Find("Sound_" + name).GetComponent<AudioSource>();
         if (s == null)
         {
             Debug.Log(name + " auido cannot be found");
             return;
         }
-        s.source.Play();
-        Debug.Log("Played " + name);
+        s.Play();
+        Debug.Log("Played Sound_" + name);
     }
+
     public void Stop(string name)
     {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
+        AudioSource s = GameObject.Find("Sound_" + name).GetComponent<AudioSource>();
         if (s == null)
         {
             Debug.Log(name + " auido cannot be found");
             return;
         }
-        s.source.Stop();
-        Debug.Log("Stopped");
+        s.Stop();
+        Debug.Log("Stopped Sound_" + name);
     }
 }
