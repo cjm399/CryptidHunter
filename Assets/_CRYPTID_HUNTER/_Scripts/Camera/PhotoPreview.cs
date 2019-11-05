@@ -26,6 +26,7 @@ public class PhotoPreview : MonoBehaviour
 	[SerializeField, Tooltip("The zoomed-out positioning of the preview image")]
 	Rect endPosition = new Rect(new Vector2(315, 237), new Vector2(240, 135));
 
+	[MinValue(0f)]
 	[SerializeField, Tooltip("The amount of time to take in the zoom-out animation")]
 	float zoomOutTime = 1f;
 
