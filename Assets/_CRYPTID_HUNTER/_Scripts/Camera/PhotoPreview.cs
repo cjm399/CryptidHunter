@@ -18,6 +18,20 @@ public class PhotoPreview : MonoBehaviour
 	[SerializeField, Tooltip("The UI element to show the photo with")]
 	RawImage photoDisplay;
 
+	[Header("Zoom Out")]
+
+	[SerializeField, Tooltip("The initial positioning of the preview image")]
+	Rect startPosition = new Rect(new Vector2(-640, 0), new Vector2(1280, 720));
+
+	[SerializeField, Tooltip("The zoomed-out positioning of the preview image")]
+	Rect endPosition = new Rect(new Vector2(315, 237), new Vector2(240, 135));
+
+	[SerializeField, Tooltip("The amount of time to take in the zoom-out animation")]
+	float zoomOutTime = 1f;
+
+	[SerializeField, Tooltip("The interpolation to use in zooming out")]
+	AnimationCurve zoomOutCurve = AnimationCurve.Linear(0, 0, 1, 1);
+
 	[MinValue(0f)]
 	[SerializeField, Tooltip("The amount of time in seconds to show the preview for")]
 	float previewTime = 5f;
@@ -63,8 +77,38 @@ public class PhotoPreview : MonoBehaviour
 
 		photoDisplay.enabled = false;
 		photoDisplay.texture = _photo.Texture;
+		photoDisplay.rectTransform.anchoredPosition = startPosition.position;
+		photoDisplay.rectTransform.sizeDelta = startPosition.size;
 
 		photoDisplay.enabled = true;
+
+		previewRoutine = StartCoroutine(ZoomOut());
+	}
+
+	/// <summary>
+	/// The timer for a zoom-out animation when a photo is taken
+	/// </summary>
+	private IEnumerator ZoomOut()
+	{
+		float deltaX = endPosition.x - startPosition.x;
+		float deltaY = endPosition.y - startPosition.y;
+		float deltaWidth = endPosition.width - startPosition.width;
+		float deltaHeight = endPosition.height - startPosition.height;
+
+		float timeElapsed = 0;
+
+		while(timeElapsed < zoomOutTime)
+		{
+			yield return null;
+
+			timeElapsed += Time.deltaTime;
+
+			photoDisplay.rectTransform.anchoredPosition = startPosition.position + (new Vector2(deltaX, deltaY) * zoomOutCurve.Evaluate(timeElapsed / zoomOutTime));
+			photoDisplay.rectTransform.sizeDelta = startPosition.size + (new Vector2(deltaWidth, deltaHeight) * zoomOutCurve.Evaluate(timeElapsed / zoomOutTime));
+		}
+		
+		photoDisplay.rectTransform.anchoredPosition = endPosition.position;
+		photoDisplay.rectTransform.sizeDelta = endPosition.size;
 
 		previewRoutine = StartCoroutine(PreviewTimer());
 	}
@@ -72,7 +116,6 @@ public class PhotoPreview : MonoBehaviour
 	/// <summary>
 	/// The timer showing the preview for a certain amount of time and then fading out
 	/// </summary>
-	/// <returns></returns>
 	private IEnumerator PreviewTimer()
 	{
 		yield return new WaitForSeconds(previewTime);

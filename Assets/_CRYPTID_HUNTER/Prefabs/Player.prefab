@@ -735,7 +735,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   photoActionName: Take Photo
-  saveActionName: Save Photo
   canTakePhotos: 0
   camera: {fileID: 9219981886029642323}
   photoWidth: 1280
@@ -758,9 +757,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camera: {fileID: 5099791548226260583}
   photoDisplay: {fileID: 8306833484914059697}
-  saveTipDisplay: {fileID: 8510739406807778348}
-  saveTipMessage: Press 'Q' to save photo.
-  saveConfirmMessage: The photo has been saved.
+  startPosition:
+    serializedVersion: 2
+    x: -640
+    y: 0
+    width: 1280
+    height: 720
+  endPosition:
+    serializedVersion: 2
+    x: 315
+    y: 237
+    width: 240
+    height: 135
+  zoomOutTime: 0.5
+  zoomOutCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   previewTime: 5
   fadeOutTime: 0.5
 --- !u!114 &5949195563033146205
