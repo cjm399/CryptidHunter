@@ -20,6 +20,6 @@ public class Sun : MonoBehaviour
 
     private void Update()
     {
-        sunLight.intensity = sunIntensityCurve.Evaluate(cachedTransform.rotation.eulerAngles.x / 180f)*-maxIntensity;
+        sunLight.intensity = sunIntensityCurve.Evaluate(cachedTransform.position.y / 100)*maxIntensity;
     }
 }

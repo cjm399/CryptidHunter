@@ -6,7 +6,17 @@ using Sirenix.OdinInspector;
 
 public class LevelManager : Singleton<LevelManager>
 {
-	#region Variables
+    #region Variables
+    [SerializeField, Tooltip("Is there a time limit?")]
+    private bool hasTimeLimit = true;
+
+    public bool HasTimeLimit
+    {
+        get;
+        private set;
+    }
+
+    [EnableIf("hasTimeLimit")]
 	[ValidateInput("TimeFormattedString", "You must provide a string of the following format HH:MM (Military Time)")]
     [SerializeField, Tooltip("The time at which the game ends")]
 	private string gameOverTime;

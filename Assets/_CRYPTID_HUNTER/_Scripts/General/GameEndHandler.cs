@@ -62,7 +62,7 @@ public class GameEndHandler : MonoBehaviour
 	{
 		string _text = TextHelper.Instance.FormatTime(hours, minutes, true);
 
-		if (_text == LevelManager.Instance.GameOverTime)
+		if (LevelManager.Instance.HasTimeLimit &&_text == LevelManager.Instance.GameOverTime)
 		{
 			Debug.Log("[LevelManager] Game Over");
 			InputUnsubscribe();
