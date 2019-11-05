@@ -44,6 +44,15 @@ public class PhotoCamera : MonoBehaviour
 	[SerializeField, Tooltip("A list of all photos taken")]
 	List<Photo> photos = new List<Photo>();
 
+	[Header("Camera Flash")]
+	[Required]
+	[SerializeField, Tooltip("The Light to enable during the flash")]
+	Light flash;
+
+	[MinValue(0f)]
+	[SerializeField, Tooltip("The amount of time the light should stay on")]
+	float flashTime = 1f;
+
 	[Header("Display")]
 	[Required]
 	[SerializeField, Tooltip("A display field to show how many photos the player still can take")]
@@ -167,6 +176,8 @@ public class PhotoCamera : MonoBehaviour
 			return null;
 		}
 
+		StartFlash();
+
 		Photo photo = new Photo();
 
 		RenderTexture renderTexture = new RenderTexture(photoWidth, photoHeight, 24);
@@ -270,6 +281,27 @@ public class PhotoCamera : MonoBehaviour
 				photosLeftCountDisplay.enabled = false;
 			}
 		}
+	}
+	
+	/// <summary>
+	/// Start the flash effect
+	/// </summary>
+	private void StartFlash()
+	{
+		StopCoroutine(FlashRoutine());
+		StartCoroutine(FlashRoutine());
+	}
+
+	/// <summary>
+	/// Show the flash for a set amount of time
+	/// </summary>
+	IEnumerator FlashRoutine()
+	{
+		flash.enabled = true;
+
+		yield return new WaitForSeconds(flashTime);
+
+		flash.enabled = false;
 	}
 	#endregion Private Methods
 
