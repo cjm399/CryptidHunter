@@ -1,4 +1,8 @@
 ﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
 // Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
 
 // Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
@@ -51,6 +55,7 @@ Shader "Custom/Grass Geo Shader" {
 			uniform half _Cutoff;
 			half _WindStength;
 			half _WindSpeed;
+			float _FlashLightRange;
 
 			struct v2g
 			{
@@ -69,7 +74,6 @@ Shader "Custom/Grass Geo Shader" {
 
 			v2g vert(appdata_full v)
 			{
-			float3 v0 = v.vertex.xyz;
 
 			v2g OUT;
 			OUT.pos = v.vertex;
@@ -122,7 +126,7 @@ Shader "Custom/Grass Geo Shader" {
 
 			float3 q1 = normalize(cross(v1 - v0, q1_0 - v0));
 			normalDirection = normalize(mul(float4(q1, 0.0), modelMatrixInverse).xyz);
-
+			centerPos = (v0 + v1) / 2.0;
 			float multiplier;
 			if (_WorldSpaceLightPos0.w == 0)
 			{
@@ -130,7 +134,16 @@ Shader "Custom/Grass Geo Shader" {
 			}
 			else
 			{
-				multiplier = 0;
+				float distance = sqrt(pow(_WorldSpaceLightPos0.x - IN[0].pos.x, 2) + pow(_WorldSpaceLightPos0.y - IN[0].pos.y, 2) + pow(_WorldSpaceLightPos0.z - IN[0].pos.z, 2));
+				if (distance < _FlashLightRange)
+				{	
+					float fallOff = 2 / max(2, (pow(distance, 2)));
+						multiplier = fallOff;
+				} 
+				else
+				{
+					multiplier = 0;
+				}
 			}
 
 				specularReflection = multiplier * attenuation * _LightColor0.rgb * _SpecColor.rgb * pow(max(0.0, max(dot(

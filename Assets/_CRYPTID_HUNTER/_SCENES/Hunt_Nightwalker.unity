@@ -434,6 +434,7 @@ GameObject:
   - component: {fileID: 1216325908}
   - component: {fileID: 1216325907}
   - component: {fileID: 1216325909}
+  - component: {fileID: 1216325910}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -453,6 +454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ed5d3cd3730af04e8cb39f4de903e3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasTimeLimit: 1
   gameOverTime: 06:30
   scoreRequired: 30
   isGameOver: 0
@@ -487,6 +489,18 @@ MonoBehaviour:
   topPhoto:
     score: 0
     maxScore: 0
+--- !u!114 &1216325910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216325906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 462535a63b92731489607a654f90ef13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1384020753 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7107192115459729063, guid: 829f582c7480a3b488005ef7e8b63b8a,
@@ -726,6 +740,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5226160273400506737, guid: 829f582c7480a3b488005ef7e8b63b8a,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5226160273400506737, guid: 829f582c7480a3b488005ef7e8b63b8a,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5226160273400506737, guid: 829f582c7480a3b488005ef7e8b63b8a,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5226160273400506737, guid: 829f582c7480a3b488005ef7e8b63b8a,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7107192115459729059, guid: 829f582c7480a3b488005ef7e8b63b8a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -781,6 +815,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2055879474019432121, guid: 829f582c7480a3b488005ef7e8b63b8a,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3426689966280861065, guid: 829f582c7480a3b488005ef7e8b63b8a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7311591743642402137, guid: 829f582c7480a3b488005ef7e8b63b8a,
         type: 3}
       propertyPath: startWalkSpeed
@@ -790,36 +834,6 @@ PrefabInstance:
         type: 3}
       propertyPath: maxWalkSpeed
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3426689966280861065, guid: 829f582c7480a3b488005ef7e8b63b8a,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5226160273400506737, guid: 829f582c7480a3b488005ef7e8b63b8a,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5226160273400506737, guid: 829f582c7480a3b488005ef7e8b63b8a,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5226160273400506737, guid: 829f582c7480a3b488005ef7e8b63b8a,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5226160273400506737, guid: 829f582c7480a3b488005ef7e8b63b8a,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2055879474019432121, guid: 829f582c7480a3b488005ef7e8b63b8a,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3806140463339374037, guid: 829f582c7480a3b488005ef7e8b63b8a,
         type: 3}
