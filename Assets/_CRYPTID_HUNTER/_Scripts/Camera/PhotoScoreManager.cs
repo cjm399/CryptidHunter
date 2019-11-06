@@ -102,6 +102,8 @@ public class PhotoScoreManager : Singleton<PhotoScoreManager>
 
 		Camera cam = LevelManager.Instance.playerCharacter.PhotoCamera.Camera;
 
+		float closestDistance = -1;
+
 		foreach (PhotoTarget targetCryptid in targetCryptids)
 		{
 			// First check if on-screen
@@ -163,34 +165,48 @@ public class PhotoScoreManager : Singleton<PhotoScoreManager>
 				}
 			}
 
-			if (LevelManager.Instance.playerCharacter.CamRange.Centered)
+			// The player is not aiming directly at a cryptid while in range of it, so we need to calculate the least distance to a cryptid
+			// Then compare that later to the camera's max range to decide whether a penalty needs to be applied
+			if(!LevelManager.Instance.playerCharacter.CamRange.InRange)
 			{
-				score = Mathf.FloorToInt(score * centeredBonus);
-				Debug.Log($"[{GetType().Name}] Photo is centered. Awarding multiplier to {score}");
-			}
+				float currDistance = Vector3.Distance(LevelManager.Instance.playerCharacter.PhotoCamera.transform.position, targetCryptid.transform.position);
 
-			// The player is not aiming directly at the cryptid while in range of it
-			if (!LevelManager.Instance.playerCharacter.CamRange.InRange)
-			{
-				bool inRange = Vector3.Distance(LevelManager.Instance.playerCharacter.PhotoCamera.transform.position, targetCryptid.transform.position) <= LevelManager.Instance.playerCharacter.CamRange.MaxRange;
-
-				if (!inRange)
+				if(closestDistance < 0 || closestDistance > currDistance)
 				{
-					score = Mathf.FloorToInt(score * rangePenalty);
-					Debug.Log($"[{GetType().Name}] Target is not in range. Penalizing to {score}");
+					closestDistance = currDistance;
 				}
+			}
+		}
+
+		if (LevelManager.Instance.playerCharacter.CamRange.Centered)
+		{
+			score = Mathf.FloorToInt(score * centeredBonus);
+			Debug.Log($"[{GetType().Name}] Photo is centered. Awarding multiplier to {score}");
+		}
+
+		// The player is not aiming directly at a cryptid, so check if the player was found to be in range of at least one cryptid
+		if (!LevelManager.Instance.playerCharacter.CamRange.InRange)
+		{
+			bool inRange = closestDistance <= LevelManager.Instance.playerCharacter.CamRange.MaxRange;
+
+			if (!inRange)
+			{
+				score = Mathf.FloorToInt(score * rangePenalty);
+				Debug.Log($"[{GetType().Name}] Target is not in range. Penalizing to {score}");
 			}
 		}
 
 		// Save the final score to the PhotoScore
 		photoScore.Score = score;
 
-		Debug.Log($"[{GetType().Name}] Last Photo Score: {score}/{photoScore.MaxScore}");
+		Debug.Log($"[{GetType().Name}] Score: {score}/{photoScore.MaxScore}");
 
 		if(debugScoreDisplay != null)
 		{
-			debugScoreDisplay.text = $"Last Photo Score: {score}/{photoScore.MaxScore}";
+			debugScoreDisplay.text = $"Score: {score}/{photoScore.MaxScore}";
 			debugScoreDisplay.enabled = true;
+
+			StopCoroutine(ScoreDisplayFadeOut());
 
 			StartCoroutine(ScoreDisplayFadeOut());
 		}
@@ -206,8 +222,6 @@ public class PhotoScoreManager : Singleton<PhotoScoreManager>
 	/// <returns></returns>
 	private IEnumerator ScoreDisplayFadeOut()
 	{
-		StopCoroutine(ScoreDisplayFadeOut());
-
 		yield return new WaitForSeconds(scoreDisplayTime);
 
 		AnimationCurve interp = AnimationCurve.Linear(0, 1, 1, 0);
