@@ -7,12 +7,24 @@ using Sirenix.OdinInspector;
 public class PhotoTarget : MonoBehaviour
 {
 	#region Variables
+	[MinValue(0)]
+	[SerializeField, Tooltip("The base score for this target before adding bonuses for target points")]
+	int baseScore = 0;
+
 	[ValidateInput("NoNullPoints", "There are null objects within this list", IncludeChildren = true)]
 	[SerializeField, Tooltip("All the positions of different points that the player can receive score for capturing in the photo")]
 	List<TargetPoint> targetPoints = new List<TargetPoint>();
 	#endregion Variables
 
 	#region Properties
+	/// <summary>
+	/// The base score for this target before adding bonuses for target points
+	/// </summary>
+	public int BaseScore
+	{
+		get { return baseScore; }
+	}
+
 	/// <summary>
 	/// All the positions of different points that the player can receive score for capturing in the photo
 	/// </summary>
@@ -28,7 +40,7 @@ public class PhotoTarget : MonoBehaviour
 	{
 		get
 		{
-			int total = 0;
+			int total = baseScore;
 
 			foreach(TargetPoint point in targetPoints)
 			{

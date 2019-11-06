@@ -461,7 +461,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasTimeLimit: 1
   gameOverTime: 06:30
-  scoreRequired: 70
+  scoreRequired: 80
   isGameOver: 0
   playerCharacter: {fileID: 1384020753}
 --- !u!4 &1216325908

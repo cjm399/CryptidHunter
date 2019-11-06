@@ -104,10 +104,36 @@ public class PhotoScoreManager : Singleton<PhotoScoreManager>
 
 		foreach (PhotoTarget targetCryptid in targetCryptids)
 		{
+			// First check if on-screen
+			Vector3 viewPoint = cam.WorldToViewportPoint(targetCryptid.transform.position);
+
+			if (viewPoint.x >= 0 && viewPoint.x <= 1 && viewPoint.y >= 0 && viewPoint.y <= 1 && viewPoint.z >= 0)
+			{
+				// Check if the base score was achieved for the target, which happens if the target's center on screen
+				Vector3 screenPoint = cam.WorldToScreenPoint(targetCryptid.transform.position);
+				screenPoint.z = cam.nearClipPlane;
+				Vector3 screenPointInWorld = cam.ScreenToWorldPoint(screenPoint);
+
+				float distance = Vector3.Distance(targetCryptid.transform.position, screenPointInWorld);
+
+				Ray ray = cam.ScreenPointToRay(screenPoint);
+
+				RaycastHit result;
+
+				Physics.Raycast(ray, out result, distance, obstacleLayers, QueryTriggerInteraction.Ignore);
+
+				if (result.collider?.gameObject == targetCryptid.gameObject)
+				{
+					Debug.Log($"[{GetType().Name}] Direct photo of target. Awarding base score {targetCryptid.BaseScore}");
+					score += targetCryptid.BaseScore;
+				}
+			}
+
+			// Now give bonus points for each target point on the cryptid's body that is on-screen
 			foreach (TargetPoint targetPoint in targetCryptid.TargetPoints)
 			{
 				// First check if on-screen
-				Vector3 viewPoint = cam.WorldToViewportPoint(targetPoint.transform.position);
+				viewPoint = cam.WorldToViewportPoint(targetPoint.transform.position);
 
 				if(viewPoint.x < 0 || viewPoint.x > 1 || viewPoint.y < 0 || viewPoint.y > 1 || viewPoint.z < 0)
 				{
@@ -122,7 +148,9 @@ public class PhotoScoreManager : Singleton<PhotoScoreManager>
 
 				Ray ray = cam.ScreenPointToRay(screenPoint);
 				Debug.DrawRay(ray.origin, ray.direction * distance, Color.cyan, 15);
+
 				RaycastHit result;
+
 				//Physics.Raycast(ray, out result, distance, ~0, QueryTriggerInteraction.Ignore);
 				Physics.Raycast(ray, out result, distance, obstacleLayers, QueryTriggerInteraction.Ignore);
 
@@ -135,21 +163,21 @@ public class PhotoScoreManager : Singleton<PhotoScoreManager>
 				}
 			}
 
+			if (LevelManager.Instance.playerCharacter.CamRange.Centered)
+			{
+				score = Mathf.FloorToInt(score * centeredBonus);
+				Debug.Log($"[{GetType().Name}] Photo is centered. Awarding multiplier to {score}");
+			}
+
 			// The player is not aiming directly at the cryptid while in range of it
 			if (!LevelManager.Instance.playerCharacter.CamRange.InRange)
 			{
-				bool centered = LevelManager.Instance.playerCharacter.CamRange.Centered;
-
 				bool inRange = Vector3.Distance(LevelManager.Instance.playerCharacter.PhotoCamera.transform.position, targetCryptid.transform.position) <= LevelManager.Instance.playerCharacter.CamRange.MaxRange;
-
-				if (centered)
-				{
-					score = Mathf.FloorToInt(score * centeredBonus);
-				}
 
 				if (!inRange)
 				{
 					score = Mathf.FloorToInt(score * rangePenalty);
+					Debug.Log($"[{GetType().Name}] Target is not in range. Penalizing to {score}");
 				}
 			}
 		}
@@ -178,6 +206,8 @@ public class PhotoScoreManager : Singleton<PhotoScoreManager>
 	/// <returns></returns>
 	private IEnumerator ScoreDisplayFadeOut()
 	{
+		StopCoroutine(ScoreDisplayFadeOut());
+
 		yield return new WaitForSeconds(scoreDisplayTime);
 
 		AnimationCurve interp = AnimationCurve.Linear(0, 1, 1, 0);
