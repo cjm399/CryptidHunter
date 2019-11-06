@@ -274,7 +274,7 @@ public class PhotoCamera : MonoBehaviour
 		{
 			if (maxPhotos > 0)
 			{
-				photosLeftCountDisplay.text = $"Photos Left: {maxPhotos - PhotoCount}";
+				photosLeftCountDisplay.text = $"×{maxPhotos - PhotoCount}";
 			}
 			else
 			{
