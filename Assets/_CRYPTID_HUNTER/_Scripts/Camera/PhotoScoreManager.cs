@@ -9,6 +9,56 @@ using TMPro;
 
 public class PhotoScoreManager : Singleton<PhotoScoreManager>
 {
+	private struct ScoreComponent
+	{
+		public string name;
+		public int score;
+		public int count;
+
+		public ScoreComponent(string _name, int _score, int _count)
+		{
+			name = _name;
+			score = _score;
+			count = _count;
+		}
+	}
+
+	private struct ScoreComponents
+	{
+		public List<ScoreComponent> components;
+
+		/// <summary>
+		/// Add a new score component to keep track of
+		/// </summary>
+		/// <param name="_name"></param>
+		/// <param name="_score"></param>
+		public void AddComponent(string _name, int _score)
+		{
+			int index = -1;
+
+			for(int i = 0; i < components.Count; ++i)
+			{
+				if(components[i].name == _name)
+				{
+					index = i;
+				}
+			}
+
+			if (index > -1)
+			{
+				ScoreComponent component = components[index];
+
+				++component.count;
+
+				components[index] = component;
+			}
+			else
+			{
+				components.Add(new ScoreComponent(_name, _score, 1));
+			}
+		}
+	}
+
 	#region Variables
 	[Required, SceneObjectsOnly]
 	[SerializeField, Tooltip("The cryptid targets of this level")]
@@ -90,6 +140,8 @@ public class PhotoScoreManager : Singleton<PhotoScoreManager>
 		PhotoScore photoScore = new PhotoScore(_photo);
 		photoScore.MaxScore = 0;
 
+		string feedbackText = "";
+
 		foreach (PhotoTarget targetCryptid in targetCryptids)
 		{
 			photoScore.MaxScore += targetCryptid.MaxScore;
@@ -103,6 +155,11 @@ public class PhotoScoreManager : Singleton<PhotoScoreManager>
 		Camera cam = LevelManager.Instance.playerCharacter.PhotoCamera.Camera;
 
 		float closestDistance = -1;
+
+		ScoreComponents scoreComponents = new ScoreComponents();
+		scoreComponents.components = new List<ScoreComponent>();
+		int targetCount = 0;
+		int targetBaseScores = 0;
 
 		foreach (PhotoTarget targetCryptid in targetCryptids)
 		{
@@ -128,6 +185,9 @@ public class PhotoScoreManager : Singleton<PhotoScoreManager>
 				{
 					Debug.Log($"[{GetType().Name}] Direct photo of target. Awarding base score {targetCryptid.BaseScore}");
 					score += targetCryptid.BaseScore;
+					++targetCount;
+
+					targetBaseScores += targetCryptid.BaseScore;
 				}
 			}
 
@@ -162,6 +222,8 @@ public class PhotoScoreManager : Singleton<PhotoScoreManager>
 				//if (result.collider?.GetComponent<TargetPoint>() != null)
 				{
 					score += targetPoint.Score;
+
+					scoreComponents.AddComponent(targetPoint.PointName, targetPoint.Score);
 				}
 			}
 
@@ -178,9 +240,18 @@ public class PhotoScoreManager : Singleton<PhotoScoreManager>
 			}
 		}
 
+		feedbackText += $"{targetCount} Target{((targetCount != 1) ? "s" : "")}! +{targetBaseScores}";
+
+
+		foreach(ScoreComponent component in scoreComponents.components)
+		{
+			feedbackText += $"\n{component.count} {component.name}! +{component.score}";
+		}
+
 		if (LevelManager.Instance.playerCharacter.CamRange.Centered)
 		{
 			score = Mathf.FloorToInt(score * centeredBonus);
+			feedbackText += $"\nCentered! x{centeredBonus}";
 			Debug.Log($"[{GetType().Name}] Photo is centered. Awarding multiplier to {score}");
 		}
 
@@ -192,6 +263,7 @@ public class PhotoScoreManager : Singleton<PhotoScoreManager>
 			if (!inRange)
 			{
 				score = Mathf.FloorToInt(score * rangePenalty);
+				feedbackText += $"\nOut of Range... x{rangePenalty}";
 				Debug.Log($"[{GetType().Name}] Target is not in range. Penalizing to {score}");
 			}
 		}
@@ -200,13 +272,14 @@ public class PhotoScoreManager : Singleton<PhotoScoreManager>
 		photoScore.Score = score;
 
 		Debug.Log($"[{GetType().Name}] Score: {score}/{photoScore.MaxScore}");
+		feedbackText += $"\nScore: {score}/{photoScore.MaxScore}";
 
 		if(debugScoreDisplay != null)
 		{
-			debugScoreDisplay.text = $"Score: {score}/{photoScore.MaxScore}";
+			debugScoreDisplay.text = feedbackText;
 			debugScoreDisplay.enabled = true;
 
-			StopCoroutine(ScoreDisplayFadeOut());
+			StopAllCoroutines();
 
 			StartCoroutine(ScoreDisplayFadeOut());
 		}
