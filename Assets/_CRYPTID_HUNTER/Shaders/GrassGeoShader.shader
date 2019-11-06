@@ -134,7 +134,8 @@ Shader "Custom/Grass Geo Shader" {
 			}
 			else
 			{
-				float distance = sqrt(pow(_WorldSpaceLightPos0.x - IN[0].pos.x, 2) + pow(_WorldSpaceLightPos0.y - IN[0].pos.y, 2) + pow(_WorldSpaceLightPos0.z - IN[0].pos.z, 2));
+				float3 vert = mul(IN[0].pos, modelMatrix);
+				float distance = sqrt(pow(_WorldSpaceLightPos0.x - vert.x, 2) + pow(_WorldSpaceLightPos0.y - vert.y, 2) + pow(_WorldSpaceLightPos0.z - vert.z, 2));
 				if (distance < _FlashLightRange)
 				{	
 					float fallOff = 2 / max(2, (pow(distance, 2)));
@@ -203,8 +204,6 @@ Shader "Custom/Grass Geo Shader" {
 				reflect(viewDirection, -normalDirection), reflect(viewDirection, normalDirection)),
 				viewDirection)), _Shininess);
 
-
-
 			OUT.pos = q2_0;
 			OUT.specularColor = ambientLighting + specularReflection;
 			OUT.uv = float2(1, 0);
@@ -257,7 +256,6 @@ Shader "Custom/Grass Geo Shader" {
 			specularReflection = multiplier * attenuation * _LightColor0.rgb * _SpecColor.rgb * pow(max(0.0, max(dot(
 				reflect(viewDirection, -normalDirection), reflect(viewDirection, normalDirection)),
 				viewDirection)), _Shininess);
-
 
 			OUT.pos = q3_0;
 			OUT.specularColor = ambientLighting + specularReflection;
