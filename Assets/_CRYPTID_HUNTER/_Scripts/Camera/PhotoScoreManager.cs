@@ -19,14 +19,10 @@ public class PhotoScoreManager : Singleton<PhotoScoreManager>
 	[Range(0f, 1f)]
 	[SerializeField, Tooltip("The percentage penalty applied to the photo score if taken when outside the camera's range")]
 	float rangePenalty = .5f;
-
-	[Range(0f, 1f)]
-	[SerializeField, Tooltip("The percentage penalty applied to the photo score if the target is not centered")]
-	float centeredPenalty = .5f;
-
-	[Range(0f, 1f)]
-	[SerializeField, Tooltip("The percentage score the player must get for a photo to pass in the range [0, 1]")]
-	float minPercent = .75f;
+	
+	[MinValue(1f)]
+	[SerializeField, Tooltip("The multiplier applied to the photo score if the target is centered")]
+	float centeredBonus = 2f;
 
 	[SerializeField, Tooltip("The layers to check for an obstruction")]
 	LayerMask obstacleLayers;
@@ -99,6 +95,8 @@ public class PhotoScoreManager : Singleton<PhotoScoreManager>
 			photoScore.MaxScore += targetCryptid.MaxScore;
 		}
 
+		photoScore.MaxScore = Mathf.FloorToInt(photoScore.MaxScore * centeredBonus);
+
 		// Calculate the total score achieved by the player
 		int score = 0;
 
@@ -144,9 +142,9 @@ public class PhotoScoreManager : Singleton<PhotoScoreManager>
 
 				bool inRange = Vector3.Distance(LevelManager.Instance.playerCharacter.PhotoCamera.transform.position, targetCryptid.transform.position) <= LevelManager.Instance.playerCharacter.CamRange.MaxRange;
 
-				if (!centered)
+				if (centered)
 				{
-					score = Mathf.FloorToInt(score * centeredPenalty);
+					score = Mathf.FloorToInt(score * centeredBonus);
 				}
 
 				if (!inRange)

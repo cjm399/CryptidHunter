@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1784f8aff58bb854a95a19bc211df743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointName: Right Foot
   score: 5
 --- !u!1 &8904485853028883200
 GameObject:
@@ -87,6 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1784f8aff58bb854a95a19bc211df743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointName: Torso
   score: 20
 --- !u!1 &8904485853938385265
 GameObject:
@@ -131,6 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1784f8aff58bb854a95a19bc211df743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointName: Left Foot
   score: 5
 --- !u!1 &8904485854344791531
 GameObject:
@@ -175,6 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1784f8aff58bb854a95a19bc211df743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointName: Head
   score: 10
 --- !u!1 &8904485854473798918
 GameObject:
@@ -206,7 +210,7 @@ Transform:
   m_GameObject: {fileID: 8904485854473798918}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 8904485854344791530}
   - {fileID: 8904485853938385264}

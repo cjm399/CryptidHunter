@@ -378,8 +378,7 @@ MonoBehaviour:
   targetCryptids:
   - {fileID: 1599444505}
   rangePenalty: 0.5
-  centeredPenalty: 0.5
-  minPercent: 0.75
+  centeredBonus: 2
   obstacleLayers:
     serializedVersion: 2
     m_Bits: 3895
@@ -456,7 +455,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasTimeLimit: 1
   gameOverTime: 06:30
-  scoreRequired: 30
+  scoreRequired: 70
   isGameOver: 0
   playerCharacter: {fileID: 1384020753}
 --- !u!4 &1216325908
