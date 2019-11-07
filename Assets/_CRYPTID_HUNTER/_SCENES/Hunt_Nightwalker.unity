@@ -241,6 +241,12 @@ MonoBehaviour:
     loadInEditor: 1
     loadMethod: 3
   - scene:
+      editorAssetGUID: afa37e9edcdaa964d9b4e21d437bd1d5
+      name: Environment
+      _path: Assets/_CRYPTID_HUNTER/_SCENES/Environment.unity
+    loadInEditor: 1
+    loadMethod: 1
+  - scene:
       editorAssetGUID: b12fb97a300c4cf45b44a480e902eb6c
       name: Gio_NewEnvironment
       _path: Assets/_CRYPTID_HUNTER/_SCENES/Gio_NewEnvironment.unity
