@@ -245,7 +245,13 @@ MonoBehaviour:
       name: Environment
       _path: Assets/_CRYPTID_HUNTER/_SCENES/Environment.unity
     loadInEditor: 1
-    loadMethod: 0
+    loadMethod: 1
+  - scene:
+      editorAssetGUID: b12fb97a300c4cf45b44a480e902eb6c
+      name: Gio_NewEnvironment
+      _path: Assets/_CRYPTID_HUNTER/_SCENES/Gio_NewEnvironment.unity
+    loadInEditor: 1
+    loadMethod: 1
   _thisScenePath: Assets/_CRYPTID_HUNTER/_SCENES/Hunt_Nightwalker.unity
 --- !u!4 &316813740
 Transform:
@@ -873,6 +879,43 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8362258639643990653, guid: 829f582c7480a3b488005ef7e8b63b8a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8362258639643990653, guid: 829f582c7480a3b488005ef7e8b63b8a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 116
+      objectReference: {fileID: 0}
+    - target: {fileID: 4769305426408239973, guid: 829f582c7480a3b488005ef7e8b63b8a,
+        type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0.599
+      objectReference: {fileID: 0}
+    - target: {fileID: 8510739406807778348, guid: 829f582c7480a3b488005ef7e8b63b8a,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: e2f58d403e66f6a49b9c43e1fdad74b5,
+        type: 2}
+    - target: {fileID: 8510739406807778348, guid: 829f582c7480a3b488005ef7e8b63b8a,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 4499383852992841752, guid: e2f58d403e66f6a49b9c43e1fdad74b5,
+        type: 2}
+    - target: {fileID: 6756095506890586342, guid: 829f582c7480a3b488005ef7e8b63b8a,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756095506890586342, guid: 829f582c7480a3b488005ef7e8b63b8a,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 3222184758134408690, guid: 829f582c7480a3b488005ef7e8b63b8a,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -892,6 +935,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 605656763428601522, guid: 829f582c7480a3b488005ef7e8b63b8a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -385
+      objectReference: {fileID: 0}
+    - target: {fileID: 7852937307009337961, guid: 829f582c7480a3b488005ef7e8b63b8a,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7852937307009337961, guid: 829f582c7480a3b488005ef7e8b63b8a,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7469010277369058760, guid: 829f582c7480a3b488005ef7e8b63b8a,
         type: 3}

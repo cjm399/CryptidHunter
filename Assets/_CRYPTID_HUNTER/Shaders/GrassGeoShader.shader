@@ -15,8 +15,7 @@
 Shader "Custom/Grass Geo Shader" {
 	Properties{
 		_MainTex("Albedo (RGB)", 2D) = "white" {}
-		_LightDirYVal("Light Direction Y Value", Float) = 0
-		_SpecColor("Specular Material Color", Color) = (1,1,1,1)
+		_SpecularColor("Specular Material Color", Color) = (1,1,1,1)
 		_Shininess("Shininess", Float) = 1.0
 		_Cutoff("Cutoff", Range(0,1)) = 0.25
 		_GrassHeight("Grass Height", Float) = 0.25
@@ -38,17 +37,14 @@ Shader "Custom/Grass Geo Shader" {
 			#pragma vertex vert
 			#pragma fragment frag
 			#pragma geometry geom
-			#pragma fragmentoption ARB_precision_hint_fastest
-			#pragma multi_compile_fwdbase
+			//#pragma fragmentoption ARB_precision_hint_fastest
+			//#pragma multi_compile_fwdbase
 			#include "UnityCG.cginc"
 
 			sampler2D _MainTex;
-			sampler2D _SpecMap;
-			uniform float4 _SpecColor;
+			uniform float4 _SpecularColor;
 			uniform float _Shininess;
-			uniform float _LightDirYVal;
-			uniform float4 _LightColor0;
-			uniform float4 _SpecMap_ST;
+			uniform float3 _LightColor0;
 			half _GrassHeight;
 			half _GrassTopWidth;
 			half _GrassBotWidth;
@@ -71,6 +67,14 @@ Shader "Custom/Grass Geo Shader" {
 			float2 uv : TEXCOORD0;
 			float3 specularColor : TEXCOORD2;
 			};
+
+			float GetSpecularReflection(float multiplier, float attenuation, float viewDirection, float normalDirection)
+			{
+				return multiplier * attenuation * _LightColor0.rgb * _SpecularColor.rgb * _Shininess;//pow(max(0.0, dot(reflect(viewDirection, normalDirection), viewDirection)), _Shininess);
+				/*return multiplier * attenuation * _LightColor0.rgb * _SpecularColor.rgb * pow(max(0.0, max(dot(
+					reflect(viewDirection, -normalDirection), reflect(viewDirection, normalDirection)),
+					viewDirection)), _Shininess);*/
+			}
 
 			v2g vert(appdata_full v)
 			{
@@ -124,31 +128,38 @@ Shader "Custom/Grass Geo Shader" {
 			float4 q1_0 = UnityObjectToClipPos(v0 + perpendicularAngle * _GrassBotWidth);
 
 
-			float3 q1 = normalize(cross(v1 - v0, q1_0 - v0));
-			normalDirection = normalize(mul(float4(q1, 0.0), modelMatrixInverse).xyz);
-			centerPos = (v0 + v1) / 2.0;
+			
 			float multiplier;
-			if (_WorldSpaceLightPos0.w == 0)
+
+			/*if (_WorldSpaceLightPos0.w == 0)
 			{
-				multiplier = 1;
+				multiplier = 0;
 			}
-			else
-			{
-				float distance = sqrt(pow(_WorldSpaceLightPos0.x - IN[0].pos.x, 2) + pow(_WorldSpaceLightPos0.y - IN[0].pos.y, 2) + pow(_WorldSpaceLightPos0.z - IN[0].pos.z, 2));
+			else {
+				float3 dV = mul(IN[0].pos, unity_WorldToObject).xyz;
+				float distance = sqrt(pow(_WorldSpaceLightPos0.x - dV.x, 2) + pow(_WorldSpaceLightPos0.y - dV.y, 2) + pow(_WorldSpaceLightPos0.z - dV.z, 2));
+
 				if (distance < _FlashLightRange)
-				{	
+				{
 					float fallOff = 2 / max(2, (pow(distance, 2)));
-						multiplier = fallOff;
-				} 
+					multiplier = fallOff;
+				}
 				else
 				{
 					multiplier = 0;
 				}
-			}
+			}*/
+			float3 dV = mul(IN[0].pos, unity_WorldToObject).xyz;
+			float distance = sqrt(pow(_WorldSpaceLightPos0.x - dV.x, 2) + pow(_WorldSpaceLightPos0.y - dV.y, 2) + pow(_WorldSpaceLightPos0.z - dV.z, 2));
 
-				specularReflection = multiplier * attenuation * _LightColor0.rgb * _SpecColor.rgb * pow(max(0.0, max(dot(
-					reflect(viewDirection, -normalDirection), reflect(viewDirection, normalDirection)),
-					viewDirection)), _Shininess);
+			float fallOff = 2 / max(2, (pow(distance, 2)));
+			multiplier = fallOff;
+
+
+			float3 q1 = normalize(cross(v1 - v0, q1_0 - v0));
+			normalDirection = normalize(mul(float4(q1, 0.0), modelMatrix).xyz);
+			centerPos = (v0 + v1) / 2.0;
+			specularReflection = GetSpecularReflection(multiplier, attenuation, viewDirection, normalDirection);
 
 			OUT.pos = q1_0;
 			OUT.specularColor = ambientLighting + specularReflection;
@@ -199,9 +210,7 @@ Shader "Custom/Grass Geo Shader" {
 			normalDirection = normalize(mul(float4(q2, 0.0), modelMatrixInverse).xyz);
 
 
-			specularReflection = multiplier * attenuation * _LightColor0.rgb * _SpecColor.rgb * pow(max(0.0, max(dot(
-				reflect(viewDirection, -normalDirection), reflect(viewDirection, normalDirection)),
-				viewDirection)), _Shininess);
+			specularReflection = GetSpecularReflection(multiplier, attenuation, viewDirection, normalDirection);
 
 
 
@@ -254,9 +263,7 @@ Shader "Custom/Grass Geo Shader" {
 			normalDirection = normalize(mul(float4(q3, 0.0), modelMatrixInverse).xyz);
 
 
-			specularReflection = multiplier * attenuation * _LightColor0.rgb * _SpecColor.rgb * pow(max(0.0, max(dot(
-				reflect(viewDirection, -normalDirection), reflect(viewDirection, normalDirection)),
-				viewDirection)), _Shininess);
+			specularReflection = GetSpecularReflection(multiplier, attenuation, viewDirection, normalDirection);
 
 
 			OUT.pos = q3_0;
