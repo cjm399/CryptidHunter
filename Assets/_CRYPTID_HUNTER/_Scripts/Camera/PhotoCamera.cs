@@ -178,6 +178,8 @@ public class PhotoCamera : MonoBehaviour
 
 		StartFlash();
 
+        AudioManager.instance?.Play("Camera_Shutter");
+
 		Photo photo = new Photo();
 
 		RenderTexture renderTexture = new RenderTexture(photoWidth, photoHeight, 24);

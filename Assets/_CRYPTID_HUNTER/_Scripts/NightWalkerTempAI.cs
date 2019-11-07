@@ -54,7 +54,6 @@ public class NightWalkerTempAI : MonoBehaviour
         _agent.SetDestination(newPos);                                          //moves nightwalker to random way-point
 
         GetComponent<AudioSource>().Play();             //plays nightwalker run audio
-        Debug.Log("Played Nightwalker_Steps");
 
         if (Vector3.Distance(_agent.gameObject.transform.position,newPos)<2.0f) //checks if agent has (basically) made it to his destination
         {
