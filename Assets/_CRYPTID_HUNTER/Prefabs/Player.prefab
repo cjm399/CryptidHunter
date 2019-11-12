@@ -914,6 +914,7 @@ GameObject:
   - component: {fileID: 5099791548226260583}
   - component: {fileID: 771028311199553181}
   - component: {fileID: 5949195563033146205}
+  - component: {fileID: 6934107957882728833}
   m_Layer: 8
   m_Name: PhotoCamera
   m_TagString: Untagged
@@ -992,12 +993,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   photoActionName: Take Photo
-  canTakePhotos: 0
+  canTakePhotos: 1
   cameraOut: 0
   camera: {fileID: 9219981886029642323}
   photoWidth: 1280
   photoHeight: 720
   maxPhotos: 12
+  cameraCooldown: 3
   photos: []
   flash: {fileID: 4027465191979340441}
   flashTime: 0.5
@@ -1105,6 +1107,21 @@ MonoBehaviour:
   inRangeReticle: {fileID: 2800000, guid: 019380a340b012d4b9893ad6c6e275f0, type: 3}
   outRangeReticle: {fileID: 2800000, guid: 072fc82002f990248b86b56263ba2059, type: 3}
   reticleDisplay: {fileID: 4235683009865864863}
+--- !u!114 &6934107957882728833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3286309078818474120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a3efeddb35dd3442a74f73813a4682c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraActionName: Toggle Camera
+  cameraOverlay: {fileID: 3105264923802286673}
+  photoCamera: {fileID: 5099791548226260583}
 --- !u!1 &3463229982185305488
 GameObject:
   m_ObjectHideFlags: 0
@@ -1509,7 +1526,6 @@ GameObject:
   - component: {fileID: 7107192114666827537}
   - component: {fileID: 7107192114666827536}
   - component: {fileID: 7107192114666827543}
-  - component: {fileID: 7107192114666827548}
   m_Layer: 8
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1584,21 +1600,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7107192114666827542}
   m_Enabled: 1
---- !u!114 &7107192114666827548
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7107192114666827542}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a3efeddb35dd3442a74f73813a4682c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraActionName: Toggle Camera
-  cameraOverlay: {fileID: 6893785332225730821}
-  photoCamera: {fileID: 5099791548226260583}
 --- !u!1 &7107192115459729062
 GameObject:
   m_ObjectHideFlags: 0

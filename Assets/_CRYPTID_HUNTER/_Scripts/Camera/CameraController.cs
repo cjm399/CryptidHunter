@@ -21,8 +21,8 @@ public class CameraController : MonoBehaviour
 	[Header("Camera Settings")]
 
 	[Required]
-	[SerializeField, Tooltip("Image for the overlay of the camera")]
-	Canvas cameraOverlay;
+	[SerializeField, Tooltip("Group of Canvas images for the overlay of the camera")]
+	GameObject cameraOverlay;
 
 	[Required]
 	[SerializeField, Tooltip("The camera script for taking photos")]
@@ -31,9 +31,10 @@ public class CameraController : MonoBehaviour
 	#endregion Variables
 
 	#region MonoBehavior
-	private void Start()
+	private void OnEnable()
 	{
-		cameraOverlay.enabled = photoCamera.CanTakePhotos;
+		cameraOverlay.SetActive(photoCamera.CameraOut);
+		photoCamera.OnCameraOutToggle += ToggleCameraOverlay;
 
 		StartCoroutine(InputSubscribe());
 	}
@@ -41,6 +42,7 @@ public class CameraController : MonoBehaviour
 	private void OnDisable()
 	{
 		GameManager.Instance?.RewiredPlayer?.RemoveInputEventDelegate(TryToggleCamera, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, cameraActionName);
+		photoCamera.OnCameraOutToggle -= ToggleCameraOverlay;
 	}
 	#endregion MonoBehavior
 
@@ -69,17 +71,16 @@ public class CameraController : MonoBehaviour
 			return;
 		}
 
-		if (photoCamera.CanTakePhotos == true)
-		{
-			cameraOverlay.enabled = false;
+		photoCamera.CameraOut = !photoCamera.CameraOut;
+	}
 
-            photoCamera.CanTakePhotos = false;
-		}
-		else
-		{
-			cameraOverlay.enabled = true;
-            photoCamera.CanTakePhotos = true;
-		}
+	/// <summary>
+	/// Toggle the camera overlay when the camera itself is toggled on or off
+	/// </summary>
+	/// <param name="_cameraOut">Whether the camera is now out</param>
+	private void ToggleCameraOverlay(bool _cameraOut)
+	{
+		cameraOverlay.SetActive(_cameraOut);
 	}
 	#endregion Private Methods
 

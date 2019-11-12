@@ -43,6 +43,10 @@ public class PhotoCamera : MonoBehaviour
 	[SerializeField, Tooltip("The maximum amount of photos the player can take (set to 0 to enable infinite photos)")]
 	int maxPhotos = 12;
 
+	[MinValue(0f)]
+	[SerializeField, Tooltip("The amount of time after each photo before the player can take another")]
+	float cameraCooldown = 3f;
+
 	[ReadOnly]
 	[SerializeField, Tooltip("A list of all photos taken")]
 	List<Photo> photos = new List<Photo>();
@@ -78,6 +82,9 @@ public class PhotoCamera : MonoBehaviour
 	#endregion Variables
 
 	#region Properties
+	/// <summary>
+	/// Whether the player is able to toggle camera on/off to take photos
+	/// </summary>
 	public bool CanTakePhotos
 	{
 		get { return canTakePhotos; }
@@ -119,6 +126,8 @@ public class PhotoCamera : MonoBehaviour
 					LevelManager.Instance.playerCharacter.PlayerWalk.RemoveSpeedModifier(this);
 					LevelManager.Instance.playerCharacter.PlayerWalk.CanSprint = true;
 				}
+
+				OnCameraOutToggle?.Invoke(cameraOut);
 			}
 		}
 	}
@@ -149,6 +158,15 @@ public class PhotoCamera : MonoBehaviour
 	#endregion Properties
 
 	#region Events
+	/// <summary>
+	/// Handler for event called when the camera is taken out
+	/// </summary>
+	public delegate void CameraOutToggleEventHandler(bool _cameraOut);
+	/// <summary>
+	/// Event invoked when camera is taken out
+	/// </summary>
+	public event CameraOutToggleEventHandler OnCameraOutToggle;
+
 	/// <summary>
 	/// Handler for event called when a photo is taken
 	/// </summary>
@@ -202,7 +220,7 @@ public class PhotoCamera : MonoBehaviour
 	[Button("Take Photo", ButtonSizes.Medium)]
 	public Photo TakePhoto()
 	{
-		if (camera == null || !canTakePhotos || PauseManager.Instance.Paused || (maxPhotos > 0 && PhotoCount >= maxPhotos) || LevelManager.Instance.IsGameOver)
+		if (camera == null || !canTakePhotos || !cameraOut || PauseManager.Instance.Paused || (maxPhotos > 0 && PhotoCount >= maxPhotos) || LevelManager.Instance.IsGameOver)
 		{
 			return null;
 		}
@@ -245,6 +263,9 @@ public class PhotoCamera : MonoBehaviour
 			Debug.Log($"[PhotoCamera] Max photos taken");
 			OnMaxPhotosTaken?.Invoke();
 		}
+
+		StopCoroutine(PhotoCooldownTimer());
+		StartCoroutine(PhotoCooldownTimer());
 
 		return photo;
 	}
@@ -299,6 +320,30 @@ public class PhotoCamera : MonoBehaviour
 	}
 
 	/// <summary>
+	/// Timer after a photo is taken before the player can take another
+	/// </summary>
+	IEnumerator PhotoCooldownTimer()
+	{
+		bool cameraOutTemp = cameraOut;
+		CanTakePhotos = false;
+
+		float timeElapsed = 0;
+
+		while (timeElapsed < cameraCooldown)
+		{
+			yield return null;
+
+			if (!PauseManager.Instance.Paused)
+			{
+				timeElapsed += Time.deltaTime;
+			}
+		}
+
+		CanTakePhotos = true;
+		CameraOut = cameraOutTemp;
+	}
+
+	/// <summary>
 	/// Update display to show how many photos the player can still take
 	/// </summary>
 	private void UpdatePhotosLeftDisplayText()
@@ -350,8 +395,6 @@ public class PhotoCamera : MonoBehaviour
 		}
 
 		flash.enabled = false;
-		//flash.range = flashRange;
-		//flash.intensity = flashIntensity;
 	}
 	#endregion Private Methods
 
