@@ -9,7 +9,6 @@ using Rewired;
 
 public class CameraController : MonoBehaviour
 {
-	// This is a comment
 	#region Variables
 
 	[Header("Input Settings")]

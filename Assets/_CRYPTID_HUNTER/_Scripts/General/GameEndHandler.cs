@@ -4,7 +4,7 @@ using UnityEngine;
 
 using Sirenix.OdinInspector;
 
-public class GameEndHandler : MonoBehaviour
+public class GameEndHandler : Singleton<GameEndHandler>
 {
 	#region Variables
 
@@ -12,20 +12,36 @@ public class GameEndHandler : MonoBehaviour
 	[SerializeField, Tooltip("The photo taken so far with the greatest score")]
 	PhotoScore topPhoto;
 
-    private Menu menu;
+	[Required]
+	[SerializeField, Tooltip("The object to enable when the player has taken a photo with the minimum score so that they can then complete the last tasks to win")]
+	VictoryHandler victoryHandler;
 
-    #endregion Variables
+	#endregion Variables
 
-    #region MonoBehaviour
-    private void OnEnable()
+	#region Properties
+	/// <summary>
+	/// The photo taken so far with the greatest score
+	/// </summary>
+	public PhotoScore TopPhoto
 	{
-		StartCoroutine(InputSubscribe());
+		get { return topPhoto; }
 	}
 
-    private void Start()
-    {
-        menu = GameManager.Instance.menu;
-    }
+	/// <summary>
+	/// Whether the player has completed the required objectives to win, meaning the player has a photo with the minimum score
+	/// </summary>
+	public bool HasCompletedObjective
+	{
+		get { return topPhoto != null && topPhoto.Score >= LevelManager.Instance.ScoreRequired; }
+	}
+	#endregion Properties
+
+	#region MonoBehaviour
+	private void OnEnable()
+	{
+		victoryHandler.gameObject.SetActive(false);
+		StartCoroutine(InputSubscribe());
+	}
 
 	private void OnDisable()
 	{
@@ -67,7 +83,7 @@ public class GameEndHandler : MonoBehaviour
 			Debug.Log("[LevelManager] Game Over");
 			InputUnsubscribe();
 			LevelManager.Instance.playerCharacter.EndGame();
-			menu.LoseTime(topPhoto);
+			GameManager.Instance.menu.LoseTime(topPhoto);
 		}
 	}
 
@@ -78,15 +94,18 @@ public class GameEndHandler : MonoBehaviour
 	{
 		InputUnsubscribe();
 		LevelManager.Instance.playerCharacter.EndGame();
-		menu.LoseTime(topPhoto);
+		GameManager.Instance.menu.LoseTime(topPhoto);
 	}
 
+	/// <summary>
+	/// End the game when player has run out of film
+	/// </summary>
 	private void EndGamePhotoLimit()
 	{
 		Debug.Log($"[GameEndHandler] Max photos taken. Ending game.");
 		InputUnsubscribe();
 		LevelManager.Instance.playerCharacter.EndGame();
-		menu.LosePhotoCount(topPhoto);
+		GameManager.Instance.menu.LosePhotoCount(topPhoto);
 	}
 
 	/// <summary>
@@ -101,9 +120,8 @@ public class GameEndHandler : MonoBehaviour
 
 			if(topPhoto.Score >= LevelManager.Instance.ScoreRequired)
 			{
-				LevelManager.Instance.playerCharacter.EndGame();
 				InputUnsubscribe();
-				menu.Win(topPhoto);
+				victoryHandler.gameObject.SetActive(true);
 			}
 		}
 	}

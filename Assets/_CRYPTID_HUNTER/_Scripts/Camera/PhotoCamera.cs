@@ -110,7 +110,7 @@ public class PhotoCamera : MonoBehaviour
 		get { return cameraOut; }
 		set
 		{
-			if (cameraOut != value)
+			if (cameraOut != value && (canTakePhotos || !value))
 			{
 				cameraOut = value;
 
