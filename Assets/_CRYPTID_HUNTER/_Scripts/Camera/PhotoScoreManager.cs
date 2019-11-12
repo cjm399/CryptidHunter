@@ -9,6 +9,7 @@ using TMPro;
 
 public class PhotoScoreManager : Singleton<PhotoScoreManager>
 {
+	#region Structs
 	private struct ScoreComponent
 	{
 		public string name;
@@ -58,6 +59,7 @@ public class PhotoScoreManager : Singleton<PhotoScoreManager>
 			}
 		}
 	}
+	#endregion Structs
 
 	#region Variables
 	[Required, SceneObjectsOnly]
@@ -163,17 +165,19 @@ public class PhotoScoreManager : Singleton<PhotoScoreManager>
 
 		foreach (PhotoTarget targetCryptid in targetCryptids)
 		{
+			Vector3 targetPosition = targetCryptid.Collider.bounds.center;
+
 			// First check if on-screen
-			Vector3 viewPoint = cam.WorldToViewportPoint(targetCryptid.transform.position);
+			Vector3 viewPoint = cam.WorldToViewportPoint(targetPosition);
 
 			if (viewPoint.x >= 0 && viewPoint.x <= 1 && viewPoint.y >= 0 && viewPoint.y <= 1 && viewPoint.z >= 0)
 			{
 				// Check if the base score was achieved for the target, which happens if the target's center on screen
-				Vector3 screenPoint = cam.WorldToScreenPoint(targetCryptid.transform.position);
+				Vector3 screenPoint = cam.WorldToScreenPoint(targetPosition);
 				screenPoint.z = cam.nearClipPlane;
 				Vector3 screenPointInWorld = cam.ScreenToWorldPoint(screenPoint);
 
-				float distance = Vector3.Distance(targetCryptid.transform.position, screenPointInWorld);
+				float distance = Vector3.Distance(targetPosition, screenPointInWorld);
 
 				Ray ray = cam.ScreenPointToRay(screenPoint);
 

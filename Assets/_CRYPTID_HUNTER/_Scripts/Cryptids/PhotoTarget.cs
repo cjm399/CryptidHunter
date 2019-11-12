@@ -11,6 +11,10 @@ public class PhotoTarget : MonoBehaviour
 	[SerializeField, Tooltip("The base score for this target before adding bonuses for target points")]
 	int baseScore = 0;
 
+	[Required]
+	[SerializeField, Tooltip("The Collider of the target for finding the actual center of the model")]
+	Collider collider;
+
 	[ValidateInput("NoNullPoints", "There are null objects within this list", IncludeChildren = true)]
 	[SerializeField, Tooltip("All the positions of different points that the player can receive score for capturing in the photo")]
 	List<TargetPoint> targetPoints = new List<TargetPoint>();
@@ -23,6 +27,14 @@ public class PhotoTarget : MonoBehaviour
 	public int BaseScore
 	{
 		get { return baseScore; }
+	}
+
+	/// <summary>
+	/// The Collider of the target for finding the actual center of the model
+	/// </summary>
+	public Collider Collider
+	{
+		get { return collider; }
 	}
 
 	/// <summary>

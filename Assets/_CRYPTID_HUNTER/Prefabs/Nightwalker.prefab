@@ -233,6 +233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseScore: 20
+  collider: {fileID: 1826798968953112125}
   targetPoints:
   - {fileID: 8904485853028883206}
   - {fileID: 8904485852780161659}
