@@ -993,13 +993,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   photoActionName: Take Photo
   canTakePhotos: 0
+  cameraOut: 0
   camera: {fileID: 9219981886029642323}
   photoWidth: 1280
   photoHeight: 720
   maxPhotos: 12
   photos: []
   flash: {fileID: 4027465191979340441}
-  flashTime: 0.2
+  flashTime: 0.5
+  flashRange: 30
+  flashIntensity: 5
+  flashInterp:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: -1
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -1
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   photosLeftCountDisplay: {fileID: 2660685751471954642}
   speedMultiplier: 0.4
 --- !u!114 &771028311199553181
@@ -1118,12 +1145,12 @@ Light:
   m_GameObject: {fileID: 3463229982185305488}
   m_Enabled: 0
   serializedVersion: 9
-  m_Type: 2
+  m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 8
-  m_Range: 10
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
+  m_Intensity: 5
+  m_Range: 30
+  m_SpotAngle: 90
+  m_InnerSpotAngle: 9
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -1162,7 +1189,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}

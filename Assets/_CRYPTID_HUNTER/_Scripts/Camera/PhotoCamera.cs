@@ -24,6 +24,9 @@ public class PhotoCamera : MonoBehaviour
 	[SerializeField, Tooltip("Whether the player can take pictures")]
 	bool canTakePhotos = true;
 
+	[SerializeField, Tooltip("Whether the player's camera is out")]
+	bool cameraOut = false;
+
 	[Required]
 	[SerializeField, Tooltip("The Unity Camera used for taking pictures")]
 	Camera camera;
@@ -53,6 +56,17 @@ public class PhotoCamera : MonoBehaviour
 	[SerializeField, Tooltip("The amount of time the light should stay on")]
 	float flashTime = 1f;
 
+	[MinValue(0f)]
+	[SerializeField, Tooltip("The starting range for the flash")]
+	float flashRange = 30f;
+
+	[MinValue(0f)]
+	[SerializeField, Tooltip("The starting intensity of the flash")]
+	float flashIntensity = 20f;
+
+	[SerializeField, Tooltip("The interpolation for the range of the flash, starting at 1 and going down to 0")]
+	AnimationCurve flashInterp = AnimationCurve.Linear(0, 1, 1, 0);
+
 	[Header("Display")]
 	[Required]
 	[SerializeField, Tooltip("A display field to show how many photos the player still can take")]
@@ -64,21 +78,38 @@ public class PhotoCamera : MonoBehaviour
 	#endregion Variables
 
 	#region Properties
-	/// <summary>
-	/// Whether the player can take pictures
-	/// </summary>
 	public bool CanTakePhotos
 	{
 		get { return canTakePhotos; }
 		set
 		{
-			if (canTakePhotos != value)
+			if(canTakePhotos != value)
 			{
 				canTakePhotos = value;
 
-				camera.enabled = canTakePhotos;
+				if(!canTakePhotos)
+				{
+					CameraOut = false;
+				}
+			}
+		}
+	}
 
-				if(canTakePhotos)
+	/// <summary>
+	/// Whether the player's camera is out
+	/// </summary>
+	public bool CameraOut
+	{
+		get { return cameraOut; }
+		set
+		{
+			if (cameraOut != value)
+			{
+				cameraOut = value;
+
+				camera.enabled = cameraOut;
+
+				if(cameraOut)
 				{
 					LevelManager.Instance.playerCharacter.PlayerWalk.AddSpeedModifer(this, speedMultiplier);
 					LevelManager.Instance.playerCharacter.PlayerWalk.CanSprint = false;
@@ -299,11 +330,28 @@ public class PhotoCamera : MonoBehaviour
 	/// </summary>
 	IEnumerator FlashRoutine()
 	{
+		flash.range = flashRange;
+		flash.intensity = flashIntensity;
 		flash.enabled = true;
 
-		yield return new WaitForSeconds(flashTime);
+		float timeElapsed = 0f;
+
+		while(timeElapsed < flashTime)
+		{
+			yield return null;
+
+			if(!PauseManager.Instance.Paused)
+			{
+				timeElapsed = Mathf.Clamp(timeElapsed + Time.deltaTime, 0, flashTime);
+
+				flash.range = flashRange * flashInterp.Evaluate(timeElapsed / flashTime);
+				flash.intensity = flashIntensity * flashInterp.Evaluate(timeElapsed / flashTime);
+			}
+		}
 
 		flash.enabled = false;
+		//flash.range = flashRange;
+		//flash.intensity = flashIntensity;
 	}
 	#endregion Private Methods
 
