@@ -746,6 +746,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7632838022540254264, guid: 829f582c7480a3b488005ef7e8b63b8a,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: e2f58d403e66f6a49b9c43e1fdad74b5,
+        type: 2}
+    - target: {fileID: 7632838022540254264, guid: 829f582c7480a3b488005ef7e8b63b8a,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 4499383852992841752, guid: e2f58d403e66f6a49b9c43e1fdad74b5,
+        type: 2}
     - target: {fileID: 5226160273400506737, guid: 829f582c7480a3b488005ef7e8b63b8a,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -965,18 +977,6 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 30
       objectReference: {fileID: 0}
-    - target: {fileID: 7632838022540254264, guid: 829f582c7480a3b488005ef7e8b63b8a,
-        type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: e2f58d403e66f6a49b9c43e1fdad74b5,
-        type: 2}
-    - target: {fileID: 7632838022540254264, guid: 829f582c7480a3b488005ef7e8b63b8a,
-        type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 4499383852992841752, guid: e2f58d403e66f6a49b9c43e1fdad74b5,
-        type: 2}
     - target: {fileID: 3806140463339374037, guid: 829f582c7480a3b488005ef7e8b63b8a,
         type: 3}
       propertyPath: m_Camera

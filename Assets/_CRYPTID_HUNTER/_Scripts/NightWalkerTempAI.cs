@@ -15,6 +15,8 @@ public class NightWalkerTempAI : MonoBehaviour
     public float fovAngle = 110f;
     private Vector3 newPos;
     private Vector3 currentPos;
+    private bool executing = false;
+    private bool forward = true;
 
     public GameObject Player;
 
@@ -36,6 +38,9 @@ public class NightWalkerTempAI : MonoBehaviour
                 idle_state();
                 break;
             case 1:
+                patrol_state();
+                break;
+            case 2:
                 flee_state();
                 break;
         }
@@ -63,27 +68,62 @@ public class NightWalkerTempAI : MonoBehaviour
 
     }
 
+    private void patrol_state()
+    {
+        if(executing == false)
+        {
+            executing = true;
+            StartCoroutine(Patrol());
+            
+        }
+        
+        Vector3 direction = Player.transform.position - transform.position;
+        float angle = Vector3.Angle(direction, transform.forward);
+        if (angle < fovAngle * 0.5f) //checks if the player is within the enemy field of view
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position + transform.up, direction.normalized, out hit, EnemyRunDistance))
+            {
+                if (hit.collider.gameObject == Player) //checks if there is anything in front of the player
+                {
+                    randomSpot = Random.Range(0, movespots.Length);
+                    state = 2;  //activate flee state
+                }
+            }
+
+        }
+
+    }
+
+    IEnumerator Patrol()
+    {
+        Vector3 patrol_pos = transform.position;
+        if (forward == true)
+        {
+            patrol_pos.z+=2;
+            _agent.SetDestination(patrol_pos);
+            forward = false;
+        }
+        else if(forward == false)
+        {
+            patrol_pos.z -= 2;
+            _agent.SetDestination(patrol_pos);
+            forward = true;
+
+        }
+        
+        Debug.Log("In coroutine");
+        yield return new WaitForSeconds(5);
+        executing = false;
+    }
+
     private void idle_state()
     {
         distance = Vector3.Distance(transform.position, Player.transform.position);
         //TODO play idle animation
         if (distance < EnemyRunDistance)
         {
-            Vector3 direction = Player.transform.position - transform.position;
-            float angle = Vector3.Angle(direction, transform.forward);
-            if(angle < fovAngle*0.5f) //checks if the player is within the enemy field of view
-            {
-                RaycastHit hit;
-                if (Physics.Raycast(transform.position + transform.up, direction.normalized, out hit, EnemyRunDistance))
-                {
-                    if(hit.collider.gameObject == Player) //checks if there is anything in front of the player
-                    {
-                        randomSpot = Random.Range(0, movespots.Length);
-                        state = 1;  //activate flee state
-                    }
-                }
-                
-            }
+            state = 1;
             
         }
         else
