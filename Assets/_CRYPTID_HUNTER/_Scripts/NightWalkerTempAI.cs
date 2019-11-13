@@ -17,6 +17,7 @@ public class NightWalkerTempAI : MonoBehaviour
     private Vector3 currentPos;
     private bool executing = false;
     private bool forward = true;
+    private bool right = false;
 
     public GameObject Player;
 
@@ -41,6 +42,9 @@ public class NightWalkerTempAI : MonoBehaviour
                 patrol_state();
                 break;
             case 2:
+                paranoid_state();
+                break;
+            case 3:
                 flee_state();
                 break;
         }
@@ -87,7 +91,7 @@ public class NightWalkerTempAI : MonoBehaviour
                 if (hit.collider.gameObject == Player) //checks if there is anything in front of the player
                 {
                     randomSpot = Random.Range(0, movespots.Length);
-                    state = 2;  //activate flee state
+                    state = 3;  //activate flee state
                 }
             }
 
@@ -117,13 +121,87 @@ public class NightWalkerTempAI : MonoBehaviour
         executing = false;
     }
 
+    private void paranoid_state()
+    {
+        if (executing == false)
+        {
+            executing = true;
+            StartCoroutine(Paranoid_Patrol());
+
+        }
+
+        Vector3 direction = Player.transform.position - transform.position;
+        float angle = Vector3.Angle(direction, transform.forward);
+        if (angle < fovAngle * 0.5f) //checks if the player is within the enemy field of view
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position + transform.up, direction.normalized, out hit, EnemyRunDistance+8f))
+            {
+                if (hit.collider.gameObject == Player) //checks if there is anything in front of the player
+                {
+                    randomSpot = Random.Range(0, movespots.Length);
+                    state = 3;  //activate flee state
+                }
+            }
+
+        }
+
+    }
+    IEnumerator Paranoid_Patrol()
+    {
+        Vector3 patrol_pos = transform.position;
+        if ((forward == true) && (right == false))
+        {
+            patrol_pos.z += 2;
+            _agent.SetDestination(patrol_pos);
+            right = true;
+        }
+        else if((forward == true) && (right == true))
+        {
+            patrol_pos.x += 2;
+            _agent.SetDestination(patrol_pos);
+            forward = false;
+
+        }
+        else if ((forward == false) && (right == true))
+        {
+            patrol_pos.z -= 2;
+            _agent.SetDestination(patrol_pos);
+            right = false;
+        }
+        else if ((forward == false) && (right == false))
+        {
+            patrol_pos.x -= 2;
+            _agent.SetDestination(patrol_pos);
+            forward = true;
+        }
+
+        Debug.Log("In coroutine");
+        yield return new WaitForSeconds(5);
+        executing = false;
+    }
+
     private void idle_state()
     {
         distance = Vector3.Distance(transform.position, Player.transform.position);
         //TODO play idle animation
+        bool camera = GameObject.Find("PhotoCamera").GetComponent<PhotoCamera>().CameraOut;
+        bool sprinting = GameObject.Find("Player").GetComponent<PlayerWalk>().IsSprinting;
+        
+        
         if (distance < EnemyRunDistance)
         {
-            state = 1;
+            if((!camera) || (sprinting)) //if the player is sprinting, or the camera is away activate paranoid
+            {
+                state = 2;
+
+            }
+            else //if they are more quiet, a patrol state is still activates, but not paranoid.
+            {
+                state = 1;
+
+            }
+                
             
         }
         else
