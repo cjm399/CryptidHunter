@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.003921569, g: 0.023529412, b: 0.033333335, a: 1}
+  m_AmbientSkyColor: {r: 0.02745098, g: 0.11764706, b: 0.14901961, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 2
@@ -235,9 +235,9 @@ MonoBehaviour:
     loadInEditor: 1
     loadMethod: 3
   - scene:
-      editorAssetGUID: afa37e9edcdaa964d9b4e21d437bd1d5
-      name: Environment
-      _path: Assets/_CRYPTID_HUNTER/_SCENES/Environment.unity
+      editorAssetGUID: b12fb97a300c4cf45b44a480e902eb6c
+      name: Gio_NewEnvironment
+      _path: Assets/_CRYPTID_HUNTER/_SCENES/Gio_NewEnvironment.unity
     loadInEditor: 1
     loadMethod: 1
   _thisScenePath: Assets/_CRYPTID_HUNTER/_SCENES/Hunt_Nightwalker.unity
