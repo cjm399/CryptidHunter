@@ -105,12 +105,14 @@ public class NightWalkerTempAI : MonoBehaviour
         if (forward == true)
         {
             patrol_pos.z+=2;
+            patrol_pos.x += 2;
             _agent.SetDestination(patrol_pos);
             forward = false;
         }
         else if(forward == false)
         {
             patrol_pos.z -= 2;
+            patrol_pos.x -= 2;
             _agent.SetDestination(patrol_pos);
             forward = true;
 
