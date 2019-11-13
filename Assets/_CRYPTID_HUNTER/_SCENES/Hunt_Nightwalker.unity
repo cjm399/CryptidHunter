@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.04209684, g: 0.09724698, b: 0.20754719, a: 1}
+  m_AmbientSkyColor: {r: 0.003921569, g: 0.023529412, b: 0.033333335, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 2
@@ -150,12 +150,6 @@ Transform:
   m_Father: {fileID: 1679051561}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!108 &117873220 stripped
-Light:
-  m_CorrespondingSourceObject: {fileID: 4025548379807670842, guid: 829f582c7480a3b488005ef7e8b63b8a,
-    type: 3}
-  m_PrefabInstance: {fileID: 7107192115362908180}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &192547995
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,6 +482,12 @@ Transform:
   m_Father: {fileID: 1679051561}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!108 &501039003 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 5573397004763769377, guid: 829f582c7480a3b488005ef7e8b63b8a,
+    type: 3}
+  m_PrefabInstance: {fileID: 7107192115362908180}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &965165433
 GameObject:
   m_ObjectHideFlags: 0
@@ -823,7 +823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 462535a63b92731489607a654f90ef13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flashLight: {fileID: 117873220}
+  flashLight: {fileID: 501039003}
 --- !u!1 &1288232901
 GameObject:
   m_ObjectHideFlags: 0
@@ -1187,7 +1187,7 @@ PrefabInstance:
     - target: {fileID: 7107192115459729059, guid: 829f582c7480a3b488005ef7e8b63b8a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4
+      value: 3.468
       objectReference: {fileID: 0}
     - target: {fileID: 7107192115459729059, guid: 829f582c7480a3b488005ef7e8b63b8a,
         type: 3}

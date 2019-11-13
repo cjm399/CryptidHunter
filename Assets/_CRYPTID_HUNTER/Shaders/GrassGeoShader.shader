@@ -138,7 +138,7 @@ Shader "Custom/Grass Geo Shader" {
 
 				if (distance < _FlashLightRange)
 				{
-					float fallOff = 2 / max(2, (pow(distance, 2.25)));
+					float fallOff = 1 / max(1, (pow(distance, 5)));
 					multiplier = fallOff;
 				}
 				else
@@ -434,15 +434,17 @@ Shader "Custom/Grass Geo Shader" {
 				float3 lightVec = _WorldSpaceLightPos0.xyz - dV;
 				attenuation = 1;//1 / (dot(lightVec, lightVec));
 
-				if (distance < _FlashLightRange)
+				float fallOff = 2.5 / max(1, pow(distance, 2));
+				multiplier = fallOff;
+				/*if (distance < _FlashLightRange)
 				{
-					float fallOff = 2 / max(2, (pow(distance, 2)));
+					float fallOff = 6 / max(2, (pow(distance, 1.5)));
 					multiplier = fallOff;
 				}
 				else
 				{
 					multiplier = 0;
-				}
+				}*/
 			}
 
 
