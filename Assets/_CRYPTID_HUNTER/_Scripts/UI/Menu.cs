@@ -23,8 +23,11 @@ public class Menu : MonoBehaviour
 	[Required]
 	[SerializeField, Tooltip("UI for screen that shows up when losing")]
 	GameObject loseScreen;
+    [Required]
+    [SerializeField, Tooltip("UI for credits screen")]
+    GameObject creditsMenu;
 
-	[Required]
+    [Required]
 	[SerializeField, Tooltip("TMPro Text that displays score when the player wins")]
 	TextMeshProUGUI winScoreDisplay;
 	[Required]
@@ -139,11 +142,20 @@ public class Menu : MonoBehaviour
 #endif
 	}
 
-	public void BackButton()
+    public void CreditsButton()
+    {
+        creditsMenu.SetActive(true);
+    }
+	public void SettingsBackButton()
 	{
 		pauseMain.SetActive(true);
 		settings.SetActive(false);
 	}
+
+    public void CreditsBackButton()
+    {
+        creditsMenu.SetActive(false);
+    }
 
     public void SurveyButton()
     {
