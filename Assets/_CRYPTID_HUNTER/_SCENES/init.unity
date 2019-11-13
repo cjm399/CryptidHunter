@@ -355,7 +355,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _version: 2
-  _crossSceneReferences: []
+  _crossSceneReferences:
+  - _sourceObject: {fileID: 1322372311}
+    _sourceField: creditsMenu
+    DEPRECATED_fromObject:
+      scene:
+        editorAssetGUID: 
+        name: 
+        _path: 
+      fullPath: 
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 0
+      editorPrefabRelativePath: 
+      version: 0
+    _toObject:
+      scene:
+        editorAssetGUID: 7428e6012a6e4954db6ff4bb6bde5d5d
+        name: Main_Menu
+        _path: Assets/_CRYPTID_HUNTER/_SCENES/Main_Menu.unity
+      fullPath: /Canvas/CreditsMenu
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 1014569186
+      editorPrefabRelativePath: 
+      version: 1
+    _data:
+      data: []
   _realSceneRootsForPostBuild: []
   _mergedScenes: []
 --- !u!114 &809388732
@@ -728,7 +754,7 @@ PrefabInstance:
     - target: {fileID: 4951285156612819303, guid: 6238b08c8ddaa6549884905e0e328be8,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: BackButton
+      value: SettingsBackButton
       objectReference: {fileID: 0}
     - target: {fileID: 4951285156679594289, guid: 6238b08c8ddaa6549884905e0e328be8,
         type: 3}
@@ -1039,6 +1065,7 @@ MonoBehaviour:
   settings: {fileID: 1519037607}
   winScreen: {fileID: 1655584971}
   loseScreen: {fileID: 994488689}
+  creditsMenu: {fileID: 0}
   winScoreDisplay: {fileID: 1707598429}
   winPhotoDisplay: {fileID: 1256326189}
   loseScoreDisplay: {fileID: 5404324287771597265}
