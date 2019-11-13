@@ -123,7 +123,7 @@ Shader "Custom/Grass Geo Shader" {
 
 			if (_WorldSpaceLightPos0.w == 0)
 			{
-				multiplier = max(0, dot(_WorldSpaceLightPos0.xyz, normalDirection));
+				multiplier = max(0, dot(_WorldSpaceLightPos0.xyz, normalDirection)) *.5;
 			}
 			else 
 			{
@@ -314,6 +314,7 @@ Shader "Custom/Grass Geo Shader" {
 		{
 			Tags{"LightMode" = "ForwardAdd"}
 			Blend One One
+			ZWrite Off
 			//CULL OFF
 
 			CGPROGRAM
@@ -322,12 +323,12 @@ Shader "Custom/Grass Geo Shader" {
 			#pragma fragment frag
 			#pragma geometry geom
 			#pragma multi_compile DIRECTIONAL POINT SPOT
-			#include "UnityCG.cginc"
+			#include "AutoLight.cginc"
+			#include "UnityPBSLighting.cginc"
 
 			sampler2D _MainTex;
 			uniform float4 _SpecularColor;
 			uniform float _Shininess;
-			uniform float3 _LightColor0;
 			half _GrassHeight;
 			half _GrassTopWidth;
 			half _GrassBotWidth;
@@ -351,10 +352,10 @@ Shader "Custom/Grass Geo Shader" {
 			float3 specularColor : TEXCOORD2;
 			};
 
-			float GetSpecularReflection(float multiplier, float attenuation, float viewDirection, float normalDirection)
+			float GetSpecularReflection(float multiplier, float ndotl, float viewDirection, float normalDirection)
 			{
 				//return  unity_4LightAtten0 * _LightColor0.rgb * _SpecularColor.rgb * _Shininess;
-				return multiplier * attenuation * _LightColor0.rgb * _SpecularColor.rgb * _Shininess;
+				return multiplier * ndotl * _LightColor0.rgb * _SpecularColor.rgb * _Shininess;
 				//float ref = max(reflect(normalDirection, -normalDirection), reflect(-normalDirection, normalDirection));
 				//return multiplier * attenuation * _LightColor0.rgb * _SpecularColor.rgb * pow(max(0.0, dot(ref,
 				//	viewDirection)), _Shininess);
@@ -368,11 +369,6 @@ Shader "Custom/Grass Geo Shader" {
 			OUT.normal = v.normal;
 			OUT.uv = v.texcoord;
 			OUT.color = tex2Dlod(_MainTex, v.texcoord).rgb;
-
-			//g2f newG2F;
-			//newG2F.pos = mul(UNITY_MATRIX_MVP, v.position);
-
-			//TRANSFER_VERTEX_TO_FRAGMENT(f)
 			return OUT;
 			}
 
@@ -415,11 +411,17 @@ Shader "Custom/Grass Geo Shader" {
 
 
 
-			float multiplier = 1;
+			float multiplier;
+			//float3 dV = mul(unity_ObjectToWorld, float4(IN[0].pos.xyz, 1)).xyz;
+			//float3 lightVec = _WorldSpaceLightPos0.xyz - dV.xyz;
+			//float3 lightDir = normalize(lightVec);
+			//float ndotl = max(0, dot(IN[0].normal, lightDir));
+			//multiplier = 1 / (1 + dot(lightVec, lightVec));
+
 
 			if (_WorldSpaceLightPos0.w == 0)
 			{
-				multiplier = max(0, dot(_WorldSpaceLightPos0.xyz, normalDirection));
+				multiplier = max(0, dot(_WorldSpaceLightPos0.xyz, normalDirection)) *.5;
 			}
 			else
 			{
@@ -430,16 +432,11 @@ Shader "Custom/Grass Geo Shader" {
 
 
 				float3 lightVec = _WorldSpaceLightPos0.xyz - dV;
+				attenuation = 1;//1 / (dot(lightVec, lightVec));
 
-
-				
-
-
-
-				float checkDist = unity_4LightAtten0.w*15;
 				if (distance < _FlashLightRange)
 				{
-					float fallOff = 2 / max(0.1, (pow(distance, 2)));
+					float fallOff = 2 / max(2, (pow(distance, 2)));
 					multiplier = fallOff;
 				}
 				else
@@ -609,6 +606,8 @@ Shader "Custom/Grass Geo Shader" {
 				clip(c.a - _Cutoff);
 				return c;
 			}
+
+
 			ENDCG
 		}
 	}
