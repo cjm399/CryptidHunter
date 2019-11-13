@@ -147,7 +147,7 @@ public class Menu : MonoBehaviour
 
     public void SurveyButton()
     {
-        Application.OpenURL("https://forms.gle/TNL6Gw9UdkwExpGt6");
+        Application.OpenURL("https://forms.gle/UQ5aHJNxcFc9VZrB8");
         Debug.Log("Menu.cs: Open Link");
     }
 
