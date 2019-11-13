@@ -79,7 +79,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 3895
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
@@ -1550,6 +1550,7 @@ Transform:
   m_Children:
   - {fileID: 2376331795724123084}
   - {fileID: 6709087627652278222}
+  - {fileID: 7464171605615731764}
   m_Father: {fileID: 7107192115459729059}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

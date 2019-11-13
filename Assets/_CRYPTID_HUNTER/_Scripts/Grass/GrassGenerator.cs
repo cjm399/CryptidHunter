@@ -22,13 +22,6 @@ public class GrassGenerator : MonoBehaviour
     private Transform cachedTransform;
     private Mesh mesh;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        cachedTransform = transform;
-        //GenerateGrass();
-    }
-
     [Button("GenerateGrass")]
     private void GenerateGrass()
     {
@@ -44,9 +37,15 @@ public class GrassGenerator : MonoBehaviour
         for (int i = 0; i < numberOfGrassTufts; ++i)
         {
             Vector3 origin = this.transform.position;
-            origin.y = startHeight;
-            origin.x += areaToGrow.x * Random.Range(-0.5f, 0.5f);
-            origin.z += areaToGrow.y * Random.Range(-0.5f, 0.5f);
+
+            do
+            {
+                origin.y = startHeight;
+                origin.x += areaToGrow.x * Random.Range(-0.5f, 0.5f);
+                origin.z += areaToGrow.y * Random.Range(-0.5f, 0.5f);
+            }
+            while (positions.Contains(origin));
+
             Ray ray = new Ray(origin, Vector3.down);
             RaycastHit hit;
             if (Physics.SphereCast(ray, .5f, out hit))

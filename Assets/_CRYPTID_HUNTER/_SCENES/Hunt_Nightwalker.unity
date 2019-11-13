@@ -1129,6 +1129,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4025548379807670842, guid: 829f582c7480a3b488005ef7e8b63b8a,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 3895
+      objectReference: {fileID: 0}
     - target: {fileID: 7632838022540254264, guid: 829f582c7480a3b488005ef7e8b63b8a,
         type: 3}
       propertyPath: m_fontAsset
@@ -1169,7 +1174,7 @@ PrefabInstance:
     - target: {fileID: 7107192115459729059, guid: 829f582c7480a3b488005ef7e8b63b8a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7107192115459729059, guid: 829f582c7480a3b488005ef7e8b63b8a,
         type: 3}
@@ -1413,17 +1418,17 @@ PrefabInstance:
     - target: {fileID: 8904485854473798916, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.3
+      value: 23.616
       objectReference: {fileID: 0}
     - target: {fileID: 8904485854473798916, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.401
       objectReference: {fileID: 0}
     - target: {fileID: 8904485854473798916, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 13
+      value: 11.013
       objectReference: {fileID: 0}
     - target: {fileID: 8904485854473798916, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
         type: 3}
