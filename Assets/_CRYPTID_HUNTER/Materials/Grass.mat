@@ -67,9 +67,9 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0
     - _GlossyReflections: 1
-    - _GrassBotWidth: 0.5
-    - _GrassHeight: 1
-    - _GrassTopWidth: 0.5
+    - _GrassBotWidth: 0.25
+    - _GrassHeight: 0.75
+    - _GrassTopWidth: 0.25
     - _GrassWidth: 0.3
     - _LightDirYVal: 0
     - _Metallic: 0
@@ -81,7 +81,7 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _WindSpeed: 18.6
+    - _WindSpeed: 0
     - _WindStength: 0.04
     - _ZWrite: 1
     m_Colors:
