@@ -729,6 +729,21 @@ PrefabInstance:
       propertyPath: rolloffMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 982652066162580383, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.20496619
+      objectReference: {fileID: 0}
+    - target: {fileID: 982652066162580383, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.6995031
+      objectReference: {fileID: 0}
+    - target: {fileID: 982652066162580383, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.8867924
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0, type: 3}
 --- !u!114 &1211243587 stripped

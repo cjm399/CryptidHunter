@@ -7,6 +7,7 @@ using UnityEngine.AI;
 public class NightWalkerTempAI : MonoBehaviour
 {
     private NavMeshAgent _agent;
+    public GameObject footsteps;
     public float speed;
     public Transform[] movespots;
     private int randomSpot;
@@ -61,11 +62,13 @@ public class NightWalkerTempAI : MonoBehaviour
         currentPos = _agent.gameObject.transform.position;
 
         _agent.SetDestination(newPos);                                          //moves nightwalker to random way-point
+        footsteps.GetComponent<ParticleSystem>().Play();                       //show footprints
 
         GetComponent<AudioSource>().Play();             //plays nightwalker run audio
 
         if (Vector3.Distance(_agent.gameObject.transform.position,newPos)<2.0f) //checks if agent has (basically) made it to his destination
         {
+            footsteps.GetComponent<ParticleSystem>().Stop();
             GetComponent<AudioSource>().Stop();         //stops audio and switches back to an idle state
             state = 0;
         }
