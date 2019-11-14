@@ -47,7 +47,7 @@ public class Menu : MonoBehaviour
 	#endregion Variables
 
 	#region MonoBehaviour
-	private void OnEnable()
+	private void Start()
 	{
 		PauseManager.Instance.OnPause += ShowPauseMenu;
 		PauseManager.Instance.OnResume += HidePauseMenu;
