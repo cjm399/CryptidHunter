@@ -26,6 +26,9 @@ public class Menu : MonoBehaviour
     [Required]
     [SerializeField, Tooltip("UI for credits screen")]
     GameObject creditsMenu;
+    [Required]
+    [SerializeField, Tooltip("UI for almanac")]
+    GameObject almanac;
 
     [Required]
 	[SerializeField, Tooltip("TMPro Text that displays score when the player wins")]
@@ -169,10 +172,20 @@ public class Menu : MonoBehaviour
 
 		Application.OpenURL("file://" + filePath);
 	}
-	#endregion Public Methods
 
-	#region Private Methods
-	private void Lose(PhotoScore _photoScore)
+    public void ExitAlmanac()
+    {
+        almanac.SetActive(false);
+    }
+
+    public void OpenAlmanac()
+    {
+        almanac.SetActive(true);
+    }
+    #endregion Public Methods
+
+    #region Private Methods
+    private void Lose(PhotoScore _photoScore)
 	{
 		if (_photoScore != null && _photoScore.Score > 0)
 		{
