@@ -1008,7 +1008,7 @@ MonoBehaviour:
   flash: {fileID: 4027465191979340441}
   flashTime: 0.5
   flashRange: 30
-  flashIntensity: 5
+  flashIntensity: 1
   flashInterp:
     serializedVersion: 2
     m_Curve:

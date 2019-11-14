@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.02745098, g: 0.11764706, b: 0.14901961, a: 1}
+  m_AmbientSkyColor: {r: 0.01372549, g: 0.05882353, b: 0.07450981, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 2
@@ -1157,6 +1157,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4025548379807670842, guid: 829f582c7480a3b488005ef7e8b63b8a,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 3895
+      objectReference: {fileID: 0}
     - target: {fileID: 7632838022540254264, guid: 829f582c7480a3b488005ef7e8b63b8a,
         type: 3}
       propertyPath: m_fontAsset
@@ -1169,11 +1174,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4499383852992841752, guid: e2f58d403e66f6a49b9c43e1fdad74b5,
         type: 2}
-    - target: {fileID: 4025548379807670842, guid: 829f582c7480a3b488005ef7e8b63b8a,
-        type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 3895
-      objectReference: {fileID: 0}
     - target: {fileID: 5226160273400506737, guid: 829f582c7480a3b488005ef7e8b63b8a,
         type: 3}
       propertyPath: m_AnchorMax.x
