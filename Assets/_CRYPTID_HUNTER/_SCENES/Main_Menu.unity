@@ -287,6 +287,7 @@ MonoBehaviour:
   winScreen: {fileID: 0}
   loseScreen: {fileID: 0}
   creditsMenu: {fileID: 1014569186}
+  almanac: {fileID: 0}
   winScoreDisplay: {fileID: 0}
   winPhotoDisplay: {fileID: 0}
   loseScoreDisplay: {fileID: 0}
@@ -502,6 +503,32 @@ MonoBehaviour:
   _version: 2
   _crossSceneReferences:
   - _sourceObject: {fileID: 244060086}
+    _sourceField: almanac
+    DEPRECATED_fromObject:
+      scene:
+        editorAssetGUID: 
+        name: 
+        _path: 
+      fullPath: 
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 0
+      editorPrefabRelativePath: 
+      version: 0
+    _toObject:
+      scene:
+        editorAssetGUID: 003cea3a55c49ce4980135f4f105c69e
+        name: init
+        _path: Assets/_CRYPTID_HUNTER/_SCENES/init.unity
+      fullPath: /_app/AlmanacCanvas/Almanac
+      componentName: 
+      componentIndex: 0
+      editorLocalId: -1500841223
+      editorPrefabRelativePath: 
+      version: 1
+    _data:
+      data: []
+  - _sourceObject: {fileID: 244060086}
     _sourceField: loseScreen
     DEPRECATED_fromObject:
       scene:
@@ -519,7 +546,7 @@ MonoBehaviour:
         editorAssetGUID: 003cea3a55c49ce4980135f4f105c69e
         name: init
         _path: Assets/_CRYPTID_HUNTER/_SCENES/init.unity
-      fullPath: /_app/Canvas/LoseScreen
+      fullPath: /_app/WinLossCanvas/LoseScreen
       componentName: 
       componentIndex: 0
       editorLocalId: 1873041871
@@ -545,7 +572,7 @@ MonoBehaviour:
         editorAssetGUID: 003cea3a55c49ce4980135f4f105c69e
         name: init
         _path: Assets/_CRYPTID_HUNTER/_SCENES/init.unity
-      fullPath: /_app/Canvas/WinScreen
+      fullPath: /_app/WinLossCanvas/WinScreen
       componentName: 
       componentIndex: 0
       editorLocalId: 1386888379
@@ -571,7 +598,7 @@ MonoBehaviour:
         editorAssetGUID: 003cea3a55c49ce4980135f4f105c69e
         name: init
         _path: Assets/_CRYPTID_HUNTER/_SCENES/init.unity
-      fullPath: /_app/Canvas/PauseMenu/SettingsMain
+      fullPath: /_app/PauseMenuCanvas/PauseMenu/SettingsMain
       componentName: 
       componentIndex: 0
       editorLocalId: 1011362260
@@ -597,7 +624,7 @@ MonoBehaviour:
         editorAssetGUID: 003cea3a55c49ce4980135f4f105c69e
         name: init
         _path: Assets/_CRYPTID_HUNTER/_SCENES/init.unity
-      fullPath: /_app/Canvas/PauseMenu/PausedMain
+      fullPath: /_app/PauseMenuCanvas/PauseMenu/PausedMain
       componentName: 
       componentIndex: 0
       editorLocalId: 1011362260
@@ -623,7 +650,7 @@ MonoBehaviour:
         editorAssetGUID: 003cea3a55c49ce4980135f4f105c69e
         name: init
         _path: Assets/_CRYPTID_HUNTER/_SCENES/init.unity
-      fullPath: /_app/Canvas/PauseMenu
+      fullPath: /_app/PauseMenuCanvas/PauseMenu
       componentName: 
       componentIndex: 0
       editorLocalId: 1011362260
@@ -1762,7 +1789,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!224 &1888874738
 RectTransform:
@@ -2004,7 +2031,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: "\nRewired\nAdvanced-Multi-Scene: Cross Scene References!\nOdin - Inspector
-    and Serializer\nVCR OSD Mono By Riciery Leal\r\n"
+    and Serializer\nVCR OSD Mono By Riciery Leal\r\nLuna By Amanda Leeson\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
