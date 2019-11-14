@@ -9,7 +9,6 @@ public class GrassGenerator : MonoBehaviour
 {
 
     [SerializeField] private MeshFilter meshFilter;
-    [OnValueChanged("GenerateGrass")]
     [SerializeField] private int seed;
     [Range(1, 60000)]
     [SerializeField] private int numberOfGrassTufts;
@@ -17,7 +16,9 @@ public class GrassGenerator : MonoBehaviour
     [SerializeField] private float startHeight;
     [SerializeField] private float grassOffset;
     [SerializeField] private LayerMask hitLayer;
+    [SerializeField] private LayerMask hitMask;
     [SerializeField] private float normalThreshold = 45;
+    [SerializeField] private float sphereCastSize = .25f;
 
     private Transform cachedTransform;
     private Mesh mesh;
@@ -33,6 +34,8 @@ public class GrassGenerator : MonoBehaviour
         List<Color> colors = new List<Color>(numberOfGrassTufts);
         List<Vector3> normals = new List<Vector3>(numberOfGrassTufts);
 
+        Dictionary<Vector3, bool> cachedPositions = new Dictionary<Vector3, bool>();
+
         int finalGrassNumb = 0;
         for (int i = 0; i < numberOfGrassTufts; ++i)
         {
@@ -44,11 +47,13 @@ public class GrassGenerator : MonoBehaviour
                 origin.x += areaToGrow.x * Random.Range(-0.5f, 0.5f);
                 origin.z += areaToGrow.y * Random.Range(-0.5f, 0.5f);
             }
-            while (positions.Contains(origin));
+            while (cachedPositions.ContainsKey(origin));
+
+            cachedPositions[origin] = true;
 
             Ray ray = new Ray(origin, Vector3.down);
             RaycastHit hit;
-            if (Physics.SphereCast(ray, .5f, out hit))
+            if (Physics.SphereCast(ray, sphereCastSize, out hit, hitMask))
             {
                 if (((1 << hit.collider.gameObject.layer) & hitLayer.value) == 0)
                 {

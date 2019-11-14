@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4000013950294986}
   - component: {fileID: 205000012825781400}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: chainlink_group-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4000013950294986
 Transform:
@@ -67,12 +67,12 @@ GameObject:
   - component: {fileID: 4000012676582732}
   - component: {fileID: 33000012466423710}
   - component: {fileID: 23000012367500464}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: chainlink_group-1_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4000012676582732
 Transform:
@@ -144,12 +144,12 @@ GameObject:
   - component: {fileID: 4000010556905108}
   - component: {fileID: 33000012078501130}
   - component: {fileID: 23000013261605104}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: chainlink_group-1_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4000010556905108
 Transform:

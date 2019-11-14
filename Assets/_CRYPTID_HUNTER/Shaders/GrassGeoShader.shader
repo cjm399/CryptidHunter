@@ -352,10 +352,10 @@ Shader "Custom/Grass Geo Shader" {
 			float3 specularColor : TEXCOORD2;
 			};
 
-			float GetSpecularReflection(float multiplier, float ndotl, float viewDirection, float normalDirection)
+			float GetSpecularReflection(float multiplier, float attenuation, float viewDirection, float normalDirection)
 			{
 				//return  unity_4LightAtten0 * _LightColor0.rgb * _SpecularColor.rgb * _Shininess;
-				return multiplier * ndotl * _LightColor0.rgb * _SpecularColor.rgb * _Shininess;
+				return multiplier * attenuation * _LightColor0.rgb * _SpecularColor.rgb * _Shininess;
 				//float ref = max(reflect(normalDirection, -normalDirection), reflect(-normalDirection, normalDirection));
 				//return multiplier * attenuation * _LightColor0.rgb * _SpecularColor.rgb * pow(max(0.0, dot(ref,
 				//	viewDirection)), _Shininess);
@@ -432,19 +432,11 @@ Shader "Custom/Grass Geo Shader" {
 
 
 				float3 lightVec = _WorldSpaceLightPos0.xyz - dV;
-				attenuation = 1;//1 / (dot(lightVec, lightVec));
+				attenuation = 1;// 1 - (distance / (1 / _LightPositionRange.w));//1;//1 / (dot(lightVec, lightVec));
 
-				float fallOff = 2.5 / max(1, pow(distance, 2));
+				float fallOff = 2 / max(0.001, pow(distance, 2.5));
+
 				multiplier = fallOff;
-				/*if (distance < _FlashLightRange)
-				{
-					float fallOff = 6 / max(2, (pow(distance, 1.5)));
-					multiplier = fallOff;
-				}
-				else
-				{
-					multiplier = 0;
-				}*/
 			}
 
 

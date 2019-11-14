@@ -8,7 +8,7 @@ public class SplashScreen : MonoBehaviour
     [SerializeField] private float fadeInTime;
     [SerializeField] private float fadeOutTime;
     [SerializeField] private float holdTime;
-    [SerializeField] private int levelToLoad;
+    [SerializeField] private Level levelToLoad;
 
 
     void Start()
@@ -48,6 +48,6 @@ public class SplashScreen : MonoBehaviour
 
         yield return new WaitForSeconds(1);
 
-        UnityEngine.SceneManagement.SceneManager.LoadScene(levelToLoad);
+        UnityEngine.SceneManagement.SceneManager.LoadScene((int)levelToLoad);
     }
 }

@@ -73,18 +73,26 @@ public class LevelManager : Singleton<LevelManager>
 	#region Events
 	public delegate void GameOverEventHandler();
 	public event GameOverEventHandler OnGameOver;
-	#endregion Events
+    #endregion Events
 
-	#region Private Methods
-	#endregion Private Methods
+    #region MONOBEHAVIOUR
 
-	#region ODIN_VALIDATION
-	/// <summary>
-	/// Check whether a string is formatted to time;
-	/// </summary>
-	/// <param name="_text">The string to check</param>
-	/// <returns>True if the string is formatted to military time</returns>
-	private bool TimeFormattedString(string _text)
+    private void Start()
+    {
+        HasTimeLimit = hasTimeLimit;
+    }
+
+    #endregion
+    #region Private Methods
+    #endregion Private Methods
+
+    #region ODIN_VALIDATION
+    /// <summary>
+    /// Check whether a string is formatted to time;
+    /// </summary>
+    /// <param name="_text">The string to check</param>
+    /// <returns>True if the string is formatted to military time</returns>
+    private bool TimeFormattedString(string _text)
     {
         if (_text.Length != 5)
             return false;

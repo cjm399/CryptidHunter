@@ -17,7 +17,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6735680411251565011
 Transform:
@@ -54,6 +54,11 @@ MonoBehaviour:
   hitLayer:
     serializedVersion: 2
     m_Bits: 1024
+  hitMask:
+    serializedVersion: 2
+    m_Bits: 3089
+  normalThreshold: 45
+  sphereCastSize: 0.25
 --- !u!33 &6735680411251565005
 MeshFilter:
   m_ObjectHideFlags: 0
