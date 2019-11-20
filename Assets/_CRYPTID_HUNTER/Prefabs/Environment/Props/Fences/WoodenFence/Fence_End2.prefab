@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2417939107032561276}
   - component: {fileID: 5488699701862587101}
   - component: {fileID: 136936962290640664}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2932836797098261786}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Fence_End2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
