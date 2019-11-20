@@ -19,6 +19,8 @@ public class NightWalkerTempAI : MonoBehaviour
     private bool executing = false;
     private bool forward = true;
     private bool right = false;
+    public float timeInterval = 30f;
+    private float last_time = 0f;
 
     public GameObject Player;
 
@@ -27,6 +29,7 @@ public class NightWalkerTempAI : MonoBehaviour
     void Start()
     {
         _agent = GetComponent<NavMeshAgent>();
+        _agent.speed = speed;
         //footsteps = GameObject.Find("Footsteps").GetComponent<ParticleSystem>();
         //footsteps.gameObject.SetActive(false);
         randomSpot = Random.Range(0, movespots.Length);
@@ -50,6 +53,9 @@ public class NightWalkerTempAI : MonoBehaviour
             case 3:
                 flee_state();
                 break;
+            case 4:
+                wander();
+                break;
         }
 
     }
@@ -63,7 +69,7 @@ public class NightWalkerTempAI : MonoBehaviour
         newPos = movespots[randomSpot].position;
         currentPos = _agent.gameObject.transform.position;
 
-
+        _agent.speed = speed;
         _agent.SetDestination(newPos);   //moves nightwalker to random way-point
 
         GetComponent<AudioSource>().Play();             //plays nightwalker run audio
@@ -73,7 +79,8 @@ public class NightWalkerTempAI : MonoBehaviour
         if (Vector3.Distance(_agent.gameObject.transform.position,newPos)<2.0f) //checks if agent has (basically) made it to his destination
         {
             //footsteps.gameObject.SetActive(false);
-            GetComponent<AudioSource>().Stop();         //stops audio and switches back to an idle state
+            GetComponent<AudioSource>().Stop();//stops audio and switches back to an idle state
+            _agent.speed = speed;
             state = 0;
         }
 
@@ -81,7 +88,8 @@ public class NightWalkerTempAI : MonoBehaviour
 
     private void patrol_state()
     {
-        if(executing == false)
+        _agent.speed = speed;
+        if (executing == false)
         {
             executing = true;
             StartCoroutine(Patrol());
@@ -132,6 +140,7 @@ public class NightWalkerTempAI : MonoBehaviour
 
     private void paranoid_state()
     {
+        _agent.speed = speed;
         if (executing == false)
         {
             executing = true;
@@ -192,11 +201,20 @@ public class NightWalkerTempAI : MonoBehaviour
 
     private void idle_state()
     {
+        float currentTime = Time.realtimeSinceStartup;
+        
         distance = Vector3.Distance(transform.position, Player.transform.position);
         //TODO play idle animation
         bool camera = GameObject.Find("PhotoCamera").GetComponent<PhotoCamera>().CameraOut;
         bool sprinting = GameObject.Find("Player").GetComponent<PlayerWalk>().IsSprinting;
         
+        if(currentTime > timeInterval + last_time)
+        {
+            last_time = currentTime;
+            state = 4;
+            return;
+
+        }
         
         if (distance < EnemyRunDistance)
         {
@@ -215,6 +233,67 @@ public class NightWalkerTempAI : MonoBehaviour
         }
         else
         {
+            state = 0;
+        }
+
+    }
+
+    private void wander()
+    {
+        Vector3 dirToPlayer = transform.position - Player.transform.position;
+
+        newPos = movespots[randomSpot].position;
+        currentPos = _agent.gameObject.transform.position;
+
+        _agent.speed = speed * 0.1f;
+        _agent.SetDestination(newPos);   //moves nightwalker to random way-point
+
+        GetComponent<AudioSource>().Play();             //plays nightwalker run audio
+        distance = Vector3.Distance(transform.position, Player.transform.position);
+        //TODO play idle animation
+        bool camera = GameObject.Find("PhotoCamera").GetComponent<PhotoCamera>().CameraOut;
+        bool sprinting = GameObject.Find("Player").GetComponent<PlayerWalk>().IsSprinting;
+
+        Vector3 direction = Player.transform.position - transform.position;
+        float angle = Vector3.Angle(direction, transform.forward);
+        if (angle < fovAngle * 0.5f) //checks if the player is within the enemy field of view
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position + transform.up, direction.normalized, out hit, EnemyRunDistance + 8f))
+            {
+                if (hit.collider.gameObject == Player) //checks if there is anything in front of the player
+                {
+                    randomSpot = Random.Range(0, movespots.Length);
+                    state = 3;  //activate flee state
+                }
+            }
+
+        }
+        //footsteps.gameObject.SetActive(true);
+        if (distance < EnemyRunDistance)
+        {
+            if ((!camera) || (sprinting)) //if the player is sprinting, or the camera is away activate paranoid
+            {
+                state = 2;
+
+            }
+            else //if they are more quiet, a patrol state is still activates, but not paranoid.
+            {
+                state = 1;
+
+            }
+
+
+        }
+        else
+        {
+            state = 0;
+        }
+        if (Vector3.Distance(_agent.gameObject.transform.position, newPos) < 2.0f) //checks if agent has (basically) made it to his destination
+        {
+            //footsteps.gameObject.SetActive(false);
+            GetComponent<AudioSource>().Stop();//stops audio and switches back to an idle state
+            _agent.speed = speed;
             state = 0;
         }
 
