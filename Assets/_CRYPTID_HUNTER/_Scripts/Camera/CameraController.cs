@@ -27,6 +27,8 @@ public class CameraController : MonoBehaviour
 	[SerializeField, Tooltip("The camera script for taking photos")]
 	PhotoCamera photoCamera;
 
+    Camera mainCamera;
+
 	#endregion Variables
 
 	#region MonoBehavior
@@ -34,6 +36,7 @@ public class CameraController : MonoBehaviour
 	{
 		cameraOverlay.SetActive(photoCamera.CameraOut);
 		photoCamera.OnCameraOutToggle += ToggleCameraOverlay;
+        mainCamera = transform.parent.gameObject.GetComponent<Camera>();
 
 		StartCoroutine(InputSubscribe());
 	}
@@ -71,7 +74,8 @@ public class CameraController : MonoBehaviour
 		}
 
 		photoCamera.CameraOut = !photoCamera.CameraOut;
-	}
+        mainCamera.enabled = !photoCamera.CameraOut;
+    }
 
 	/// <summary>
 	/// Toggle the camera overlay when the camera itself is toggled on or off

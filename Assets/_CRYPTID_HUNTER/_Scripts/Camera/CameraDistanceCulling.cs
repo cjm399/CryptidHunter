@@ -39,6 +39,7 @@ public class CameraDistanceCulling : MonoBehaviour
 
         for(int i = 0; i < cameras.Length; ++i)
         {
+            Debug.Log(cameras[i].gameObject);
             cameras[i].layerCullDistances = distances;
         }
     }
