@@ -1610,11 +1610,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8904485854473798939, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 977753611750787493, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
         type: 3}
       propertyPath: movespots.Array.data[0]
@@ -1645,45 +1640,5 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 468562433}
-    - target: {fileID: 977753611750787493, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
-        type: 3}
-      propertyPath: EnemyRunDistance
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1223537941050891104, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
-        type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1223537941050891104, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
-        type: 3}
-      propertyPath: Loop
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1223537941050891104, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
-        type: 3}
-      propertyPath: m_Volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1223537941050891104, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
-        type: 3}
-      propertyPath: BypassListenerEffects
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1223537941050891104, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1223537941050891104, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
-        type: 3}
-      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1223537941050891104, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
-        type: 3}
-      propertyPath: rolloffMode
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0, type: 3}
