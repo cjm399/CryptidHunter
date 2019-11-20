@@ -22,9 +22,9 @@ TagManager:
   - Props
   - Grass
   - Trigger
-  - 
-  - 
-  - 
+  - Background
+  - PostProcessing
+  - PostProcessing2
   - 
   - 
   - 

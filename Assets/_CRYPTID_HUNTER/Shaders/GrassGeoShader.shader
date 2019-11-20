@@ -64,9 +64,6 @@ Shader "Custom/Grass Geo Shader" {
 			float GetSpecularReflection(float multiplier, float attenuation, float viewDirection, float normalDirection)
 			{
 				return multiplier * attenuation * _LightColor0.rgb * _SpecularColor.rgb * _Shininess;
-				/*return multiplier * attenuation * _LightColor0.rgb * _SpecularColor.rgb * pow(max(0.0, max(dot(
-					reflect(viewDirection, -normalDirection), reflect(viewDirection, normalDirection)),
-					viewDirection)), _Shininess);*/
 			}
 
 			v2g vert(appdata_full v)
@@ -421,7 +418,7 @@ Shader "Custom/Grass Geo Shader" {
 
 			if (_WorldSpaceLightPos0.w == 0)
 			{
-				multiplier = max(0, dot(_WorldSpaceLightPos0.xyz, normalDirection)) *.5;
+				multiplier = 0;// max(0, dot(_WorldSpaceLightPos0.xyz, normalDirection)) *.5;
 			}
 			else
 			{

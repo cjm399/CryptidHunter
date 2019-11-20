@@ -203,7 +203,7 @@ public class PhotoCamera : MonoBehaviour
 
 		UpdatePhotosLeftDisplayText();
 
-		camera.enabled = canTakePhotos;
+		//camera.enabled = canTakePhotos;
 	}
 
     private void OnDisable()

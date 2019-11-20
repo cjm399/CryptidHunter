@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &970049117064326010
 Transform:
@@ -45,12 +45,12 @@ GameObject:
   - component: {fileID: 9164271867031279031}
   - component: {fileID: 9152544502210205251}
   - component: {fileID: 9129593071713285761}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Log2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &9171488612146754129
 Transform:
@@ -137,12 +137,12 @@ GameObject:
   - component: {fileID: 9164271866684900822}
   - component: {fileID: 9152544503069722146}
   - component: {fileID: 9129593071221810912}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Log1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &9171488612503609904
 Transform:
@@ -229,12 +229,12 @@ GameObject:
   - component: {fileID: 9164271866611834217}
   - component: {fileID: 9152544503132970653}
   - component: {fileID: 9129593071293840991}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Log3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &9171488612566203023
 Transform:
