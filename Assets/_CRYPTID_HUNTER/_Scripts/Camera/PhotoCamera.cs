@@ -29,7 +29,11 @@ public class PhotoCamera : MonoBehaviour
 
 	[Required]
 	[SerializeField, Tooltip("The Unity Camera used for taking pictures")]
-	Camera camera;
+	Camera photoCamera;
+
+	[Required]
+	[SerializeField, Tooltip("The Unity Camera used for normal looking")]
+	Camera normalCamera;
 
 	[MinValue(0), MaxValue(1920)]
 	[SerializeField, Tooltip("The width of photos taken with this camera")]
@@ -114,7 +118,8 @@ public class PhotoCamera : MonoBehaviour
 			{
 				cameraOut = value;
 
-				camera.enabled = cameraOut;
+				photoCamera.enabled = cameraOut;
+				normalCamera.enabled = !cameraOut;
 
 				if(cameraOut)
 				{
@@ -137,7 +142,7 @@ public class PhotoCamera : MonoBehaviour
 	/// </summary>
 	public Camera Camera
 	{
-		get { return camera; }
+		get { return photoCamera; }
 	}
 
 	/// <summary>
@@ -220,7 +225,7 @@ public class PhotoCamera : MonoBehaviour
 	[Button("Take Photo", ButtonSizes.Medium)]
 	public Photo TakePhoto()
 	{
-		if (camera == null || !canTakePhotos || !cameraOut || PauseManager.Instance.Paused || (maxPhotos > 0 && PhotoCount >= maxPhotos) || LevelManager.Instance.IsGameOver)
+		if (photoCamera == null || !canTakePhotos || !cameraOut || PauseManager.Instance.Paused || (maxPhotos > 0 && PhotoCount >= maxPhotos) || LevelManager.Instance.IsGameOver)
 		{
 			return null;
 		}
@@ -233,18 +238,18 @@ public class PhotoCamera : MonoBehaviour
 
 		RenderTexture renderTexture = new RenderTexture(photoWidth, photoHeight, 24);
 
-		camera.targetTexture = renderTexture;
+		photoCamera.targetTexture = renderTexture;
 
 		Texture2D texture = new Texture2D(photoWidth, photoHeight, TextureFormat.RGB24, false);
 
-		camera.Render();
+		photoCamera.Render();
 
 		RenderTexture.active = renderTexture;
 
 		texture.ReadPixels(new Rect(0, 0, photoWidth, photoHeight), 0, 0);
 		texture.Apply();
 
-		camera.targetTexture = null;
+		photoCamera.targetTexture = null;
 		RenderTexture.active = null;
 
 		photo.Texture = texture;

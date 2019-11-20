@@ -1038,7 +1038,8 @@ MonoBehaviour:
   photoActionName: Take Photo
   canTakePhotos: 1
   cameraOut: 0
-  camera: {fileID: 9219981886029642323}
+  photoCamera: {fileID: 9219981886029642323}
+  normalCamera: {fileID: 7107192114666827536}
   photoWidth: 1920
   photoHeight: 1080
   maxPhotos: 12

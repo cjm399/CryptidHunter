@@ -102,22 +102,22 @@ public class Menu : MonoBehaviour
 
 	public void PlayButton()
 	{
+		HideCursor();
 		SceneManager.LoadScene(2);
         AudioManager.instance?.Stop("Theme");
-        AudioManager.instance?.Play("Woods_Theme");
+        //AudioManager.instance?.Play("Woods_Theme");
 		AudioManager.instance?.Play("Wind");
         AudioManager.instance?.Play("Owl");
-        HideCursor();
 	}
 
 	public void RestartButton()
 	{
+		HideCursor();
 		Scene scene = SceneManager.GetActiveScene();
 		SceneManager.LoadScene(scene.name);
 		pauseMenu.SetActive(false);
 		winScreen.SetActive(false);
 		loseScreen.SetActive(false);
-		HideCursor();
 	}
 
 	public void SettingsButton()
@@ -128,11 +128,11 @@ public class Menu : MonoBehaviour
 
 	public void MenuButton()
 	{
-		SceneManager.LoadScene(1);
 		pauseMenu.SetActive(false);
 		winScreen.SetActive(false);
 		loseScreen.SetActive(false);
 		ShowCursor();
+		SceneManager.LoadScene(1);
 	}
 
 	public void QuitButton()
