@@ -210,6 +210,7 @@ public class NightWalkerTempAI : MonoBehaviour
         
         if(currentTime > timeInterval + last_time)
         {
+            randomSpot = Random.Range(0, movespots.Length);
             last_time = currentTime;
             state = 4;
             return;
