@@ -352,7 +352,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1554,7 +1554,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &546790775
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1573,7 +1573,7 @@ RectTransform:
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2492,13 +2492,13 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: "               I've found it! My first cryptid, the \n               mysterious
-    Fresno Nightwalker. It \n               is just as the legends describe: \n               ghostly
-    white and long, whispy\n               legs. I approached slowly and \n               cautiously.
-    At first it was totally docile, even seemingly curious. But I pushed my luck and
-    got a but too close. At that point it lashed out at me with its powerful legs,
-    just narrowly missing me then sprinted away. This cryptid is not very skittish
-    around humans but as expected still very cautious. Approach slowly and quietly."
+  m_text: "               I found the mysterious Fresno \n               Nightwalker!
+    Just as the \n               legends describe it is ghostly \n               white
+    and has long, whispy\n               legs.\n\n I approached slowly not know what
+    it would do. At first it was completely docile but I think I got too close. It
+    lashed out at me with its powerful legs, just narrowly missing me and then sprinted
+    away. This cryptid is not very skittish around humans but is still very cautious.
+    Approach slowly and quietly."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 318fd2ccbdd3e834bb311cd256d4d213, type: 2}
   m_sharedMaterial: {fileID: 8494263635364853010, guid: 318fd2ccbdd3e834bb311cd256d4d213,
@@ -2527,8 +2527,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 10
-  m_fontSizeBase: 10
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2544,7 +2544,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 198
+  m_firstOverflowCharacterIndex: 176
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -2565,15 +2565,15 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -35.03206, w: 0}
   m_textInfo:
     textComponent: {fileID: 745918643}
-    characterCount: 589
+    characterCount: 506
     spriteCount: 0
-    spaceCount: 178
-    wordCount: 86
+    spaceCount: 155
+    wordCount: 77
     linkCount: 0
-    lineCount: 13
+    lineCount: 14
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -6690,7 +6690,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3915699923958037242
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6748,7 +6748,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
