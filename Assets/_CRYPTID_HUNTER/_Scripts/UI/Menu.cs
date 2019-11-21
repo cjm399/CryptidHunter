@@ -104,11 +104,8 @@ public class Menu : MonoBehaviour
 	{
 		HideCursor();
 		SceneManager.LoadScene(2);
-        AudioManager.instance?.Stop("Theme");
-        //AudioManager.instance?.Play("Woods_Theme");
-		AudioManager.instance?.Play("Wind");
-        AudioManager.instance?.Play("Owl");
-	}
+        AudioManager.instance?.StartWoodsLevelAudio();
+    }
 
 	public void RestartButton()
 	{

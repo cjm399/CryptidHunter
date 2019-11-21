@@ -5066,6 +5066,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   fovAngle: 110
+  timeInterval: 30
   Player: {fileID: 0}
   EnemyRunDistance: 13
 --- !u!82 &1223537941050891104
@@ -5080,7 +5081,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0cccdefb0118bda4ba90820b8a15e26e, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -5091,7 +5092,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0

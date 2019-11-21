@@ -1,5 +1,6 @@
 ﻿using UnityEngine.Audio;
 using System;
+using System.Collections;
 using UnityEngine;
 
 // To access audio clips in other classes simply do: 
@@ -71,5 +72,23 @@ public class AudioManager : MonoBehaviour
         }
         s.Stop();
         Debug.Log("Stopped Sound_" + name);
+    }
+
+    public void StartWoodsLevelAudio()
+    {
+        Stop("Theme");
+        Play("Woods_Theme");
+        Play("Wind");
+        StartOwlAudio();
+    }
+
+    public void StartOwlAudio()
+    {
+        InvokeRepeating("PlayOwlAudio",.1f, 20f);
+    }
+
+    void PlayOwlAudio()
+    {
+        Play("Owl");
     }
 }
