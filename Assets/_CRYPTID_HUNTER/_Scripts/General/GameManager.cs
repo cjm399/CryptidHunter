@@ -7,9 +7,9 @@ using Sirenix.OdinInspector;
 public enum Level
 {
     Init = 0,
-    Splash = 5,
-    Menu = 1,
-    MainScene = 2
+    Splash = 1,
+    Menu = 2,
+    MainScene = 3
 }
 
 public class GameManager : Singleton<GameManager>
