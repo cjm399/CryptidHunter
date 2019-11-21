@@ -10,6 +10,7 @@ public class LevelManager : Singleton<LevelManager>
     [SerializeField, Tooltip("Is there a time limit?")]
     private bool hasTimeLimit = true;
 
+    
     public bool HasTimeLimit
     {
         get;
@@ -30,13 +31,16 @@ public class LevelManager : Singleton<LevelManager>
 	bool isGameOver = false;
 
 	public PlayerCharacter playerCharacter;
-	#endregion Variables
 
-	#region Properties
-	/// <summary>
-	/// The time at which the game ends
-	/// </summary>
-	public string GameOverTime
+    [SerializeField]
+    Almanac almanac;
+    #endregion Variables
+
+    #region Properties
+    /// <summary>
+    /// The time at which the game ends
+    /// </summary>
+    public string GameOverTime
 	{
 		get { return gameOverTime; }
 	}
@@ -80,6 +84,8 @@ public class LevelManager : Singleton<LevelManager>
     private void Start()
     {
         HasTimeLimit = hasTimeLimit;
+        almanac.ToggleAlmanac();
+        
     }
 
     #endregion

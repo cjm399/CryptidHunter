@@ -173,10 +173,6 @@ public class Menu : MonoBehaviour
 		Application.OpenURL("file://" + filePath);
 	}
 
-    public void ExitAlmanac()
-    {
-        almanac.SetActive(false);
-    }
 
     public void OpenAlmanac()
     {

@@ -657,8 +657,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1322372311}
-        m_MethodName: ExitAlmanac
+      - m_Target: {fileID: 1322372312}
+        m_MethodName: ToggleAlmanac
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2864,6 +2864,33 @@ MonoBehaviour:
       version: 1
     _data:
       data: []
+  - _sourceObject: {fileID: 1322372312}
+    _sourceField: playerLook
+    DEPRECATED_fromObject:
+      scene:
+        editorAssetGUID: 
+        name: 
+        _path: 
+      fullPath: 
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 0
+      editorPrefabRelativePath: 
+      version: 0
+    _toObject:
+      scene:
+        editorAssetGUID: a84feab543160c240ad9b6f504b55903
+        name: Hunt_Nightwalker
+        _path: Assets/_CRYPTID_HUNTER/_SCENES/Hunt_Nightwalker.unity
+      fullPath: /Player
+      componentName: PlayerLook, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      componentIndex: 0
+      editorLocalId: -894842860
+      editorPrefabRelativePath: 
+      version: 1
+    _data:
+      data: []
   _realSceneRootsForPostBuild: []
   _mergedScenes: []
 --- !u!114 &809388732
@@ -4359,6 +4386,10 @@ MonoBehaviour:
   pages:
   - {fileID: 29039845}
   - {fileID: 546790774}
+  almanacObj: {fileID: 3915699923958037241}
+  playerLook: {fileID: 0}
+  menuManager: {fileID: 1322372311}
+  almanacActionName: Toggle Almanac
 --- !u!1 &1346617464
 GameObject:
   m_ObjectHideFlags: 0
@@ -6873,12 +6904,12 @@ PrefabInstance:
     - target: {fileID: 4375930808798869851, guid: 29cebba090f3eaf409356a63231aafb2,
         type: 3}
       propertyPath: _userData.actions.Array.size
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4375930808798869851, guid: 29cebba090f3eaf409356a63231aafb2,
         type: 3}
       propertyPath: _userData.actionCategoryMap.list.Array.data[0].actionIds.Array.size
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4375930808798869851, guid: 29cebba090f3eaf409356a63231aafb2,
         type: 3}
@@ -6888,7 +6919,7 @@ PrefabInstance:
     - target: {fileID: 4375930808798869851, guid: 29cebba090f3eaf409356a63231aafb2,
         type: 3}
       propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.size
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 4375930808798869851, guid: 29cebba090f3eaf409356a63231aafb2,
         type: 3}
@@ -6923,7 +6954,7 @@ PrefabInstance:
     - target: {fileID: 4375930808798869851, guid: 29cebba090f3eaf409356a63231aafb2,
         type: 3}
       propertyPath: _userData.actionIdCounter
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4375930808798869851, guid: 29cebba090f3eaf409356a63231aafb2,
         type: 3}
@@ -7284,6 +7315,56 @@ PrefabInstance:
         type: 3}
       propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.data[11]._keyboardKeyCode
       value: 113
+      objectReference: {fileID: 0}
+    - target: {fileID: 4375930808798869851, guid: 29cebba090f3eaf409356a63231aafb2,
+        type: 3}
+      propertyPath: _userData.actions.Array.data[11]._id
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4375930808798869851, guid: 29cebba090f3eaf409356a63231aafb2,
+        type: 3}
+      propertyPath: _userData.actions.Array.data[11]._name
+      value: Toggle Almanac
+      objectReference: {fileID: 0}
+    - target: {fileID: 4375930808798869851, guid: 29cebba090f3eaf409356a63231aafb2,
+        type: 3}
+      propertyPath: _userData.actions.Array.data[11]._type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4375930808798869851, guid: 29cebba090f3eaf409356a63231aafb2,
+        type: 3}
+      propertyPath: _userData.actions.Array.data[11]._descriptiveName
+      value: Toggle Almanac on or off
+      objectReference: {fileID: 0}
+    - target: {fileID: 4375930808798869851, guid: 29cebba090f3eaf409356a63231aafb2,
+        type: 3}
+      propertyPath: _userData.actions.Array.data[11]._userAssignable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4375930808798869851, guid: 29cebba090f3eaf409356a63231aafb2,
+        type: 3}
+      propertyPath: _userData.actionCategoryMap.list.Array.data[0].actionIds.Array.data[11]
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4375930808798869851, guid: 29cebba090f3eaf409356a63231aafb2,
+        type: 3}
+      propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.data[12]._actionId
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4375930808798869851, guid: 29cebba090f3eaf409356a63231aafb2,
+        type: 3}
+      propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.data[12]._elementType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4375930808798869851, guid: 29cebba090f3eaf409356a63231aafb2,
+        type: 3}
+      propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.data[12]._elementIdentifierId
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4375930808798869851, guid: 29cebba090f3eaf409356a63231aafb2,
+        type: 3}
+      propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.data[12]._keyboardKeyCode
+      value: 106
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29cebba090f3eaf409356a63231aafb2, type: 3}

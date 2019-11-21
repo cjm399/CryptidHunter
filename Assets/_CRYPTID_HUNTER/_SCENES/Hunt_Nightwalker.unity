@@ -309,7 +309,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _version: 2
-  _crossSceneReferences: []
+  _crossSceneReferences:
+  - _sourceObject: {fileID: 1216325907}
+    _sourceField: almanac
+    DEPRECATED_fromObject:
+      scene:
+        editorAssetGUID: 
+        name: 
+        _path: 
+      fullPath: 
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 0
+      editorPrefabRelativePath: 
+      version: 0
+    _toObject:
+      scene:
+        editorAssetGUID: 003cea3a55c49ce4980135f4f105c69e
+        name: init
+        _path: Assets/_CRYPTID_HUNTER/_SCENES/init.unity
+      fullPath: /_app/MenuManager
+      componentName: Almanac, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      componentIndex: 0
+      editorLocalId: 1322372312
+      editorPrefabRelativePath: 
+      version: 1
+    _data:
+      data: []
   _realSceneRootsForPostBuild: []
   _mergedScenes: []
 --- !u!114 &316813739
@@ -1172,6 +1198,7 @@ MonoBehaviour:
   scoreRequired: 80
   isGameOver: 0
   playerCharacter: {fileID: 1384020753}
+  almanac: {fileID: 0}
 --- !u!4 &1216325908
 Transform:
   m_ObjectHideFlags: 0
