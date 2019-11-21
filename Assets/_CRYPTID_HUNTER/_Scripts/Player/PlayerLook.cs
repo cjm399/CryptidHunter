@@ -30,11 +30,11 @@ public class PlayerLook : MonoBehaviour
 	[SerializeField, Tooltip("The GameObject to rotate when looking up and down")]
 	GameObject lookObject;
 
-	[MinValue(0f)]
+	[MinValue(0.1f)]
 	[SerializeField, Tooltip("The speed when looking horizontally")]
-	float lookHorizSpeed = 1f;
+	float lookHorizSpeed = 0.5f;
 
-	[MinValue(0f)]
+	[MinValue(0.1f)]
 	[SerializeField, Tooltip("The speed when looking vertically")]
 	float lookVertSpeed = 0.5f;
 
@@ -70,8 +70,12 @@ public class PlayerLook : MonoBehaviour
 		Cursor.visible = false;
 #endif
 	}
-
-	private void OnEnable()
+    private void Update()
+    {
+        lookHorizSpeed = SettingsManager.Instance.lookSensitivityX;
+        lookVertSpeed = SettingsManager.Instance.lookSensitivityY;
+    }
+    private void OnEnable()
 	{
 		StartCoroutine("InputSubscribe");
 	}

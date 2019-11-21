@@ -128,14 +128,13 @@ public class PlayerWalk : MonoBehaviour
 				if (isWalking)
 				{
 					OnStartMoving?.Invoke();
-                    AudioManager.instance?.Play("Player_Woods_Steps");
+                    //AudioManager.instance?.Play("Player_Woods_Steps");
                 }
 				else
 				{
 					IsSprinting = false;
 
 					OnStopMoving?.Invoke();
-					AudioManager.instance?.Stop("Player_Woods_Steps");
                 }
 			}
 		}
@@ -235,7 +234,7 @@ public class PlayerWalk : MonoBehaviour
 		GameManager.Instance?.RewiredPlayer?.RemoveInputEventDelegate(TryWalk, UpdateLoopType.Update, InputActionEventType.AxisActive, strafeActionName);
 		GameManager.Instance?.RewiredPlayer?.RemoveInputEventDelegate(TrySprint, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, sprintActionName);
 		GameManager.Instance?.RewiredPlayer?.RemoveInputEventDelegate(TrySprint, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased, sprintActionName);
-	}
+    }
 	#endregion MonoBehaviour
 
 	#region Public Methods

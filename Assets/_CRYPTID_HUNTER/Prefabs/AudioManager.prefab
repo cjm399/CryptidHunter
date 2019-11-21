@@ -57,23 +57,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 0d27121f3f1bad447825e0dd6244b3cc, type: 3}
     loop: 0
     playOnAwake: 0
-    volume: 0.6
-    pitch: 1
-    priority: 128
-  - source: {fileID: 0}
-    name: Wind
-    clip: {fileID: 8300000, guid: c2eb01a1be54e43808e0ac7c3987c073, type: 3}
-    loop: 1
-    playOnAwake: 0
-    volume: 0.5
-    pitch: 1
-    priority: 128
-  - source: {fileID: 0}
-    name: Owl
-    clip: {fileID: 8300000, guid: ee002b2765e47463d8bee1f44b74fd10, type: 3}
-    loop: 0
-    playOnAwake: 0
-    volume: 0.75
+    volume: 0.3
     pitch: 1
     priority: 128
   - source: {fileID: 0}
@@ -81,8 +65,24 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 903b4e6931d7a4fc5a55801130fb9f5d, type: 3}
     loop: 1
     playOnAwake: 0
-    volume: 0.75
-    pitch: 0.5
+    volume: 1
+    pitch: 1
+    priority: 128
+  - source: {fileID: 0}
+    name: Wind
+    clip: {fileID: 8300000, guid: c2eb01a1be54e43808e0ac7c3987c073, type: 3}
+    loop: 1
+    playOnAwake: 0
+    volume: 0.3
+    pitch: 1
+    priority: 128
+  - source: {fileID: 0}
+    name: Owl
+    clip: {fileID: 8300000, guid: ee002b2765e47463d8bee1f44b74fd10, type: 3}
+    loop: 0
+    playOnAwake: 0
+    volume: 1
+    pitch: 1
     priority: 128
   - source: {fileID: 0}
     name: Camera_Shutter
