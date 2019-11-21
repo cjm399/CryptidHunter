@@ -19,4 +19,6 @@ public class SettingsManager : Singleton<SettingsManager>
     public bool allowVibration = true;
 
 
+
+
 }

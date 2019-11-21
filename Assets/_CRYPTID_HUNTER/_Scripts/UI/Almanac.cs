@@ -26,4 +26,6 @@ public class Almanac : MonoBehaviour
         i--;
         pages[i].SetActive(true);
     }
+
+
 }
