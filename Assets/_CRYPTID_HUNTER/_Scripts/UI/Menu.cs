@@ -113,11 +113,11 @@ public class Menu : MonoBehaviour
 	public void RestartButton()
 	{
 		HideCursor();
-		Scene scene = SceneManager.GetActiveScene();
-		SceneManager.LoadScene(scene.name);
 		pauseMenu.SetActive(false);
 		winScreen.SetActive(false);
 		loseScreen.SetActive(false);
+		Scene scene = SceneManager.GetActiveScene();
+		SceneManager.LoadScene(scene.name);
 	}
 
 	public void SettingsButton()
@@ -132,7 +132,7 @@ public class Menu : MonoBehaviour
 		winScreen.SetActive(false);
 		loseScreen.SetActive(false);
 		ShowCursor();
-		SceneManager.LoadScene(1);
+		SceneManager.LoadScene((int)Level.Menu);
 	}
 
 	public void QuitButton()
