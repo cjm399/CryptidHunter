@@ -235,6 +235,11 @@ public class PlayerWalk : MonoBehaviour
 		GameManager.Instance?.RewiredPlayer?.RemoveInputEventDelegate(TrySprint, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, sprintActionName);
 		GameManager.Instance?.RewiredPlayer?.RemoveInputEventDelegate(TrySprint, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased, sprintActionName);
     }
+
+	private void Update()
+	{
+		controller.SimpleMove(Vector3.zero);
+	}
 	#endregion MonoBehaviour
 
 	#region Public Methods
