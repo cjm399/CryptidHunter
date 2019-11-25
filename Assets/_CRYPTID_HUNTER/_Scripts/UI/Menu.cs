@@ -168,8 +168,8 @@ public class Menu : MonoBehaviour
 
 	public void OpenPhotosFolder()
 	{
-		string filePath = Application.persistentDataPath + $"/Photos/";
-
+		string filePath = Application.persistentDataPath + "/Photos/";
+		System.IO.Directory.CreateDirectory(filePath);
 		Application.OpenURL("file://" + filePath);
 	}
 
