@@ -173,15 +173,25 @@ public class Menu : MonoBehaviour
 		Application.OpenURL("file://" + filePath);
 	}
 
+	public void ShowCursor()
+	{
+#if !UNITY_EDITOR
+		Cursor.lockState = CursorLockMode.None;
+		Cursor.visible = true;
+#endif
+	}
 
-    public void OpenAlmanac()
-    {
-        almanac.SetActive(true);
-    }
-    #endregion Public Methods
+	public void HideCursor()
+	{
+#if !UNITY_EDITOR
+		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
+#endif
+	}
+	#endregion Public Methods
 
-    #region Private Methods
-    private void Lose(PhotoScore _photoScore)
+	#region Private Methods
+	private void Lose(PhotoScore _photoScore)
 	{
 		if (_photoScore != null && _photoScore.Score > 0)
 		{
@@ -196,22 +206,6 @@ public class Menu : MonoBehaviour
 
 		loseScreen.SetActive(true);
 		ShowCursor();
-	}
-
-	private void ShowCursor()
-	{
-#if !UNITY_EDITOR
-		Cursor.lockState = CursorLockMode.None;
-		Cursor.visible = true;
-#endif
-	}
-
-	private void HideCursor()
-	{
-#if !UNITY_EDITOR
-		Cursor.lockState = CursorLockMode.Locked;
-		Cursor.visible = false;
-#endif
 	}
 	#endregion Private Methods
 }

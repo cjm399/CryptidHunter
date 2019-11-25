@@ -49,7 +49,7 @@ public class PlayerLook : MonoBehaviour
 
 	[ReadOnly]
 	[SerializeField, Tooltip("A list of all scripts blocking the player from looking around")]
-	List<MonoBehaviour> lookBlocks = new List<MonoBehaviour>();
+	List<MonoBehaviour> lookLocks = new List<MonoBehaviour>();
 	#endregion Variables
 
 	#region Properties
@@ -58,7 +58,7 @@ public class PlayerLook : MonoBehaviour
 	/// </summary>
 	public bool CanLook
 	{
-		get { return lookBlocks.Count == 0; }
+		get { return lookLocks.Count == 0; }
 	}
 	#endregion Properties
 
@@ -123,11 +123,11 @@ public class PlayerLook : MonoBehaviour
 	/// Add a new block to prevent the player from looking around
 	/// </summary>
 	/// <param name="_block">The MonoBehaviour stopping the player from looking around</param>
-	public void AddLookBlock(MonoBehaviour _block)
+	public void AddLookLock(MonoBehaviour _block)
 	{
-		if(!lookBlocks.Contains(_block))
+		if(!lookLocks.Contains(_block))
 		{
-			lookBlocks.Add(_block);
+			lookLocks.Add(_block);
 		}
 	}
 
@@ -135,11 +135,11 @@ public class PlayerLook : MonoBehaviour
 	/// Remove a block that was preventing the player from looking around
 	/// </summary>
 	/// <param name="_block">The MonoBehaviour that was stopping the player from looking around</param>
-	public void RemoveLookBlock(MonoBehaviour _block)
+	public void RemoveLookLock(MonoBehaviour _block)
 	{
-		if (lookBlocks.Contains(_block))
+		if (lookLocks.Contains(_block))
 		{
-			lookBlocks.Remove(_block);
+			lookLocks.Remove(_block);
 		}
 	}
 	#endregion Public Methods

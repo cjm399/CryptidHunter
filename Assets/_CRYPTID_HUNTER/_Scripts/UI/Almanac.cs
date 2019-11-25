@@ -50,19 +50,7 @@ public class Almanac : MonoBehaviour
         
         if (_eventData.actionName == almanacActionName)
         {
-            if (!almanacOn)
-            {
-                almanacOn = true;
-                almanacObj.SetActive(true);
-                playerLook.AddLookBlock(this);
-
-            }
-            else
-            {
-                almanacOn = false;
-                almanacObj.SetActive(false);
-                playerLook.RemoveLookBlock(this);
-            }
+			ToggleAlmanac();
             Debug.Log(almanacOn);
 
         }
@@ -70,25 +58,34 @@ public class Almanac : MonoBehaviour
 
     public void ToggleAlmanac()
     {
+		almanacOn = !almanacOn;
 
-        
-        if (!almanacOn)
+        if (almanacOn)
         {
-            almanacOn = true;
-            almanacObj.SetActive(true);
-            playerLook.AddLookBlock(this);
+			OpenAlmanac();
 
         }
         else
         {
-            almanacOn = false;
-            almanacObj.SetActive(false);
-            playerLook.RemoveLookBlock(this);
+			CloseAlmanac();
         }
-        Debug.Log(almanacOn);
-
     }
-    public void NextPage() 
+
+	public void OpenAlmanac()
+	{
+		almanacObj.SetActive(true);
+		menuManager.ShowCursor();
+		PlayerCharacter.Instance.LockPlayer(this);
+	}
+
+	public void CloseAlmanac()
+	{
+		almanacObj.SetActive(false);
+		menuManager.HideCursor();
+		PlayerCharacter.Instance.UnlockPlayer(this);
+	}
+
+	public void NextPage() 
     {
         pages[i].SetActive(false);
         i++;
@@ -104,8 +101,6 @@ public class Almanac : MonoBehaviour
 
     public void ExitAlmanac()
     {
-        ToggleAlmanac();
+        CloseAlmanac();
     }
-
-
 }

@@ -658,7 +658,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1322372312}
-        m_MethodName: ToggleAlmanac
+        m_MethodName: CloseAlmanac
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2838,32 +2838,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _version: 2
   _crossSceneReferences:
-  - _sourceObject: {fileID: 1322372311}
-    _sourceField: creditsMenu
-    DEPRECATED_fromObject:
-      scene:
-        editorAssetGUID: 
-        name: 
-        _path: 
-      fullPath: 
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 0
-      editorPrefabRelativePath: 
-      version: 0
-    _toObject:
-      scene:
-        editorAssetGUID: 7428e6012a6e4954db6ff4bb6bde5d5d
-        name: Main_Menu
-        _path: Assets/_CRYPTID_HUNTER/_SCENES/Main_Menu.unity
-      fullPath: /Canvas/CreditsMenu
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 1014569186
-      editorPrefabRelativePath: 
-      version: 1
-    _data:
-      data: []
   - _sourceObject: {fileID: 1322372312}
     _sourceField: playerLook
     DEPRECATED_fromObject:
@@ -2887,6 +2861,32 @@ MonoBehaviour:
         PublicKeyToken=null
       componentIndex: 0
       editorLocalId: -894842860
+      editorPrefabRelativePath: 
+      version: 1
+    _data:
+      data: []
+  - _sourceObject: {fileID: 1322372311}
+    _sourceField: creditsMenu
+    DEPRECATED_fromObject:
+      scene:
+        editorAssetGUID: 
+        name: 
+        _path: 
+      fullPath: 
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 0
+      editorPrefabRelativePath: 
+      version: 0
+    _toObject:
+      scene:
+        editorAssetGUID: 7428e6012a6e4954db6ff4bb6bde5d5d
+        name: Main_Menu
+        _path: Assets/_CRYPTID_HUNTER/_SCENES/Main_Menu.unity
+      fullPath: /Canvas/CreditsMenu
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 1014569186
       editorPrefabRelativePath: 
       version: 1
     _data:
