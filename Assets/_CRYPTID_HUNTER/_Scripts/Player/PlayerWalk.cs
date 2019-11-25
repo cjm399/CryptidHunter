@@ -238,7 +238,11 @@ public class PlayerWalk : MonoBehaviour
 
 	private void Update()
 	{
-		controller.SimpleMove(Vector3.zero);
+		if(GameManager.Instance.RewiredPlayer.GetAxis(walkActionName) == 0
+			&& GameManager.Instance.RewiredPlayer.GetAxis(strafeActionName) == 0)
+		{
+			controller.SimpleMove(Vector3.zero);
+		}
 	}
 	#endregion MonoBehaviour
 

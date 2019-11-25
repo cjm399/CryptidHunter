@@ -63,13 +63,6 @@ public class PlayerLook : MonoBehaviour
 	#endregion Properties
 
 	#region MonoBehaviour
-	private void Start()
-	{
-#if !UNITY_EDITOR
-		Cursor.lockState = CursorLockMode.Locked;
-		Cursor.visible = false;
-#endif
-	}
     private void Update()
     {
         lookHorizSpeed = SettingsManager.Instance.lookSensitivityX;

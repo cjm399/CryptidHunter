@@ -420,7 +420,7 @@ GameObject:
   - component: {fileID: 342647137}
   - component: {fileID: 342647138}
   - component: {fileID: 342647139}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: EndGameHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -435,7 +435,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 342647136}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.89, y: -6.55, z: 17.18}
+  m_LocalPosition: {x: -2.24, y: -6.55, z: 16.97}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 965165434}
@@ -766,7 +766,7 @@ GameObject:
   - component: {fileID: 965165437}
   - component: {fileID: 965165436}
   - component: {fileID: 965165435}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1498,7 +1498,7 @@ GameObject:
   - component: {fileID: 1288232902}
   - component: {fileID: 1288232904}
   - component: {fileID: 1288232903}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
