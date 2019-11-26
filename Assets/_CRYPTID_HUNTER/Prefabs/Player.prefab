@@ -2103,11 +2103,14 @@ MonoBehaviour:
   lookHorzActionName: Look Horizontal
   spinObject: {fileID: 7107192115459729062}
   lookObject: {fileID: 7107192114666827542}
+  useScaledSpeeds: 1
   lookHorizSpeed: 0.5
   lookVertSpeed: 0.25
+  lookHorizSpeedScaled: 12
+  lookVertSpeedScaled: 4
   minCamHorizRotation: -90
   maxCamHorizRotation: 90
-  lookBlocks: []
+  lookLocks: []
 --- !u!114 &3978965752102030856
 MonoBehaviour:
   m_ObjectHideFlags: 0

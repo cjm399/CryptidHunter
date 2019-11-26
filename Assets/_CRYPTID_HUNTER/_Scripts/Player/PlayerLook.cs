@@ -7,6 +7,11 @@ using Sirenix.OdinInspector;
 
 using Rewired;
 
+
+
+/// <summary>
+/// Player controller for looking around
+/// </summary>
 public class PlayerLook : MonoBehaviour
 {
 	#region Variables
@@ -30,13 +35,31 @@ public class PlayerLook : MonoBehaviour
 	[SerializeField, Tooltip("The GameObject to rotate when looking up and down")]
 	GameObject lookObject;
 
-	[MinValue(0.1f)]
-	[SerializeField, Tooltip("The speed when looking horizontally")]
-	float lookHorizSpeed = 0.5f;
+	[SerializeField, Tooltip("Whether to use unscaled sensitivity or scaled")]
+	bool useScaledSpeeds = false;
 
-	[MinValue(0.1f)]
+	[Range(0f, 1f), HideIf("useScaledSpeeds")]
+	[SerializeField, Tooltip("The speed when looking horizontally")]
+    float lookHorizSpeed = 0.25f;
+    
+	[Range(0f, 1f), HideIf("useScaledSpeeds")]
 	[SerializeField, Tooltip("The speed when looking vertically")]
-	float lookVertSpeed = 0.5f;
+	float lookVertSpeed = 0.25f;
+
+	[MinValue(0f), ShowIf("useScaledSpeeds")]
+	[SerializeField, Tooltip("The speed when looking horizontally, scaled based on DPI and screen size")]
+	float lookHorizSpeedScaled = 12f;
+
+	[MinValue(0f), ShowIf("useScaledSpeeds")]
+	[SerializeField, Tooltip("The speed when looking vertically, scaled based on DPI and screen size")]
+	float lookVertSpeedScaled = 4f;
+
+	// The starting horizontal and vertical speeds for if using sensitivity that is scaled based on DPI and screen size
+	float lookHorizStart = -1;
+	float lookVertStart = -1;
+	// The starting setting for multiplier on a scale of 0-1 so that we can scale relative to the baseline
+	float lookHorizStartMult = -1;
+	float lookVertStartMult = -1;
 
 	[Header("Camera Locking Rotation")]
 	[MinValue(-360f), MaxValue(0f)]
@@ -48,44 +71,121 @@ public class PlayerLook : MonoBehaviour
 	float maxCamHorizRotation = 90f;
 
 	[ReadOnly]
-	[SerializeField, Tooltip("A list of all scripts blocking the player from looking around")]
+	[SerializeField, Tooltip("A list of all scripts 'blocking' the player from looking around")]
 	List<MonoBehaviour> lookLocks = new List<MonoBehaviour>();
 	#endregion Variables
 
-	#region Properties
-	/// <summary>
-	/// Whether the player can look around
-	/// </summary>
-	public bool CanLook
-	{
-		get { return lookLocks.Count == 0; }
-	}
-	#endregion Properties
-
 	#region MonoBehaviour
-    private void Update()
-    {
-        lookHorizSpeed = SettingsManager.Instance.lookSensitivityX;
-        lookVertSpeed = SettingsManager.Instance.lookSensitivityY;
-    }
-    private void OnEnable()
+	private void OnEnable()
 	{
-		StartCoroutine("InputSubscribe");
-	}
+		StartCoroutine(InputSubscribe());
+    }
 
 	private void OnDisable()
 	{
 		GameManager.Instance?.RewiredPlayer?.RemoveInputEventDelegate(TryLook, UpdateLoopType.Update, InputActionEventType.AxisActive, lookVertActionName);
 		GameManager.Instance?.RewiredPlayer?.RemoveInputEventDelegate(TryLook, UpdateLoopType.Update, InputActionEventType.AxisActive, lookHorzActionName);
 	}
-	#endregion MonoBehaviour
+    #endregion MonoBehaviour
 
-	#region Public Methods
+    #region Public Methods
+    /// <summary>
+    /// Add a block, preventing the player from looking around (when called, just pass in the script that is calling this method with the 'this' keyword)
+    /// </summary>
+    /// <param name="_block">The script blocking the player from looking around</param>
+	  public void AddLookLock(MonoBehaviour _lock)
+	{
+		if(!lookLocks.Contains(_lock))
+		{
+			lookLocks.Add(_lock);
+
+			UpdateSpeeds();
+		}
+	}
+
+	/// <summary>
+	/// Remove the block, allowing the player to look around again if the list is now empty (when called, just pass in the script that is calling this method with the 'this' keyword)
+	/// </summary>
+	/// <param name="_block">The block to remove</param>
+	public void RemoveLookLock(MonoBehaviour _lock)
+	{
+		if(lookLocks.Contains(_lock))
+		{
+			lookLocks.Remove(_lock);
+		}
+	}
+	#endregion Public Methods
+
+	#region Private Methods
+	private IEnumerator InputSubscribe()
+	{
+		while(GameManager.Instance?.RewiredPlayer == null)
+		{
+			yield return null;
+		}
+
+		while(SettingsManager.Instance == null)
+		{
+			yield return null;
+		}
+
+		// Save the starting sensitivity settings for if not using the 0-1 scale
+		lookHorizStart = lookHorizSpeedScaled;
+		lookVertStart = lookVertSpeedScaled;
+		// Also save the starting multiplier so we can scale relative to how the inital setting was
+		lookHorizStartMult = SettingsManager.Instance.lookSensitivityX;
+		lookVertStartMult = SettingsManager.Instance.lookSensitivityY;
+
+		GameManager.Instance.RewiredPlayer.AddInputEventDelegate(TryLook, UpdateLoopType.Update, InputActionEventType.AxisActive, lookVertActionName);
+		GameManager.Instance.RewiredPlayer.AddInputEventDelegate(TryLook, UpdateLoopType.Update, InputActionEventType.AxisActive, lookHorzActionName);
+	}
+
+	/// <summary>
+	/// Try looking when receiving input
+	/// </summary>
+	/// <param name="_eventData">The Rewired input event data</param>
+	private void TryLook(InputActionEventData _eventData)
+	{
+		/* Player cannot look around if any of the following are true:
+		 *	- The game is paused
+		 *	- The input script is unable to move
+		 *	- Sky View is enabled
+		 *	- There is at least one blocker registered on this script
+		 */
+		if (PauseManager.Instance.Paused || lookLocks.Count > 0)
+		{
+			UpdateSpeeds();
+			return;
+		}
+
+		float vertAxis = GameManager.Instance.RewiredPlayer.GetAxis(lookVertActionName);
+		float horzAxis = GameManager.Instance.RewiredPlayer.GetAxis(lookHorzActionName);
+		
+		if (useScaledSpeeds)
+		{
+			vertAxis *= Screen.dpi / Screen.height;
+			horzAxis *= Screen.dpi / Screen.width;
+			vertAxis *= lookVertSpeedScaled;
+			horzAxis *= lookHorizSpeedScaled;
+		}
+		else
+		{
+			vertAxis *= lookVertSpeed;
+			horzAxis *= lookHorizSpeed;
+		}
+
+		Debug.Log($"{vertAxis} \t {horzAxis}");
+
+		spinObject.transform.Rotate(new Vector3(0, horzAxis, 0));
+
+		ApplyVertRotation(vertAxis);
+	}
+
 	/// <summary>
 	/// Rotate the player up/down based on look speed
 	/// </summary>
 	/// <param name="_lookVertSpeed">The speed to move at</param>
-	public void ApplyVertRotation(float _lookVertSpeed)
+	private void ApplyVertRotation(float _lookVertSpeed)
 	{
 		Vector3 camRotation = new Vector3(lookObject.transform.localEulerAngles.x, 0, 0);
 
@@ -112,63 +212,66 @@ public class PlayerLook : MonoBehaviour
 		lookObject.transform.localEulerAngles = camRotation;
 	}
 
+    /// <summary>
+    /// Debug console command to remove all look locks
+    /// </summary>
+    /// <param name="command"></param>
+    private void RemoveLocks(string command)
+    {
+        string[] parts = command.Split(' ');
+        if (parts[0] == "unlock")
+        {
+            lookLocks = new List<MonoBehaviour>();
+            Debug.Log("Removed all Look Locks from Player");
+        }
+	}
+
 	/// <summary>
-	/// Add a new block to prevent the player from looking around
+	/// Update the horizontal look speed when changed in the settings
 	/// </summary>
-	/// <param name="_block">The MonoBehaviour stopping the player from looking around</param>
-	public void AddLookLock(MonoBehaviour _block)
+	/// <param name="_speed">The new looking speed value</param>
+	private void LookHorizontalSpeedHandler(float _speed)
 	{
-		if(!lookLocks.Contains(_block))
+		if (_speed > 0)
 		{
-			lookLocks.Add(_block);
+			lookHorizSpeed = _speed;
+		}
+	}
+
+
+	/// <summary>
+	/// Update the vertical look speed when changed in the settings
+	/// </summary>
+	/// <param name="_speed">The new looking speed value</param>
+	private void LookVerticalSpeedHandler(float _speed)
+	{
+		if (_speed > 0)
+		{
+			lookVertSpeed = _speed;
 		}
 	}
 
 	/// <summary>
-	/// Remove a block that was preventing the player from looking around
+	/// Update sensitivity
 	/// </summary>
-	/// <param name="_block">The MonoBehaviour that was stopping the player from looking around</param>
-	public void RemoveLookLock(MonoBehaviour _block)
+	private void UpdateSpeeds()
 	{
-		if (lookLocks.Contains(_block))
+		if (useScaledSpeeds)
 		{
-			lookLocks.Remove(_block);
-		}
-	}
-	#endregion Public Methods
+			if (lookHorizStartMult > -1 && lookVertStartMult > -1 && lookHorizStart > -1 && lookVertStart > -1)
+			{
+				float horizMult = SettingsManager.Instance.lookSensitivityX / lookHorizStartMult;
+				float vertMult = SettingsManager.Instance.lookSensitivityY / lookVertStartMult;
 
-	#region Private Methods
-	/// <summary>
-	/// Wait until after GameManager is fully instantiated before doing anything with it
-	/// </summary>
-	private IEnumerator InputSubscribe()
-	{
-		while (GameManager.Instance?.RewiredPlayer == null)
+				lookHorizSpeedScaled = lookHorizStart * horizMult;
+				lookVertSpeedScaled = lookVertStart * vertMult;
+			}
+		}
+		else
 		{
-			yield return null;
+			lookHorizSpeed = SettingsManager.Instance.lookSensitivityX;
+			lookVertSpeed = SettingsManager.Instance.lookSensitivityY;
 		}
-
-		GameManager.Instance.RewiredPlayer.AddInputEventDelegate(TryLook, UpdateLoopType.Update, InputActionEventType.AxisActive, lookVertActionName);
-		GameManager.Instance.RewiredPlayer.AddInputEventDelegate(TryLook, UpdateLoopType.Update, InputActionEventType.AxisActive, lookHorzActionName);
-	}
-
-	/// <summary>
-	/// Try looking when receiving input
-	/// </summary>
-	/// <param name="_eventData">The Rewired input event data</param>
-	private void TryLook(InputActionEventData _eventData)
-	{
-		if(PauseManager.Instance.Paused || !CanLook || LevelManager.Instance.IsGameOver)
-		{
-			return;
-		}
-
-		float vertAxis = GameManager.Instance.RewiredPlayer.GetAxis(lookVertActionName);
-		float horzAxis = GameManager.Instance.RewiredPlayer.GetAxis(lookHorzActionName);
-
-		spinObject.transform.Rotate(new Vector3(0, lookHorizSpeed * horzAxis, 0));
-
-		ApplyVertRotation(lookVertSpeed * vertAxis);
 	}
 	#endregion Private Methods
 

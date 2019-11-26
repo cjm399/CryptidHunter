@@ -2838,6 +2838,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _version: 2
   _crossSceneReferences:
+  - _sourceObject: {fileID: 1322372311}
+    _sourceField: creditsMenu
+    DEPRECATED_fromObject:
+      scene:
+        editorAssetGUID: 
+        name: 
+        _path: 
+      fullPath: 
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 0
+      editorPrefabRelativePath: 
+      version: 0
+    _toObject:
+      scene:
+        editorAssetGUID: 7428e6012a6e4954db6ff4bb6bde5d5d
+        name: Main_Menu
+        _path: Assets/_CRYPTID_HUNTER/_SCENES/Main_Menu.unity
+      fullPath: /Canvas/CreditsMenu
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 1014569186
+      editorPrefabRelativePath: 
+      version: 1
+    _data:
+      data: []
   - _sourceObject: {fileID: 1322372312}
     _sourceField: playerLook
     DEPRECATED_fromObject:
@@ -2861,32 +2887,6 @@ MonoBehaviour:
         PublicKeyToken=null
       componentIndex: 0
       editorLocalId: -894842860
-      editorPrefabRelativePath: 
-      version: 1
-    _data:
-      data: []
-  - _sourceObject: {fileID: 1322372311}
-    _sourceField: creditsMenu
-    DEPRECATED_fromObject:
-      scene:
-        editorAssetGUID: 
-        name: 
-        _path: 
-      fullPath: 
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 0
-      editorPrefabRelativePath: 
-      version: 0
-    _toObject:
-      scene:
-        editorAssetGUID: 7428e6012a6e4954db6ff4bb6bde5d5d
-        name: Main_Menu
-        _path: Assets/_CRYPTID_HUNTER/_SCENES/Main_Menu.unity
-      fullPath: /Canvas/CreditsMenu
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 1014569186
       editorPrefabRelativePath: 
       version: 1
     _data:
@@ -3020,7 +3020,6 @@ GameObject:
   - component: {fileID: 905165227}
   - component: {fileID: 905165226}
   - component: {fileID: 905165225}
-  - component: {fileID: 905165228}
   m_Layer: 5
   m_Name: PauseMenuCanvas
   m_TagString: Untagged
@@ -3108,31 +3107,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 5
   m_TargetDisplay: 0
---- !u!114 &905165228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 905165223}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fce1f1ef78086254582e994d5b4fe2dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  useMilitaryTime: 0
-  lookSensitivityX: 0.5
-  lookSensitivityY: 0.5
-  invertXAxis: 0
-  invertYAxis: 0
-  brightness: 1
-  masterVolume: 1
-  musicVolume: 1
-  effectVolume: 1
-  fullScreen: 1
-  resolutionWidth: 1920
-  resolutionHeight: 1080
-  allowVibration: 1
 --- !u!1 &923158159 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4951285154944886162, guid: 6238b08c8ddaa6549884905e0e328be8,
