@@ -174,8 +174,6 @@ public class PlayerLook : MonoBehaviour
 			horzAxis *= lookHorizSpeed;
 		}
 
-		Debug.Log($"{vertAxis} \t {horzAxis}");
-
 		spinObject.transform.Rotate(new Vector3(0, horzAxis, 0));
 
 		ApplyVertRotation(vertAxis);
