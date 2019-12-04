@@ -30,7 +30,7 @@ public class SettingSlider : BaseSettingComponent
 
 	private void HandleOnSliderValueChanged(float val)
 	{
-		float normalizedValue = Map(_slider.minValue, _slider.maxValue, 0f, 1f, val);
+		float normalizedValue = Map(_slider.minValue, _slider.maxValue, _slider.minValue, _slider.maxValue, val);
 		_binding.SetSettingValue(normalizedValue);
 		Raise();
 	}

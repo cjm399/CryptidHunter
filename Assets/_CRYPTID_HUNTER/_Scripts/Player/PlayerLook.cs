@@ -136,6 +136,8 @@ public class PlayerLook : MonoBehaviour
 		lookHorizStartMult = SettingsManager.Instance.lookSensitivityX;
 		lookVertStartMult = SettingsManager.Instance.lookSensitivityY;
 
+        UpdateSpeeds();
+
 		GameManager.Instance.RewiredPlayer.AddInputEventDelegate(TryLook, UpdateLoopType.Update, InputActionEventType.AxisActive, lookVertActionName);
 		GameManager.Instance.RewiredPlayer.AddInputEventDelegate(TryLook, UpdateLoopType.Update, InputActionEventType.AxisActive, lookHorzActionName);
 	}
@@ -254,22 +256,22 @@ public class PlayerLook : MonoBehaviour
 	/// </summary>
 	private void UpdateSpeeds()
 	{
-		if (useScaledSpeeds)
+		//if (useScaledSpeeds)
+		//{
+		if (lookHorizStartMult > -1 && lookVertStartMult > -1 && lookHorizStart > -1 && lookVertStart > -1)
 		{
-			if (lookHorizStartMult > -1 && lookVertStartMult > -1 && lookHorizStart > -1 && lookVertStart > -1)
-			{
-				float horizMult = SettingsManager.Instance.lookSensitivityX / lookHorizStartMult;
-				float vertMult = SettingsManager.Instance.lookSensitivityY / lookVertStartMult;
+			float horizMult = SettingsManager.Instance.lookSensitivityX / lookHorizStartMult;
+			float vertMult = SettingsManager.Instance.lookSensitivityY / lookVertStartMult;
 
-				lookHorizSpeedScaled = lookHorizStart * horizMult;
-				lookVertSpeedScaled = lookVertStart * vertMult;
-			}
+			lookHorizSpeedScaled = lookHorizStart * horizMult;
+			lookVertSpeedScaled = lookVertStart * vertMult;
 		}
-		else
-		{
-			lookHorizSpeed = SettingsManager.Instance.lookSensitivityX;
-			lookVertSpeed = SettingsManager.Instance.lookSensitivityY;
-		}
+		//}
+		//else
+		//{
+		lookHorizSpeed = SettingsManager.Instance.lookSensitivityX;
+		lookVertSpeed = SettingsManager.Instance.lookSensitivityY;
+		//}
 	}
 	#endregion Private Methods
 
