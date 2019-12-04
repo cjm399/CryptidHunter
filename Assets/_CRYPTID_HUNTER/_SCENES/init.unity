@@ -3592,7 +3592,7 @@ PrefabInstance:
     - target: {fileID: 4951285154944886162, guid: 6238b08c8ddaa6549884905e0e328be8,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4951285154818895598, guid: 6238b08c8ddaa6549884905e0e328be8,
         type: 3}
@@ -3712,12 +3712,12 @@ PrefabInstance:
     - target: {fileID: 4951285156622673370, guid: 6238b08c8ddaa6549884905e0e328be8,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4951285156622673370, guid: 6238b08c8ddaa6549884905e0e328be8,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4951285154816598295, guid: 6238b08c8ddaa6549884905e0e328be8,
         type: 3}
@@ -4968,8 +4968,8 @@ MonoBehaviour:
   m_FillRect: {fileID: 1449585104}
   m_HandleRect: {fileID: 849523645}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: 0.25
+  m_MaxValue: 1.25
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
@@ -5223,8 +5223,8 @@ MonoBehaviour:
   m_FillRect: {fileID: 219604831}
   m_HandleRect: {fileID: 1077507411}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: 0.25
+  m_MaxValue: 1.25
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
@@ -7339,6 +7339,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.data[12]._keyboardKeyCode
       value: 106
+      objectReference: {fileID: 0}
+    - target: {fileID: 4375930808798869851, guid: 29cebba090f3eaf409356a63231aafb2,
+        type: 3}
+      propertyPath: _userData.inputBehaviors.Array.data[0]._mouseXYAxisSensitivity
+      value: 0.75
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29cebba090f3eaf409356a63231aafb2, type: 3}
