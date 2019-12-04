@@ -5,7 +5,7 @@ using TMPro;
 
 using Sirenix.OdinInspector;
 
-public class Menu : MonoBehaviour
+public class Menu : Singleton<Menu>
 {
 	#region Variables
 	[Required]
@@ -28,7 +28,7 @@ public class Menu : MonoBehaviour
     GameObject creditsMenu;
     [Required]
     [SerializeField, Tooltip("UI for almanac")]
-    GameObject almanac;
+    public GameObject almanac;
 
     [Required]
 	[SerializeField, Tooltip("TMPro Text that displays score when the player wins")]
