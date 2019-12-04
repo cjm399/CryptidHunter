@@ -2280,7 +2280,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1014569187
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4636,8 +4636,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: "\nRewired\nAdvanced-Multi-Scene: Cross Scene References!\nOdin - Inspector
-    and Serializer\nVCR OSD Mono By Riciery Leal\r\nLuna By Amanda Leeson\nForbid
-    Nothing by Johnathan Harris\nOld Blank Journal by goRillA-iNK\n\n"
+    and Serializer\nAura 2\nDEATH_ARTISAN\nVIS GAMES\nKOBRA GAME STUDIOS\nGRANDREWGB\nTexturify.com\nVCR
+    OSD Mono by Riciery Leal\r\nLuna by Amanda Leeson\nForbid Nothing by Johnathan
+    Harris\nOld Blank Journal by goRillA-iNK\n\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -4682,7 +4683,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 249
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -4706,12 +4707,12 @@ MonoBehaviour:
   m_margin: {x: -100.6878, y: 0, z: -210.13121, w: -418.07327}
   m_textInfo:
     textComponent: {fileID: 2123433639}
-    characterCount: 208
+    characterCount: 284
     spriteCount: 0
-    spaceCount: 32
-    wordCount: 31
+    spaceCount: 43
+    wordCount: 43
     linkCount: 0
-    lineCount: 9
+    lineCount: 16
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
