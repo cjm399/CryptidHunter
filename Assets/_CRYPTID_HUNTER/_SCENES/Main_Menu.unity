@@ -2280,7 +2280,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1014569187
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4612,7 +4612,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -12.999957}
+  m_AnchoredPosition: {x: 0, y: -47}
   m_SizeDelta: {x: 600, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2123433639
@@ -4636,7 +4636,8 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: "\nRewired\nAdvanced-Multi-Scene: Cross Scene References!\nOdin - Inspector
-    and Serializer\nVCR OSD Mono By Riciery Leal\r\nLuna By Amanda Leeson\n"
+    and Serializer\nVCR OSD Mono By Riciery Leal\r\nLuna By Amanda Leeson\nForbid
+    Nothing by Johnathan Harris\nOld Blank Journal by goRillA-iNK\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -4664,8 +4665,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4705,12 +4706,12 @@ MonoBehaviour:
   m_margin: {x: -100.6878, y: 0, z: -210.13121, w: -418.07327}
   m_textInfo:
     textComponent: {fileID: 2123433639}
-    characterCount: 117
+    characterCount: 208
     spriteCount: 0
-    spaceCount: 17
-    wordCount: 17
+    spaceCount: 32
+    wordCount: 31
     linkCount: 0
-    lineCount: 6
+    lineCount: 9
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
