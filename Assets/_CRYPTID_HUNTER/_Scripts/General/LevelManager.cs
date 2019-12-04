@@ -84,11 +84,13 @@ public class LevelManager : Singleton<LevelManager>
     private void Start()
     {
         HasTimeLimit = hasTimeLimit;
-        almanac.ToggleAlmanac();
+        if(almanac.almanacOn == false)
+            almanac.ToggleAlmanac();
         
     }
 
     #endregion
+
     #region Private Methods
     #endregion Private Methods
 

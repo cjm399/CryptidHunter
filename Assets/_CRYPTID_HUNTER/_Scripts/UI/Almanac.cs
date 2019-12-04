@@ -16,7 +16,7 @@ public class Almanac : MonoBehaviour
     PlayerLook playerLook;
 
 
-    bool almanacOn = false;
+    public bool almanacOn = false;
 
     [SerializeField]
     Menu menuManager;
