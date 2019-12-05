@@ -84,11 +84,16 @@ public class LevelManager : Singleton<LevelManager>
     private void Start()
     {
         HasTimeLimit = hasTimeLimit;
-        almanac.ToggleAlmanac();
+        //if(almanac.almanacOn == false)
+        //    almanac.ToggleAlmanac();
+        almanac = Menu.Instance.gameObject.GetComponent<Almanac>();
+        almanac.OpenAlmanac();
+        almanac.almanacOn = true;
         
     }
 
     #endregion
+
     #region Private Methods
     #endregion Private Methods
 
