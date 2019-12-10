@@ -54,10 +54,10 @@ MonoBehaviour:
     priority: 128
   - source: {fileID: 0}
     name: Player_Woods_Steps
-    clip: {fileID: 8300000, guid: 0d27121f3f1bad447825e0dd6244b3cc, type: 3}
+    clip: {fileID: 8300000, guid: ece682d3c1358416b90d88111e66cf2c, type: 3}
     loop: 0
     playOnAwake: 0
-    volume: 0.3
+    volume: 0.1
     pitch: 1
     priority: 128
   - source: {fileID: 0}

@@ -104,10 +104,7 @@ public class Menu : Singleton<Menu>
 	{
 		HideCursor();
 		SceneManager.LoadScene((int)Level.MainScene);
-        AudioManager.instance?.Stop("Theme");
-        //AudioManager.instance?.Play("Woods_Theme");
-		AudioManager.instance?.Play("Wind");
-        AudioManager.instance?.Play("Owl");
+        AudioManager.instance?.StartWoodsLevelAudio();
 	}
 
 	public void RestartButton()

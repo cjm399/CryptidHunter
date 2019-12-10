@@ -243,7 +243,16 @@ public class PlayerWalk : MonoBehaviour
 		{
 			controller.SimpleMove(Vector3.zero);
 		}
-	}
+
+        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+        {
+            if(!GameObject.Find("Sound_Player_Woods_Steps").GetComponent<AudioSource>().isPlaying)
+            {
+                AudioManager.instance?.Play("Player_Woods_Steps");
+            }
+        }
+
+    }
 	#endregion MonoBehaviour
 
 	#region Public Methods
