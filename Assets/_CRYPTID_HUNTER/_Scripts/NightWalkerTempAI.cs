@@ -219,7 +219,7 @@ public class NightWalkerTempAI : MonoBehaviour
 
 		_agent.isStopped = false;
         
-		while(Vector3.Distance(transform.position, patrol_pos) > 2.0f)
+		while(Vector3.Distance(transform.position, patrol_pos) > .1f)
 		{
 			_agent.isStopped = PauseManager.Instance.Paused;
 
