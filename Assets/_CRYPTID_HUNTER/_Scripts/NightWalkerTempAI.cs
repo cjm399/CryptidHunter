@@ -42,6 +42,12 @@ public class NightWalkerTempAI : MonoBehaviour
     }
     private void Update()
     {
+		// If the Nightwalker isn't paranoid, then don't show a paranoid animation
+		if(state != 2)
+		{
+			anim.SetBool("isParanoid", false);
+		}
+
         switch (state) //state machine
         {
             case 0:
@@ -176,9 +182,12 @@ public class NightWalkerTempAI : MonoBehaviour
 
     }
     IEnumerator Paranoid_Patrol(bool first)
-    {
-        
-        Vector3 patrol_pos = transform.position;
+	{
+		anim.SetBool("isParanoid", true);
+		_agent.isStopped = true;
+		yield return new WaitForSeconds(5);
+
+		Vector3 patrol_pos = transform.position;
         anim.SetBool("isMoving", true);
         if ((forward == true) && (right == false))
         {
@@ -207,14 +216,18 @@ public class NightWalkerTempAI : MonoBehaviour
             _agent.SetDestination(patrol_pos);
             forward = true;
         }
+
+		_agent.isStopped = false;
         
-  
+		while(Vector3.Distance(transform.position, patrol_pos) > 2.0f)
+		{
+			_agent.isStopped = PauseManager.Instance.Paused;
+
+			yield return null;
+		}
 
         Debug.Log("In coroutine");
-        anim.SetBool("isParanoid", true);
-        yield return new WaitForSeconds(5);
-        anim.SetBool("isParanoid", false);
-        executing = false;
+		executing = false;
     }
 
     private void idle_state()

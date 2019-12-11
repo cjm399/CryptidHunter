@@ -5047,9 +5047,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   fovAngle: 110
-  timeInterval: 30
+  timeInterval: 60
   Player: {fileID: 0}
-  EnemyRunDistance: 13
+  EnemyRunDistance: 7
 --- !u!82 &1223537941050891104
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5163,31 +5163,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -6798783316884074078, guid: 8e32b0c033be7c141bbfaaa13ebcd9e7,
-        type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -6798783316884074078, guid: 8e32b0c033be7c141bbfaaa13ebcd9e7,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 1afe8662eef1c0744be9f76e5282497d, type: 2}
-    - target: {fileID: -6798783316884074078, guid: 8e32b0c033be7c141bbfaaa13ebcd9e7,
-        type: 3}
-      propertyPath: m_DynamicOccludee
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -6798783316884074078, guid: 8e32b0c033be7c141bbfaaa13ebcd9e7,
-        type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: 1afe8662eef1c0744be9f76e5282497d, type: 2}
-    - target: {fileID: -6057140222963153312, guid: 8e32b0c033be7c141bbfaaa13ebcd9e7,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: fc27a0c7e6f11c74b9b34adec915f6a6, type: 2}
     - target: {fileID: -4216859302048453862, guid: 8e32b0c033be7c141bbfaaa13ebcd9e7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5243,6 +5218,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 8e32b0c033be7c141bbfaaa13ebcd9e7,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: fc27a0c7e6f11c74b9b34adec915f6a6, type: 2}
+    - target: {fileID: -6798783316884074078, guid: 8e32b0c033be7c141bbfaaa13ebcd9e7,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -6798783316884074078, guid: 8e32b0c033be7c141bbfaaa13ebcd9e7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1afe8662eef1c0744be9f76e5282497d, type: 2}
+    - target: {fileID: -6798783316884074078, guid: 8e32b0c033be7c141bbfaaa13ebcd9e7,
+        type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -6798783316884074078, guid: 8e32b0c033be7c141bbfaaa13ebcd9e7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1afe8662eef1c0744be9f76e5282497d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e32b0c033be7c141bbfaaa13ebcd9e7, type: 3}
 --- !u!4 &3554470663856289528 stripped
