@@ -974,6 +974,31 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 468562433}
+    - target: {fileID: 977753611750787493, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
+        type: 3}
+      propertyPath: movespots.Array.data[0]
+      value: 
+      objectReference: {fileID: 1947754434}
+    - target: {fileID: 977753611750787493, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
+        type: 3}
+      propertyPath: movespots.Array.data[1]
+      value: 
+      objectReference: {fileID: 29113955}
+    - target: {fileID: 977753611750787493, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
+        type: 3}
+      propertyPath: movespots.Array.data[3]
+      value: 
+      objectReference: {fileID: 328915691}
+    - target: {fileID: 977753611750787493, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
+        type: 3}
+      propertyPath: movespots.Array.data[2]
+      value: 
+      objectReference: {fileID: 491720217}
+    - target: {fileID: 977753611750787493, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
+        type: 3}
+      propertyPath: movespots.Array.data[4]
+      value: 
+      objectReference: {fileID: 192547996}
     - target: {fileID: 1223537941050891104, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
         type: 3}
       propertyPath: m_PlayOnAwake
