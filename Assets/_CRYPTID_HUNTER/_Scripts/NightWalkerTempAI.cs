@@ -192,27 +192,27 @@ public class NightWalkerTempAI : MonoBehaviour
         if ((forward == true) && (right == false))
         {
             
-            patrol_pos.z += 2;
+            patrol_pos.z += 1;
             _agent.SetDestination(patrol_pos);
             right = true;
 
         }
         else if((forward == true) && (right == true))
         {
-            patrol_pos.x += 2;
+            patrol_pos.x += 1;
             _agent.SetDestination(patrol_pos);
             forward = false;
 
         }
         else if ((forward == false) && (right == true))
         {
-            patrol_pos.z -= 2;
+            patrol_pos.z -= 1;
             _agent.SetDestination(patrol_pos);
             right = false;
         }
         else if ((forward == false) && (right == false))
         {
-            patrol_pos.x -= 2;
+            patrol_pos.x -= 1;
             _agent.SetDestination(patrol_pos);
             forward = true;
         }
@@ -225,6 +225,7 @@ public class NightWalkerTempAI : MonoBehaviour
 
 			yield return null;
 		}
+        anim.SetBool("isMoving", false);
 
         Debug.Log("In coroutine");
 		executing = false;
@@ -256,9 +257,9 @@ public class NightWalkerTempAI : MonoBehaviour
                 state = 2;
 
             }
-            else //if they are more quiet, a patrol state is still activates, but not paranoid.
+            else if (distance < EnemyRunDistance/2) //if they are more quiet
             {
-                state = 1;
+                state = 2;
 
             }
                 
