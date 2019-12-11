@@ -191,33 +191,45 @@ public class NightWalkerTempAI : MonoBehaviour
         anim.SetBool("isMoving", true);
         if ((forward == true) && (right == false))
         {
-            
-            patrol_pos.z += 1;
+            patrol_pos.z += 2;
             _agent.SetDestination(patrol_pos);
             right = true;
+  
 
         }
         else if((forward == true) && (right == true))
         {
-            patrol_pos.x += 1;
+
+            patrol_pos.x += 2;
             _agent.SetDestination(patrol_pos);
             forward = false;
+
 
         }
         else if ((forward == false) && (right == true))
         {
-            patrol_pos.z -= 1;
+ 
+            patrol_pos.z -= 2;
             _agent.SetDestination(patrol_pos);
             right = false;
         }
         else if ((forward == false) && (right == false))
         {
-            patrol_pos.x -= 1;
+
+            patrol_pos.x -= 2;
             _agent.SetDestination(patrol_pos);
             forward = true;
         }
+        RaycastHit check;
+        if (Physics.Raycast(transform.position, transform.forward, out check, 2f))
+        {
+            if (check.collider.gameObject != Player)
+            {
+                yield return null;
+            }
+        }
 
-		_agent.isStopped = false;
+        _agent.isStopped = false;
         
 		while(Vector3.Distance(transform.position, patrol_pos) > .1f)
 		{
