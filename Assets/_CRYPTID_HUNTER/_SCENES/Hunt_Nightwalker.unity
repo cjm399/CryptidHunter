@@ -2339,5 +2339,10 @@ PrefabInstance:
       propertyPath: timeInterval
       value: 60
       objectReference: {fileID: 0}
+    - target: {fileID: 977753611750787493, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0,
+        type: 3}
+      propertyPath: speed
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff61b54b07bb93d469ee8f7b8bf9b4e0, type: 3}

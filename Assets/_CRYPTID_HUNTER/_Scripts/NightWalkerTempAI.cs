@@ -9,6 +9,7 @@ public class NightWalkerTempAI : MonoBehaviour
     private NavMeshAgent _agent;
     //private ParticleSystem footsteps;
     public float speed;
+    private float rspeed;
     public Transform[] movespots;
     private int randomSpot;
     private int state = 0; //state machine tracker 0 is idle, 1 is fleeing
@@ -21,6 +22,7 @@ public class NightWalkerTempAI : MonoBehaviour
     private bool right = false;
     public float timeInterval = 30f;
     private float last_time = 0f;
+    private Animator anim;
 
     public GameObject Player;
 
@@ -35,6 +37,7 @@ public class NightWalkerTempAI : MonoBehaviour
         randomSpot = Random.Range(0, movespots.Length);
         currentPos = _agent.gameObject.transform.position;
         newPos = currentPos;
+        anim = gameObject.GetComponentInChildren<Animator>();
 
     }
     private void Update()
@@ -62,6 +65,7 @@ public class NightWalkerTempAI : MonoBehaviour
 
     private void flee_state()
     {
+        anim.SetBool("isMoving", true);
         //TODO Running animation
 
         Vector3 dirToPlayer = transform.position - Player.transform.position;
@@ -83,6 +87,7 @@ public class NightWalkerTempAI : MonoBehaviour
         {
             //footsteps.gameObject.SetActive(false);
             //GetComponent<AudioSource>().Stop();//stops audio and switches back to an idle state
+            anim.SetBool("isMoving", false);
             _agent.speed = speed;
             state = 0;
         }
@@ -96,7 +101,6 @@ public class NightWalkerTempAI : MonoBehaviour
         {
             executing = true;
             StartCoroutine(Patrol());
-            
         }
         
         Vector3 direction = Player.transform.position - transform.position;
@@ -143,12 +147,14 @@ public class NightWalkerTempAI : MonoBehaviour
 
     private void paranoid_state()
     {
+        bool first = true;
         _agent.speed = speed;
         if (executing == false)
         {
             executing = true;
-            StartCoroutine(Paranoid_Patrol());
-
+            
+            StartCoroutine(Paranoid_Patrol(first));
+            
         }
 
         Vector3 direction = Player.transform.position - transform.position;
@@ -162,20 +168,25 @@ public class NightWalkerTempAI : MonoBehaviour
                 {
                     randomSpot = Random.Range(0, movespots.Length);
                     state = 3;  //activate flee state
+                    first = true;
                 }
             }
 
         }
 
     }
-    IEnumerator Paranoid_Patrol()
+    IEnumerator Paranoid_Patrol(bool first)
     {
+        
         Vector3 patrol_pos = transform.position;
+        anim.SetBool("isMoving", true);
         if ((forward == true) && (right == false))
         {
+            
             patrol_pos.z += 2;
             _agent.SetDestination(patrol_pos);
             right = true;
+
         }
         else if((forward == true) && (right == true))
         {
@@ -196,14 +207,19 @@ public class NightWalkerTempAI : MonoBehaviour
             _agent.SetDestination(patrol_pos);
             forward = true;
         }
+        
+  
 
         Debug.Log("In coroutine");
+        anim.SetBool("isParanoid", true);
         yield return new WaitForSeconds(5);
+        anim.SetBool("isParanoid", false);
         executing = false;
     }
 
     private void idle_state()
     {
+  
         float currentTime = Time.realtimeSinceStartup;
         
         distance = Vector3.Distance(transform.position, Player.transform.position);
@@ -250,6 +266,7 @@ public class NightWalkerTempAI : MonoBehaviour
         currentPos = _agent.gameObject.transform.position;
 
         _agent.speed = speed * 0.1f;
+        anim.SetBool("isMoving", true);
         _agent.SetDestination(newPos);   //moves nightwalker to random way-point
 
         GetComponent<AudioSource>().Play();             //plays nightwalker run audio
@@ -295,7 +312,7 @@ public class NightWalkerTempAI : MonoBehaviour
         }
         if (Vector3.Distance(_agent.gameObject.transform.position, newPos) < 2.0f) //checks if agent has (basically) made it to his destination
         {
-            //footsteps.gameObject.SetActive(false);
+            anim.SetBool("isMoving", false);
             GetComponent<AudioSource>().Stop();//stops audio and switches back to an idle state
             _agent.speed = speed;
             state = 0;
