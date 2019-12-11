@@ -17,7 +17,9 @@ public class Menu : Singleton<Menu>
 	[Required]
 	[SerializeField, Tooltip("UI for settings menu that shows up after clicking settings")]
 	GameObject settings;
-	[Required]
+    [SerializeField, Tooltip("UI for settings menu that shows up after clicking settings")]
+    GameObject settingsMainMenu;
+    [Required]
 	[SerializeField, Tooltip("UI for screen that shows up when winning")]
 	GameObject winScreen;
 	[Required]
@@ -122,8 +124,17 @@ public class Menu : Singleton<Menu>
 		pauseMain.SetActive(false);
 		settings.SetActive(true);
 	}
+    public void SettingsMainMenuButton()
+    {
+        settingsMainMenu.SetActive(true);
+    }
 
-	public void MenuButton()
+    public void SettingsMainMenuBackButton()
+    {
+        settingsMainMenu.SetActive(false) ;
+    }
+
+    public void MenuButton()
 	{
 		pauseMenu.SetActive(false);
 		winScreen.SetActive(false);

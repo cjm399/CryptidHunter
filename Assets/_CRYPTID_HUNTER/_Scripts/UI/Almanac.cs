@@ -76,6 +76,7 @@ public class Almanac : MonoBehaviour
 		almanacObj.SetActive(true);
 		menuManager.ShowCursor();
 		PlayerCharacter.Instance.LockPlayer(this);
+        Time.timeScale = 0;
 	}
 
 	public void CloseAlmanac()
@@ -83,7 +84,8 @@ public class Almanac : MonoBehaviour
 		almanacObj.SetActive(false);
 		menuManager.HideCursor();
 		PlayerCharacter.Instance.UnlockPlayer(this);
-	}
+        Time.timeScale = 1;
+    }
 
 	public void NextPage() 
     {
