@@ -295,7 +295,7 @@ public class NightWalkerTempAI : MonoBehaviour
         anim.SetBool("isMoving", true);
         _agent.SetDestination(newPos);   //moves nightwalker to random way-point
 
-        GetComponent<AudioSource>().Play();             //plays nightwalker run audio
+        //GetComponent<AudioSource>().Play();             //plays nightwalker run audio
         distance = Vector3.Distance(transform.position, Player.transform.position);
         //TODO play idle animation
         bool camera = GameObject.Find("PhotoCamera").GetComponent<PhotoCamera>().CameraOut;
@@ -339,7 +339,7 @@ public class NightWalkerTempAI : MonoBehaviour
         if (Vector3.Distance(_agent.gameObject.transform.position, newPos) < 2.0f) //checks if agent has (basically) made it to his destination
         {
             anim.SetBool("isMoving", false);
-            GetComponent<AudioSource>().Stop();//stops audio and switches back to an idle state
+            //GetComponent<AudioSource>().Stop();//stops audio and switches back to an idle state
             _agent.speed = speed;
             state = 0;
         }
