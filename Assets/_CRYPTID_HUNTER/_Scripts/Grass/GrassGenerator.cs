@@ -53,7 +53,7 @@ public class GrassGenerator : MonoBehaviour
 
             Ray ray = new Ray(origin, Vector3.down);
             RaycastHit hit;
-            if (Physics.SphereCast(ray, sphereCastSize, out hit, hitMask))
+            if (Physics.SphereCast(ray,sphereCastSize, out hit, (int)hitMask))//Physics.SphereCast(ray, sphereCastSize, out hit, hitMask))
             {
                 if (((1 << hit.collider.gameObject.layer) & hitLayer.value) == 0)
                 {
